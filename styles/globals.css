@@ -1,11 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=La+Belle+Aurore&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;700;900&display=swap');
 :root {
   --max-width: 1100px;
   --border-radius: 12px;
-  --font-mono: ui-monospace, Menlo, Monaco, 'Cascadia Mono', 'Segoe UI Mono',
-    'Roboto Mono', 'Oxygen Mono', 'Ubuntu Monospace', 'Source Code Pro',
-    'Fira Mono', 'Droid Sans Mono', 'Courier New', monospace;
 
-  --foreground-rgb: 0, 0, 0;
+  /*--foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
 
@@ -37,7 +36,35 @@
   --callout-rgb: 238, 240, 241;
   --callout-border-rgb: 172, 175, 176;
   --card-rgb: 180, 185, 188;
-  --card-border-rgb: 131, 134, 135;
+  --card-border-rgb: 131, 134, 135; */
+
+  /* COLORS */
+  --grey-light-1: #8d8d8d;
+  --grey-light-2: #515152;
+
+  --grey-light-2: #7b7b7d;
+
+  --yellow: #ffcc00;
+  --purple: #4b116f;
+  --test: #6a6a6c;
+
+  --grey-dark-BG1: #1d1d1d;
+  --grey-dark-BG2: #181818;
+  --black: #000;
+
+  --white: #fff;
+
+  /* Fonts */
+  --tagFont: 'La Belle Aurore', cursive;
+  --textFont: 'Roboto', sans-serif;
+
+  /* Size */
+  --font-huge: 9.3rem;
+  --font-h2: 8rem;
+  --font-big: 3.3rem;
+  --font-reg: 2.2rem;
+  --font-small: 1.8rem;
+  --font-tiny: 1.4rem;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -86,13 +113,10 @@ body {
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  color: var(--white);
+  background-color: var(--grey-dark-BG1);
+
+  font-family: var(--textFont);
 }
 
 a {
