@@ -1,9 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import Link from 'next/link';
-import GitHub from '../public/svg/github.svg';
-import Pdf from '../public/svg/file-pdf.svg';
-import LikedIn from '../public/svg/linkedin2.svg';
+import SvgRenderComp from '../components/SvgRenderComp'
 
 const Nav = styled('nav')({
     color: `${(props) => props.theme.colors.yellow}`,
@@ -35,7 +33,6 @@ const NavItem = styled.li`
         transform: scaleY(0);
         transition: transform 0.3s, width 0.4s cubic-bezier(1, 0, 0, 1) 0.2s;
     }
-
     &:hover::before {
         transform: scaleY(1);
         width: 100%;
@@ -74,8 +71,6 @@ const Icon = styled.svg({
     filter: 'invert(49 %) sepia(1%) saturate(1741 %) hue - rotate(201deg) brightness(98 %) contrast(87 %)',
     cursor: 'pointer',
     border: '1px solid red',
-
-
     '&:hover': {
         filter: 'invert(83 %) sepia(34 %) saturate(3975 %) hue - rotate(359deg) brightness(105 %) contrast(104 %)',
     }
@@ -110,6 +105,7 @@ function SideBar() {
                         <Icon>
                             <Link target='_blank' href='https://github.com/Juliasavransky/'>
                                 {/* <GitHub /> */}
+
                             </Link>
                         </Icon>
                         <Icon>
