@@ -26,6 +26,7 @@ const theme = {
     fontTiny: '1.4rem',
   },
 };
+
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
