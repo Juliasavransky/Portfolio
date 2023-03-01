@@ -1,24 +1,28 @@
 import type { AppProps } from 'next/app';
 import SideBar from '@/components/sideBar';
 import { ThemeProvider } from '@emotion/react';
-import { Global, css } from '@emotion/react';
-import styled from '@emotion/styled';
 import theme from '../styles/theme';
+import { Roboto, La_Belle_Aurore } from '@next/font/google';
 
-const globalStyles = styled('body')({
-  margin: '0',
-  padding: '0',
+const roboto = Roboto({
+  subsets: ['latin'],
+  weight: '400',
+});
+
+const laBelle = La_Belle_Aurore({
+  subsets: ['latin'],
+  weight: '400',
 });
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
-      {/* <Global styles={globalStyles}> */}
-      <ThemeProvider theme={theme}>
-        <SideBar />
-        <Component {...pageProps} />
-      </ThemeProvider>
-      {/* </Global> */}
+      <main className={roboto.className}>
+        <ThemeProvider theme={theme}>
+          <SideBar />
+          <Component {...pageProps} />
+        </ThemeProvider>
+      </main>
     </>
   );
 }
