@@ -1,28 +1,28 @@
 import type { AppProps } from 'next/app';
-import SideBar from '@/components/sideBar';
 import { ThemeProvider } from '@emotion/react';
 import theme from '../styles/theme';
-import { Roboto, La_Belle_Aurore } from '@next/font/google';
+import { Roboto } from '@next/font/google';
+import SideBar from '@/components/sideBar';
+import Reset from '../styles/reset';
+import Layout from '@/components/layout';
 
 const roboto = Roboto({
   subsets: ['latin'],
-  weight: '400',
-});
-
-const laBelle = La_Belle_Aurore({
-  subsets: ['latin'],
-  weight: '400',
+  weight: '100',
 });
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
-      <main className={roboto.className}>
-        <ThemeProvider theme={theme}>
-          <SideBar />
-          <Component {...pageProps} />
-        </ThemeProvider>
-      </main>
+      <ThemeProvider theme={theme}>
+        <Reset />
+        <Layout>
+          <div className={roboto.className}>
+            <SideBar />
+            <Component {...pageProps} />
+          </div>
+        </Layout>
+      </ThemeProvider>
     </>
   );
 }

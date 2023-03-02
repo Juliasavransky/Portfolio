@@ -2,21 +2,27 @@ import React from 'react';
 import styled from '@emotion/styled';
 import Link from 'next/link';
 import Icon from "../utils/Icon";
+// import { La_Belle_Aurore } from '@next/font/google';
 
+
+// const laBelle = La_Belle_Aurore({
+//     subsets: ['latin'],
+//     weight: '400',
+// });
 
 const Nav = styled('nav')({
     color: `${(props) => props.theme.colors.yellow}`,
-    flex: ' 0 0 13%',
+    flex: '0 0 13%',
     position: 'relative'
 })
 
 const SideBarNav = styled('div')({
-    position: 'fixed'
+    position: 'fixed',
+    marginTop: '30vh',
 })
 
 
 const NavList = styled('ul')({
-    marginTop: '35vh',
     display: "flex",
     flexDirection: "column",
     listStyle: "none",
@@ -66,8 +72,8 @@ const Icons = styled('div')({
 
 
 const IconD = styled.div`
-    height: 3rem;
-    width: 3rem;
+    height: 2.5rem;
+    width: 2.5rem;
     filter: invert(49%) sepia(1%) saturate(1741%) hue-rotate(201deg) brightness(98%) contrast(87%);
     cursor: pointer;
     &:hover{
@@ -83,7 +89,7 @@ function SideBar() {
         <Nav>
             <SideBarNav>
                 <NavList>
-                    <NavItem>
+                    <NavItem >
                         <Link style={{ textDecoration: 'none' }} href='/'>
                             <NavLink>About</NavLink>
                         </Link>
