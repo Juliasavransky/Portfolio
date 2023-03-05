@@ -12,7 +12,7 @@ const Layout = ({ children }: LayoutProps) => {
         styles={css`
           main {
             display: flex;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             font-weight: 100;
           }
         `}

@@ -2,31 +2,24 @@ import React from 'react';
 import styled from '@emotion/styled';
 import Link from 'next/link';
 import Icon from "../utils/Icon";
-// import { La_Belle_Aurore } from '@next/font/google';
 
 
-// const laBelle = La_Belle_Aurore({
-//     subsets: ['latin'],
-//     weight: '400',
-// });
+const Nav = styled.nav`  
+    flex: 0 0 10%;
+    position: relative;
+`
 
-const Nav = styled('nav')({
-    color: `${(props) => props.theme.colors.yellow}`,
-    flex: '0 0 13%',
-    position: 'relative'
-})
+const SideBarNav = styled.div`
+    position: fixed;
+    margin-top: 30vh;
+`
 
-const SideBarNav = styled('div')({
-    position: 'fixed',
-    marginTop: '30vh',
-})
+const NavList = styled.ul`
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+`
 
-
-const NavList = styled('ul')({
-    display: "flex",
-    flexDirection: "column",
-    listStyle: "none",
-})
 
 const NavItem = styled.li`
     &::before {
@@ -40,6 +33,9 @@ const NavItem = styled.li`
         transform: scaleY(0);
         transition: transform 0.3s, width 0.4s cubic-bezier(1, 0, 0, 1) 0.2s;
     }
+    &:hover{
+        color:white;
+    }
     &:hover::before {
         transform: scaleY(1);
         width: 100%;
@@ -48,28 +44,30 @@ const NavItem = styled.li`
         border-top: 1px solid ${(props) => props.theme.colors.greyLight2};
     }
     padding: 1.5rem 1.5rem;
-    letter-spacing: 3px;
+    letter-spacing: 5px;
     cursor: pointer;
     position: relative;
     border-bottom: 1px solid ${(props) => props.theme.colors.greyLight2};
-    width: 13vw;
+    width: 10vw;
 `;
 
-const NavLink = styled('span')({
-    textDecoration: 'none',
-    color: `${(props) => props.theme.colors.greyLight1}`,
-    position: 'relative',
-    zIndex: '10',
-    marginLeft: '1rem'
-})
+const NavLink = styled.span`
+    text-decoration: 'none';
+    color: ${(props) => props.theme.colors.greyLight1};
+    position: relative;
+    z-index: 10;
+    margin-left: 1rem;
+    &:hover{
+        color:inherit;
+    }
+`
 
 
-const Icons = styled('div')({
-    display: 'flex',
-    justifyContent: 'space-evenly',
-    marginTop: '10rem',
-})
-
+const Icons = styled.div`
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 6rem;
+`
 
 const IconD = styled.div`
     height: 2.5rem;
@@ -86,6 +84,7 @@ const IconD = styled.div`
 function SideBar() {
 
     return (
+
         <Nav>
             <SideBarNav>
                 <NavList>
