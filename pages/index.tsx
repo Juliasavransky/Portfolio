@@ -1,40 +1,15 @@
-import DecoTag from '@/styles/decoTag';
 import React from 'react';
 import styled from '@emotion/styled';
 import SplitText from '@/utils/splitText';
+import DecoTag from '@/styles/decoTag';
 import Link from 'next/link';
+import {
+  MainPageContainer,
+  HeaderContainer,
+  Header,
+  Spacer,
+} from '../styles/layoutComponents';
 
-const MainPageContainer = styled.div`
-  min-height: 100vh;
-  display: flex;
-  /* flex: 0 0 84.99%; */
-  flex-direction: column;
-  justify-content: flex-start;
-  position: absolute;
-  left: 12rem;
-  /* top: 3rem; */
-  padding-top: 2rem;
-  /* border: dotted 1px white; */
-  width: 90%;
-`;
-
-const HeaderContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  font-size: 6rem;
-  font-weight: 900;
-  letter-spacing: 4px;
-  margin-left: 11rem;
-`;
-const Header = styled.div`
-  display: flex;
-  align-items: flex-start;
-  margin-left: 11rem;
-`;
-const Spacer = styled.span`
-  margin-left: 3rem;
-`;
 const TheJ = styled.span`
   font-size: calc(6 * 1.45rem);
   line-height: 95px;
@@ -101,27 +76,27 @@ function HomePage() {
         <DecoTag text={'<body>'} />
       </span>
       <HeaderContainer>
-        <span style={{ marginLeft: '9rem' }}>
+        <span>
           <DecoTag text={'<h1>'} />
         </span>
 
         <Header>
-          <SplitText text='Hi,' />
+          <SplitText style={{ fontSize: '6rem' }} text='Hi,' />
         </Header>
         <Header>
-          <SplitText text="I'm " />
+          <SplitText style={{ fontSize: '6rem' }} text="I'm " />
           <Spacer>
             <TheJ>J</TheJ>
           </Spacer>
-          <SplitText text='ulia,' />
+          <SplitText style={{ fontSize: '6rem' }} text='ulia,' />
         </Header>
         <Header>
-          <SplitText text='Frontend ' />
-          <Spacer></Spacer>
-          <SplitText text='Developer' />
+          <SplitText style={{ fontSize: '6rem' }} text='Frontend ' />
+          <Spacer />
+          <SplitText style={{ fontSize: '6rem' }} text='Developer' />
         </Header>
 
-        <span style={{ marginLeft: '9rem' }}>
+        <span>
           <DecoTag text={'</h1>'} />
         </span>
       </HeaderContainer>
