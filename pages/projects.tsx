@@ -2,13 +2,14 @@ import React from 'react';
 import styled from '@emotion/styled';
 import SplitText from '@/utils/splitText';
 import DecoTag from '@/styles/decoTag';
-import Link from 'next/link';
 import {
   MainPageContainer,
   HeaderContainer,
   Header,
   Spacer,
 } from '../styles/layoutComponents';
+import projectsList from '../utils/projectList.json';
+import Card from '../components/card';
 
 const SmallTitleContainer = styled.div`
   display: flex;
@@ -24,7 +25,18 @@ const SmallTitle = styled.p`
   font-weight: 100;
 `;
 
+const CardWrapper = styled.div`
+  margin-top: 3rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  flex: 1 1 10em;
+`;
+
 function Projects() {
+  const projects = projectsList;
+  console.log(projects);
+
   return (
     <MainPageContainer>
       <HeaderContainer style={{ flexDirection: 'row', alignItems: 'center' }}>
@@ -52,6 +64,22 @@ function Projects() {
           <DecoTag text={'</p>'} />
         </span>
       </SmallTitleContainer>
+
+      <CardWrapper>
+        {projects.map((project) => {
+          return (
+            <div key={project.projectName}>
+              <Card
+                projectName={project.projectName}
+                gitHubLink={project.gitHubLink}
+                pageLink={project.pageLink}
+                summary={project.summary}
+                img={project.img}
+              />
+            </div>
+          );
+        })}
+      </CardWrapper>
     </MainPageContainer>
   );
 }
