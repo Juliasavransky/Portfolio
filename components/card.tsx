@@ -2,6 +2,8 @@ import React from 'react';
 import Link from 'next/link';
 import styled from '@emotion/styled';
 import Image from 'next/image';
+import { Theme } from '@emotion/react';
+import theme from '@/styles/theme';
 
 type CardProps = {
   projectName?: string;
@@ -9,6 +11,7 @@ type CardProps = {
   pageLink: URL | string;
   summary?: string;
   img: string;
+  theme: Theme;
 };
 
 const ProjectCard = styled.div`
@@ -28,39 +31,39 @@ const ProjectCardIMage = styled.div`
   object-fit: cover;
 
   &:hover {
-    transform: scale(1.3);
+    transform: scale(1.2);
     transition: all 0.6s ease-in-out;
     filter: blur(1px) brightness(40%) saturate(1.3);
   }
 `;
-const ProjectCardDetails = styled.div`
+//#################################3
+const ProjectCardDetails = styled.div<{ theme: Theme }>`
   position: absolute;
-  top: 70%;
-  margin-left: 3rem;
+  top: 60%;
+  margin-left: 2rem;
   transform: translateY(20%);
   opacity: 0;
   transition: all 0.6s ease-in-out;
   backface-visibility: hidden;
-  color: ${(props) => props.theme.colors.greyLight2};
+  color: ${theme.colors.greyLight2};
 
   &:hover {
     opacity: 1;
-    transform: translateY(-70%);
+    transform: translateY(-50%);
     transition: all 0.6s ease-in-out;
   }
 `;
-const DetailsTitle = styled.h2`
-  font-size: ${(props) => props.theme.size.fontReg};
+const DetailsTitle = styled.h2<{ theme: Theme }>`
+  font-size: ${theme.size.fontSmall};
   font-weight: 300;
-  color: ${(props) => props.theme.colors.white};
+  color: ${theme.colors.white};
   letter-spacing: 3px;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 `;
-const DetailsDescription = styled.p`
-  font-size: $font-tiny;
-  font-size: ${(props) => props.theme.size.fontTiny};
-  color: ${(props) => props.theme.colors.white};
-  margin-bottom: 2rem;
+const DetailsDescription = styled.p<{ theme: Theme }>`
+  font-size: ${theme.size.fontTiny};
+  color: ${theme.colors.white};
+  margin-bottom: 1rem;
   width: 95%;
 `;
 const DetailsButton = styled.div`
@@ -69,27 +72,34 @@ const DetailsButton = styled.div`
   justify-content: space-around;
   align-items: center;
 `;
-const DetailsLink = styled.div`
+const DetailsLink = styled.div<{ theme: Theme }>`
   text-decoration: none;
-  font-size: ${(props) => props.theme.size.fontTiny};
-  color: ${(props) => props.theme.colors.white};
+  font-size: ${theme.size.fontTiny};
+  color: ${theme.colors.white};
   transition: all 0.3s;
 
   &:hover {
-    color: ${(props) => props.theme.colors.yellow};
+    color: ${theme.colors.yellow};
     transform: rotate(-4deg) scale(1.4);
-    border-bottom: solid 1px ${(props) => props.theme.colors.purple};
+    border-bottom: solid 1px ${theme.colors.purple};
   }
 `;
 
-const DetailsIcon = styled.div`
-  fill: ${(props) => props.theme.colors.purple};
-  height: ${(props) => props.theme.size.fontSmall};
-  width: ${(props) => props.theme.size.fontSmall};
+const DetailsIcon = styled.div<{ theme: Theme }>`
+  fill: ${theme.colors.purple};
+  height: ${theme.size.fontSmall};
+  width: ${theme.size.fontSmall};
   cursor: pointer;
 `;
 
-function Card({ projectName, gitHubLink, pageLink, summary, img }: CardProps) {
+function Card({
+  projectName,
+  gitHubLink,
+  pageLink,
+  summary,
+  img,
+  theme,
+}: CardProps) {
   return (
     <ProjectCard>
       <ProjectCardItem>
@@ -97,19 +107,19 @@ function Card({ projectName, gitHubLink, pageLink, summary, img }: CardProps) {
           <Image src={img} alt='project' height={255} width={525} />
         </ProjectCardIMage>
 
-        <ProjectCardDetails>
-          <DetailsTitle>{projectName}</DetailsTitle>
-          <DetailsDescription>{summary}</DetailsDescription>
+        <ProjectCardDetails theme={theme}>
+          <DetailsTitle theme={theme}>{projectName}</DetailsTitle>
+          <DetailsDescription theme={theme}>{summary}</DetailsDescription>
 
           <DetailsButton>
             <Link href={pageLink} target='_blank'>
-              <DetailsLink>
-                Visit the page<DetailsIcon>&#8594;</DetailsIcon>
+              <DetailsLink theme={theme}>
+                Visit the page<DetailsIcon theme={theme}>&#8594;</DetailsIcon>
               </DetailsLink>
             </Link>
             <Link href={gitHubLink} target='_blank'>
-              <DetailsLink>
-                See the code <DetailsIcon>&#8594;</DetailsIcon>
+              <DetailsLink theme={theme}>
+                See the code <DetailsIcon theme={theme}>&#8594;</DetailsIcon>
               </DetailsLink>
             </Link>
           </DetailsButton>

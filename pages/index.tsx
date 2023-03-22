@@ -9,12 +9,18 @@ import {
   Header,
   Spacer,
 } from '../styles/layoutComponents';
+import { Theme } from '@emotion/react';
+import theme from './../styles/theme';
 
-const TheJ = styled.span`
+type HomePageProps = {
+  theme: Theme;
+};
+
+const TheJ = styled.span<{ theme: Theme }>`
   font-size: calc(6 * 1.45rem);
   line-height: 95px;
-  text-shadow: 1vmin 0 ${(props) => props.theme.colors.yellow};
-  color: ${(props) => props.theme.colors.purple};
+  text-shadow: 1vmin 0 ${theme.colors.yellow};
+  color: ${theme.colors.purple};
 `;
 
 const Btn = styled.div`
@@ -24,7 +30,7 @@ const Btn = styled.div`
   align-items: center;
 `;
 
-const BtnMainPage = styled.div`
+const BtnMainPage = styled.div<{ theme: Theme }>`
   display: inline-flex;
   width: 30rem;
   height: 5rem;
@@ -52,23 +58,23 @@ const BtnMainPage = styled.div`
       justify-content: center;
       box-sizing: border-box;
       border-radius: 5px;
-      border: 5px solid ${(props) => props.theme.colors.purple};
+      border: 5px solid ${theme.colors.purple};
     }
     &::before {
       content: 'WANNA C MORE';
-      color: ${(props) => props.theme.colors.yellow};
-      background: ${(props) => props.theme.colors.greyDarkBG1};
+      color: ${theme.colors.yellow};
+      background: ${theme.colors.greyDarkBG1};
       transform: rotateY(0deg) translateZ(2.5rem);
     }
     &::after {
       content: 'CHECK MY PROJECTS';
-      color: ${(props) => props.theme.colors.yellow};
-      background: ${(props) => props.theme.colors.greyDarkBG1};
+      color: ${theme.colors.yellow};
+      background: ${theme.colors.greyDarkBG1};
       transform: rotateX(90deg) translateZ(2.5rem);
     }
   }
 `;
-function HomePage() {
+function HomePage({ theme }: HomePageProps) {
   return (
     <MainPageContainer>
       <DecoTag text={'<html>'} />
@@ -86,7 +92,7 @@ function HomePage() {
         <Header>
           <SplitText style={{ fontSize: '6rem' }} text="I'm " />
           <Spacer>
-            <TheJ>J</TheJ>
+            <TheJ theme={theme}>J</TheJ>
           </Spacer>
           <SplitText style={{ fontSize: '6rem' }} text='ulia,' />
         </Header>
@@ -105,7 +111,7 @@ function HomePage() {
         <span>
           <DecoTag text={'<button>'} />
         </span>
-        <BtnMainPage>
+        <BtnMainPage theme={theme}>
           <Link style={{ textDecoration: 'none' }} href='/projects'></Link>
         </BtnMainPage>
         <span>

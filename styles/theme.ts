@@ -1,4 +1,27 @@
-const theme = {
+interface Theme {
+  colors: {
+    greyLight1: string;
+    greyLight2: string;
+    yellow: string;
+    purple: string;
+    greyDarkBG1: string;
+    greyDarkBG2: string;
+    white: string;
+  };
+  fonts: {
+    tagFont: string;
+    textFont: string;
+  };
+  size: {
+    fontHuge: string;
+    fontH2: string;
+    fontBig: string;
+    fontReg: string;
+    fontSmall: string;
+    fontTiny: string;
+  };
+}
+const theme: Theme = {
   colors: {
     greyLight1: '#8d8d8d',
     greyLight2: '#7b7b7d',
@@ -17,8 +40,8 @@ const theme = {
     fontH2: '8rem',
     fontBig: '3.3rem',
     fontReg: '2.2rem',
-    fontSmall: '1.8rem',
-    fontTiny: '1.4rem',
+    fontSmall: '1.4rem',
+    fontTiny: '1rem',
   },
 };
 export default theme;
