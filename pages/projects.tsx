@@ -40,7 +40,6 @@ const CardWrapper = styled.div`
 
 function Projects({ theme }: ProjectsProps) {
   const projects = projectsList;
-  console.log(projects);
 
   return (
     <MainPageContainer>

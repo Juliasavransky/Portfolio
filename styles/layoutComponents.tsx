@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 export const MainPageContainer = styled.div`
-  min-height: 100vh;
+  height: 100vh;
   display: flex;
   /* flex: 0 0 84.99%; */
   flex-direction: column;
@@ -10,7 +10,6 @@ export const MainPageContainer = styled.div`
   left: 12rem;
   padding-top: 2rem;
   width: 90%;
-  border: 1px solid green;
 `;
 export const HeaderContainer = styled.div`
   display: flex;
