@@ -40,8 +40,8 @@ const theme: Theme = {
     fontH2: '8rem',
     fontBig: '3.3rem',
     fontReg: '2.2rem',
-    fontSmall: '1.4rem',
-    fontTiny: '1rem',
+    fontSmall: '1.5rem',
+    fontTiny: '.9rem',
   },
 };
 export default theme;

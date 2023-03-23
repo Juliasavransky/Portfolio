@@ -10,6 +10,11 @@ import {
 } from '../styles/layoutComponents';
 import projectsList from '../utils/projectList.json';
 import Card from '../components/card';
+import { Theme } from '@emotion/react';
+
+type ProjectsProps = {
+  theme: Theme;
+};
 
 const SmallTitleContainer = styled.div`
   display: flex;
@@ -33,7 +38,7 @@ const CardWrapper = styled.div`
   flex: 1 1 10em;
 `;
 
-function Projects() {
+function Projects({ theme }: ProjectsProps) {
   const projects = projectsList;
   console.log(projects);
 
@@ -75,6 +80,7 @@ function Projects() {
                 pageLink={project.pageLink}
                 summary={project.summary}
                 img={project.img}
+                theme={theme}
               />
             </div>
           );

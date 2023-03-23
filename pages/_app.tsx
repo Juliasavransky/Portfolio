@@ -8,7 +8,7 @@ import Layout from '@/components/layout';
 
 const roboto = Roboto({
   subsets: ['latin'],
-  weight: ['100', '900'],
+  weight: ['100', '500', '700', '900'],
 });
 
 export default function App({ Component, pageProps }: AppProps) {

@@ -8,12 +8,10 @@ export const MainPageContainer = styled.div`
   justify-content: flex-start;
   position: absolute;
   left: 12rem;
-  /* top: 3rem; */
   padding-top: 2rem;
-  /* border: dotted 1px white; */
   width: 90%;
+  border: 1px solid green;
 `;
-
 export const HeaderContainer = styled.div`
   display: flex;
   flex-direction: column;
