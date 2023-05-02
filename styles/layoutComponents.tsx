@@ -1,7 +1,9 @@
+import { Theme } from '@emotion/react';
 import styled from '@emotion/styled';
 
 export const MainPageContainer = styled.div`
   height: 100vh;
+  overflow: hidden;
   display: flex;
   /* flex: 0 0 84.99%; */
   flex-direction: column;
@@ -25,4 +27,18 @@ export const Header = styled.div`
 `;
 export const Spacer = styled.span`
   margin-left: 3rem;
+`;
+
+export const ParagraphContainer = styled.div`
+  width: 75%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 4rem;
+`;
+export const Paragraph = styled.p<{ theme: Theme }>`
+  font-size: 1.5rem;
+  font-weight: 100;
+  margin: 3rem auto;
 `;

@@ -1,6 +1,12 @@
 import TextCloud from '@/components/textCloud';
 import DecoTag from '@/styles/decoTag';
-import { Header, HeaderContainer, Spacer } from '@/styles/layoutComponents';
+import {
+  Header,
+  HeaderContainer,
+  Paragraph,
+  ParagraphContainer,
+  Spacer,
+} from '@/styles/layoutComponents';
 import SplitText from '@/utils/splitText';
 import styled from '@emotion/styled';
 import React from 'react';
@@ -29,20 +35,6 @@ export const Column = styled.div`
   align-items: center;
 `;
 
-export const ParagraphContainer = styled.div`
-  width: 75%;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: flex-start;
-  margin-top: 4rem;
-  position: relative;
-`;
-export const Paragraph = styled.p<{ theme: Theme }>`
-  font-size: 1.5rem;
-  font-weight: 100;
-  margin: 3rem auto;
-`;
 function Skills({ theme }: SkillsProps) {
   return (
     <>

@@ -34,6 +34,9 @@ const TextCloud = () => {
         'API',
         'Next.js',
         'MUI',
+        'WordPress',
+        'UX',
+        'UI',
       ];
 
       const options = {
