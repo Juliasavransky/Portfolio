@@ -112,70 +112,65 @@ function contactForm({ theme }: contactFormProps) {
     }
   };
 
-  //   const onBlur = ({ target }) =>
-  //     setFocused((prev) => ({ ...prev, [target.name]: true }));
-
   return (
-    <div>
-      <Form onSubmit={handleSubmit}>
-        <span style={{ marginRight: 'auto' }}>
-          <DecoTag text={'<form>'} />
-        </span>
+    <Form onSubmit={handleSubmit}>
+      <span style={{ marginRight: 'auto' }}>
+        <DecoTag text={'<form>'} />
+      </span>
 
-        <FormGroup>
-          <Input
-            // onBlur={onBlur}
-            type='text'
-            theme={theme}
-            placeholder='Name'
-            required
-            name='name'
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            style={{ width: '50%' }}
-          ></Input>
-          <Input
-            // onBlur={onBlur}
-            required
-            onChange={(e) => setEmail(e.target.value)}
-            style={{ width: '50%' }}
-            type='email'
-            theme={theme}
-            name='email'
-            value={email}
-            placeholder='Email'
-          ></Input>
-        </FormGroup>
+      <FormGroup>
         <Input
-          //   onBlur={onBlur}
-          required
+          // onBlur={onBlur}
           type='text'
-          onChange={(e) => setSubject(e.target.value)}
           theme={theme}
-          placeholder='Subject'
-          value={subject}
-          name='subject'
-        ></Input>
-        <TextArea
-          //   onBlur={onBlur}
+          placeholder='Name'
           required
-          onChange={(e) => setMassage(e.target.value)}
+          name='name'
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          style={{ width: '50%' }}
+        ></Input>
+        <Input
+          // onBlur={onBlur}
+          required
+          onChange={(e) => setEmail(e.target.value)}
+          style={{ width: '50%' }}
+          type='email'
           theme={theme}
-          placeholder='Massage'
-          value={massage}
-          name='massage'
-        ></TextArea>
-        <ContactBtn
-          theme={theme}
-          disabled={!name || !email || !subject || !massage}
-        >
-          Send message!
-        </ContactBtn>
-        <span style={{ marginLeft: 'auto', marginTop: '1rem' }}>
-          <DecoTag text={'</form>'} />
-        </span>
-      </Form>
-    </div>
+          name='email'
+          value={email}
+          placeholder='Email'
+        ></Input>
+      </FormGroup>
+      <Input
+        //   onBlur={onBlur}
+        required
+        type='text'
+        onChange={(e) => setSubject(e.target.value)}
+        theme={theme}
+        placeholder='Subject'
+        value={subject}
+        name='subject'
+      ></Input>
+      <TextArea
+        //   onBlur={onBlur}
+        required
+        onChange={(e) => setMassage(e.target.value)}
+        theme={theme}
+        placeholder='Massage'
+        value={massage}
+        name='massage'
+      ></TextArea>
+      <ContactBtn
+        theme={theme}
+        disabled={!name || !email || !subject || !massage}
+      >
+        Send message!
+      </ContactBtn>
+      <span style={{ marginLeft: 'auto', marginTop: '1rem' }}>
+        <DecoTag text={'</form>'} />
+      </span>
+    </Form>
   );
 }
 

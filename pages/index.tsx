@@ -11,6 +11,7 @@ import {
 } from '../styles/layoutComponents';
 import { Theme } from '@emotion/react';
 import theme from './../styles/theme';
+import { motion } from 'framer-motion';
 
 type HomePageProps = {
   theme: Theme;
@@ -75,6 +76,8 @@ const BtnMainPage = styled.div<{ theme: Theme }>`
   }
 `;
 function HomePage({ theme }: HomePageProps) {
+  const AnimatedSplitText = motion(SplitText);
+
   return (
     <MainPageContainer>
       <DecoTag text={'<html>'} />

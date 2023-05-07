@@ -11,7 +11,6 @@ import SplitText from '@/utils/splitText';
 import styled from '@emotion/styled';
 import React from 'react';
 import { Theme } from '@emotion/react';
-import theme from '@/styles/theme';
 
 type SkillsProps = {
   theme: Theme;
