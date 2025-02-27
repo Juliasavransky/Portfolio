@@ -1,5 +1,5 @@
-import React, { ReactNode } from 'react';
-import { Global, css } from '@emotion/react';
+import React, { ReactNode } from "react";
+import { Global, css } from "@emotion/react";
 
 type LayoutProps = {
   children: ReactNode;

@@ -4,20 +4,20 @@ const nextConfig = {
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/,
-      use: [{ loader: '@svgr/webpack', options: { icon: true } }],
+      use: [{ loader: "@svgr/webpack", options: { icon: true } }],
       test: /\.pdf$/,
       use: {
-        loader: 'file-loader',
+        loader: "file-loader",
         options: {
-          name: '[path][name].[ext]',
+          name: "[path][name].[ext]",
         },
       },
     });
     return config;
-  }
-}
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
 
 // module.exports = {
 //   images: {
@@ -27,4 +27,3 @@ module.exports = nextConfig
 //     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
 //   },
 // };
-

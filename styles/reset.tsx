@@ -1,4 +1,4 @@
-import { Global, css } from '@emotion/react';
+import { Global, css } from "@emotion/react";
 
 const Reset = () => (
   <Global
@@ -50,6 +50,7 @@ const Reset = () => (
         overflow-x: hidden;
         display: flex;
         font-weight: 100;
+        font-size: clamp(1rem, 1.8vw, 1.2rem); /* גודל טקסט דינמי */
       }
 
       /* Remove list styles on ul, ol elements with a class attribute */
@@ -73,7 +74,7 @@ const Reset = () => (
 
       /* Natural flow and rhythm in articles by default */
       article > * + * {
-        margin-top: 1em;
+        margin-top: clamp(0.5rem, 1vw, 1em);
       }
 
       /* Inherit fonts for inputs and buttons */
@@ -85,7 +86,7 @@ const Reset = () => (
       }
 
       ::-webkit-scrollbar {
-        width: 1.3em;
+        width: clamp(0.8rem, 1vw, 1.3em);
       }
       ::-webkit-scrollbar-track {
         background: #ffcc00;
@@ -93,7 +94,7 @@ const Reset = () => (
       ::-webkit-scrollbar-thumb {
         background: #4b116f;
         border-radius: 100vw;
-        border: 0.25em #ffcc00 solid;
+        border: clamp(0.2rem, 0.5vw, 0.25em) #ffcc00 solid;
       }
     `}
   />

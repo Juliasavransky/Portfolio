@@ -1,5 +1,5 @@
-import React from 'react';
-import { IconsDictionary } from './IconDictionary';
+import React from "react";
+import { IconsDictionary } from "./iconDictionary";
 
 export type IconProps = {
   iconKey: string;
@@ -21,10 +21,10 @@ const Icon = ({
   onClick,
 }: IconProps) => {
   if (!(iconKey in IconsDictionary)) {
-    throw 'Could not find key in icons dictionary: ' + iconKey;
+    throw "Could not find key in icons dictionary: " + iconKey;
   }
   const [defaultWidth, defaultHeight] = IconsDictionary[iconKey].viewBox
-    .split(' ')
+    .split(" ")
     .slice(2);
   const iconWidth = width || defaultWidth;
   const iconHeight = height || defaultHeight;

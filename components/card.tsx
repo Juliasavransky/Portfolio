@@ -24,6 +24,11 @@ const ProjectCard = styled.div`
     transition: all 0.5s ease-in-out;
   }
 
+  @media (max-width: 768px) {
+    &:hover .project-card__details {
+      overflow: scroll;
+    }
+  }
   &:hover .project-card__image {
     transform: scale(1.2);
     transition: all 0.5s ease-in-out;
@@ -35,9 +40,12 @@ const ProjectCardItem = styled.div`
   overflow: hidden;
   position: relative;
   border-radius: 10px;
-  display: inline-block;
-  flex: 0 1 33%;
+  display: flex;
+  flex: 1 0 calc(40% - 20px); /* 3 קלפים בשורה */
+  min-width: calc(33.33% - 20px); /* מבטיח התאמה */
+  margin: 10px; /* רווחים בין הקלפים */
 `;
+
 const ProjectCardIMage = styled.div`
   transform: scale(1.03);
   object-fit: cover;
@@ -97,6 +105,15 @@ const DetailsLink = styled.div<{ theme: Theme }>`
   }
 `;
 
+const ResponsiveImage = styled(Image)`
+  width: 100%;
+  height: clamp(180px, 75vw, 390px);
+  max-height: 260px;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  border-radius: 10px;
+`;
+
 function Card({
   projectName,
   gitHubLink,
@@ -109,7 +126,13 @@ function Card({
     <ProjectCard>
       <ProjectCardItem>
         <ProjectCardIMage className='project-card__image'>
-          <Image src={img} alt='project' height={255} width={525} />
+          <ResponsiveImage
+            src={img}
+            alt='project'
+            width={400} // כל גודל אפשרי ששומר על יחס 16:9
+            height={225} // גובה מחושב לפי 16:9
+            priority
+          />
         </ProjectCardIMage>
 
         <ProjectCardDetails className='project-card__details' theme={theme}>

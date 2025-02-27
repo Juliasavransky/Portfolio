@@ -8,7 +8,7 @@ interface SplitTextProps {
 
 const splitTextMotions = {
   hidden: {
-    x: '-100vw',
+    x: '-50vw',
     opacity: 0,
   },
   visible: {
@@ -17,10 +17,11 @@ const splitTextMotions = {
   },
   transition: {
     type: 'spring',
+    stiffness: 100,
     mass: 5,
-    damping: 6,
+    damping: 10,
     when: 'beforeChildren',
-    staggerChildren: 0.5,
+    staggerChildren: 0.1,
   },
 };
 
@@ -33,22 +34,24 @@ const spanMotions = {
     opacity: 1,
     scale: 1,
   },
-  // transition: {
-  //   duration: 5,
-  //   type: 'spring',
-  //   stiffness: 160,
-  // },
+  transition: {
+    duration: 5,
+    type: 'spring',
+    stiffness: 160,
+  },
 };
 function SplitText({ text, style }: SplitTextProps) {
   return (
     <motion.div variants={splitTextMotions} initial='hidden' animate='visible'>
       {text.split('').map((char, index) => (
-        <motion.span variants={spanMotions} style={style} key={index}>
+        <motion.span variants={spanMotions} style={style} key={index} whileHover='hover'>
           {char}
         </motion.span>
       ))}
     </motion.div>
+   
   );
 }
 
 export default SplitText;
+

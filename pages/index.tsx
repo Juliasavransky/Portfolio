@@ -18,108 +18,241 @@ type HomePageProps = {
 };
 
 const TheJ = styled.span<{ theme: Theme }>`
-  font-size: calc(6 * 1.45rem);
-  line-height: 95px;
+  line-height: clamp(1.8rem, 4vw, 5.9rem);
   text-shadow: 1vmin 0 ${theme.colors.yellow};
   color: ${theme.colors.purple};
+  padding-right: 0.5vw;
 `;
 
 const Btn = styled.div`
-  margin-top: 10rem;
+  margin: 0 auto;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 0.5rem;
+  width: 100vw;
+
+  @media (max-width: 1510px) {
+    margin: 0 auto;
+    width: 65vw;
+    min-width: 65vw;
+  }
+  @media (max-width: 1220px) {
+    flex-direction: column;
+    align-items: center;
+  }
+  @media (max-width: 768px) {
+    align-content: center;
+    margin-top: 4vw;
+    width: 95vw;
+  }
 `;
 
 const BtnMainPage = styled.div<{ theme: Theme }>`
-  display: inline-flex;
-  width: 30rem;
+  display: flex;
+  width: 100%;
   height: 5rem;
-  margin: 0 1.5rem;
   perspective: 1000px;
+  font-size: clamp(1.5rem, 3.5vw, 2rem);
+  text-align: center;
+  margin: 0 auto;
+
+  @media (max-width: 1510px) {
+  }
 
   & > a {
-    font-size: 2rem;
+    font-size: clamp(1.5rem, 3.5vw, 2rem);
     letter-spacing: 5px;
     transform-style: preserve-3d;
-    transform: translateZ(-25px);
+    transform: translateZ(-20px);
     transition: transform 0.3s;
     font-weight: 100;
 
     &:hover {
-      transform: translateZ(-2.5rem) rotateX(-90deg);
+      transform: translateZ(-2rem) rotateX(-90deg);
     }
+
     &::before,
     &::after {
       position: absolute;
       height: 5rem;
-      width: 30rem;
+      width: clamp(16rem, 25vw, 35rem);
       display: flex;
       align-items: center;
       justify-content: center;
-      box-sizing: border-box;
       border-radius: 5px;
       border: 5px solid ${theme.colors.purple};
+
+      @media (max-width: 768px) {
+        width: 80vw;
+        margin: 0 clamp(2rem, 0.1875vw, 4rem);
+      }
+      @media (max-width: 320px) {
+        width: 80vw;
+        margin: 0 clamp(1.4rem, 0.2vw, 2rem);
+      }
     }
+
     &::before {
       content: 'WANNA C MORE';
       color: ${theme.colors.yellow};
       background: ${theme.colors.greyDarkBG1};
-      transform: rotateY(0deg) translateZ(2.5rem);
+      transform: rotateY(0deg) translateZ(2rem);
     }
+
     &::after {
       content: 'CHECK MY PROJECTS';
       color: ${theme.colors.yellow};
       background: ${theme.colors.greyDarkBG1};
-      transform: rotateX(90deg) translateZ(2.5rem);
+      transform: rotateX(90deg) translateZ(2rem);
     }
   }
 `;
+
+const DecoTagWrapper = styled(DecoTag)`
+  @media (max-width: 768px) {
+    display: none;
+  }
+`;
+
+// function HomePage({ theme }: HomePageProps) {
+//   const AnimatedSplitText = motion(SplitText);
+
+//   return (
+//     <MainPageContainer>
+//       <DecoTagWrapper
+//         text={'<html>'}
+//         style={{
+//           position: 'absolute',
+//           top: 'clamp(0.5rem, 1vw, 1.5rem)',
+//           left: 'clamp(0.5rem, 1vw, 1.5rem)',
+//         }}
+//         isSpecial={false}
+//         />
+//       <DecoTagWrapper
+//         text={'<body>'}
+//         style={{
+//           position: 'absolute',
+//           top: 'clamp(3rem, 4vw, 4.5rem)',
+//           left: 'clamp(1rem, 2vw, 2.5rem)',
+//         }}
+//         isSpecial={false}
+//       />
+
+//       <HeaderContainer>
+
+//         <Header>
+//         <DecoTag text={'<h1>'} style={{ marginLeft: '0' }} className="special" isSpecial={true} />
+//           <AnimatedSplitText
+//             style={{ fontSize: 'clamp(2.4rem, 4.8vw, 4.8rem)' }}
+//             text='Welcome '
+//           />
+//           <Spacer />
+//           <AnimatedSplitText
+//             style={{ fontSize: 'clamp(2.4rem, 4.8vw, 4.8rem)' }}
+//             text='to '
+//           />
+//         </Header>
+//         <Header>
+//           <TheJ
+//             theme={theme}
+//             style={{ fontSize: 'clamp(3.036rem, 6.072vw, 6.072rem)' }}
+//           >
+//             W
+//           </TheJ>
+//           <AnimatedSplitText
+//             style={{ fontSize: 'clamp(2.4rem, 4.8vw, 4.8rem)' }}
+//             text='eb '
+//           />
+//           <Spacer>
+//             <TheJ
+//               theme={theme}
+//               style={{ fontSize: 'clamp(3.036rem, 6.072vw, 6.072rem)' }}
+//             >
+//               W
+//             </TheJ>
+//           </Spacer>
+
+//           <AnimatedSplitText
+//             style={{ fontSize: 'clamp(2.4rem, 4.8vw, 4.8rem)' }}
+//             text='itch'
+//           />
+//           <Spacer />
+//         </Header>
+//         <Header>
+//           <AnimatedSplitText
+//             style={{ fontSize: 'clamp(2.4rem, 4.8vw, 4.8rem)' }}
+//             text='Frontend '
+//           />
+//           <Spacer />
+//           <AnimatedSplitText
+//             style={{ fontSize: 'clamp(2.4rem, 4.8vw, 4.8rem)' }}
+//             text='Developer'
+//           />
+//           <DecoTag text={'</h1>'} isSpecial={false}/>
+//         </Header>
+
+//       </HeaderContainer>
+//       <Btn>
+//         <DecoTag text={'<button>'} style={{ marginBottom: '1rem' }}isSpecial={false} />
+//         <BtnMainPage theme={theme}>
+//           <Link
+//             style={{
+//               textDecoration: 'none',
+//             }}
+//             href='/projects'
+//           ></Link>
+//         </BtnMainPage>
+//         <DecoTag text={'</button>'} style={{ marginTop: '1.5rem' }} isSpecial={false}/>
+//       </Btn>
+//     </MainPageContainer>
+//   );
+// }
 function HomePage({ theme }: HomePageProps) {
   const AnimatedSplitText = motion(SplitText);
-
   return (
     <MainPageContainer>
-      <DecoTag text={'<html>'} />
-      <span style={{ marginLeft: '4rem' }}>
-        <DecoTag text={'<body>'} />
-      </span>
       <HeaderContainer>
-        <span>
-          <DecoTag text={'<h1>'} />
-        </span>
-
         <Header>
-          <SplitText style={{ fontSize: '6rem' }} text='Hi,' />
-        </Header>
-        <Header>
-          <SplitText style={{ fontSize: '6rem' }} text="I'm " />
+          <DecoTag
+            text={'<h1>'}
+            style={{ marginLeft: '0' }}
+            className='special'
+            isSpecial={true}
+          />
+          <TheJ theme={theme}>W</TheJ>
+          <AnimatedSplitText text='eb ' />
           <Spacer>
-            <TheJ theme={theme}>J</TheJ>
+            <TheJ theme={theme}>W</TheJ>
           </Spacer>
-          <SplitText style={{ fontSize: '6rem' }} text='ulia,' />
-        </Header>
-        <Header>
-          <SplitText style={{ fontSize: '6rem' }} text='Frontend ' />
+          <AnimatedSplitText text='itch' />
           <Spacer />
-          <SplitText style={{ fontSize: '6rem' }} text='Developer' />
         </Header>
 
-        <span>
-          <DecoTag text={'</h1>'} />
-        </span>
+        <Header>
+          <AnimatedSplitText text='Creative ' />
+          <Spacer />
+          <AnimatedSplitText text='Design' />
+          <DecoTag text={'</h1>'} isSpecial={false} />
+        </Header>
       </HeaderContainer>
 
       <Btn>
-        <span>
-          <DecoTag text={'<button>'} />
-        </span>
+        <DecoTag
+          text={'<button>'}
+          style={{ marginBottom: '1rem' }}
+          isSpecial={false}
+        />
         <BtnMainPage theme={theme}>
-          <Link style={{ textDecoration: 'none' }} href='/projects'></Link>
+          <Link href='/projects'></Link>
         </BtnMainPage>
-        <span>
-          <DecoTag text={'</button>'} />
-        </span>
+        <DecoTag
+          text={'</button>'}
+          style={{ marginTop: '1.5rem' }}
+          isSpecial={false}
+        />
       </Btn>
     </MainPageContainer>
   );

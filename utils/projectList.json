@@ -1,44 +1,44 @@
 [
-    {
-        "projectName": "Pokémon cards memory game",
-        "gitHubLink": "https://github.com/Juliasavransky/Pokemon-cards-memory-game",
-        "pageLink": "https://juliasavransky.github.io/Pokemon-cards-memory-game/",
-        "summary": "The game has unlimited levels, whereas in each level the number of cards rises.The figures on the cards are randomly chosen from the 560 figures of Pokémon, using the Pokemon API. The score is differentially calculated between levels.",
-        "img": "/../public/images/pokemon2.jpg"
-    },
-    {
-        "projectName": "T.I.M = time is money",
-        "gitHubLink": "https://github.com/Juliasavransky/Tim",
-        "pageLink": "https://github.com/Juliasavransky/Tim",
-        "summary": "A social media app, in which members can offer various services, each one according to their knowledge,  experience and will. For example, private lessons, pet care, alternative medicine etc. Each TIM member who provides a service to another member, gets points (coins) for that service, and with these coins  they can pay for a service from another member.",
-        "img": "/../public/images/tim2.jpg"
-    },
-    {
-        "projectName": "Simon says",
-        "gitHubLink": "https://github.com/Juliasavransky/Simon-Says---Memory-game",
-        "pageLink": "https://juliasavransky.github.io/Simon-Says---Memory-game/",
-        "summary": "A classic memory game of Simon,in which a single player competes with the computer. The computer chooses a random sequence made of the four colors and the player needs to repeat that sequence. On each level, the sequence gets longer  (a new color is added to the last sequence).  For each level the player gets a score saved in the local storage.  Once the player fails to repeat the sequence, they can restart the game.",
-        "img": "/../public/images/simon2.jpg"
-    },
-    {
-        "projectName": "Star wars",
-        "gitHubLink": "https://github.com/Juliasavransky/star-wars-films",
-        "pageLink": "https://juliasavransky.github.io/star-wars-films/",
-        "summary": "A small app which allows getting a summary about every Star Wars  movie and choose the user's favorite. The app uses an SWAPI API for getting the data.For building this app I've used react hooks, local storage.",
-        "img": "/../public/images/star-wars.jpg"
-    },
-    {
-        "projectName": "Weather app",
-        "gitHubLink": "https://github.com/Juliasavransky/weatherApp",
-        "pageLink": "https://juliasavransky.github.io/weatherApp/",
-        "summary": "App that shows the weather for 5 days ahead everywhere in the world. On the initial run, the app requests access for the user's location and shows the weather there. The app feature's a search bar allowing the user to get the weather for a specific place they type in. The user can choose between Celsius and Fahrenheit units. The app has a responsive layout. The app uses openweathermap API.",
-        "img": "/../public/images/wether2.jpg"
-    },
-    {
-        "projectName": "Pass on",
-        "gitHubLink": "https://github.com/Juliasavransky/FNP",
-        "pageLink": "https://juliasavransky.github.io/FNP/#/",
-        "summary": "A social media app for sharing second-hand items of children and babies. The app is a bulletin board of items users wish to give away and items the users are looking for. The app allows users: to publish ads about giving away or asking for items; to contact other users by mail and schedule the transfer of the item; to define a smart agent which will notify the user an automated notification once another user publishes that item.",
-        "img": "/../public/images/pass-on.jpg"
-    }
+  {
+    "projectName": "Pokémon cards memory game",
+    "gitHubLink": "https://github.com/Juliasavransky/Pokemon-cards-memory-game",
+    "pageLink": "https://juliasavransky.github.io/Pokemon-cards-memory-game/",
+    "summary": "The game has unlimited levels, whereas in each level the number of cards rises.The figures on the cards are randomly chosen from the 560 figures of Pokémon, using the Pokemon API. The score is differentially calculated between levels.",
+    "img": "/../public/images/pokemon2.jpg"
+  },
+  {
+    "projectName": "T.I.M = time is money",
+    "gitHubLink": "https://github.com/Juliasavransky/Tim",
+    "pageLink": "https://github.com/Juliasavransky/Tim",
+    "summary": "A social media app, in which members can offer various services, each one according to their knowledge,  experience and will. For example, private lessons, pet care, alternative medicine etc. Each TIM member who provides a service to another member, gets points (coins) for that service, and with these coins  they can pay for a service from another member.",
+    "img": "/../public/images/tim2.jpg"
+  },
+  {
+    "projectName": "Simon says",
+    "gitHubLink": "https://github.com/Juliasavransky/Simon-Says---Memory-game",
+    "pageLink": "https://juliasavransky.github.io/Simon-Says---Memory-game/",
+    "summary": "A classic memory game of Simon,in which a single player competes with the computer. The computer chooses a random sequence made of the four colors and the player needs to repeat that sequence. On each level, the sequence gets longer  (a new color is added to the last sequence).  For each level the player gets a score saved in the local storage.  Once the player fails to repeat the sequence, they can restart the game.",
+    "img": "/../public/images/simon2.jpg"
+  },
+  {
+    "projectName": "Star wars",
+    "gitHubLink": "https://github.com/Juliasavransky/star-wars-films",
+    "pageLink": "https://juliasavransky.github.io/star-wars-films/",
+    "summary": "A small app which allows getting a summary about every Star Wars  movie and choose the user's favorite. The app uses an SWAPI API for getting the data.For building this app I've used react hooks, local storage.",
+    "img": "/../public/images/star-wars.jpg"
+  },
+  {
+    "projectName": "Weather app",
+    "gitHubLink": "https://github.com/Juliasavransky/weatherApp",
+    "pageLink": "https://juliasavransky.github.io/weatherApp/",
+    "summary": "App that shows the weather for 5 days ahead everywhere in the world. On the initial run, the app requests access for the user's location and shows the weather there. The app feature's a search bar allowing the user to get the weather for a specific place they type in. The user can choose between Celsius and Fahrenheit units. The app has a responsive layout. The app uses openweathermap API.",
+    "img": "/../public/images/wether2.jpg"
+  },
+  {
+    "projectName": "Pass on",
+    "gitHubLink": "https://github.com/Juliasavransky/FNP",
+    "pageLink": "https://juliasavransky.github.io/FNP/#/",
+    "summary": "A social media app for sharing second-hand items of children and babies. The app is a bulletin board of items users wish to give away and items the users are looking for. The app allows users: to publish ads about giving away or asking for items; to contact other users by mail and schedule the transfer of the item; to define a smart agent which will notify the user an automated notification once another user publishes that item.",
+    "img": "/../public/images/pass-on.jpg"
+  }
 ]
