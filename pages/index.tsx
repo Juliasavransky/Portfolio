@@ -27,28 +27,31 @@ const TheJ = styled.span<{ theme: Theme }>`
 const Btn = styled.div`
   margin: 0 auto;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
-  text-align: center;
-  gap: 0.5rem;
-  width: 100vw;
+  width: 36vw;
+  height:20vh;
+
+
 
   @media (max-width: 1510px) {
     margin: 0 auto;
-    width: 65vw;
-    min-width: 65vw;
+    width: 38vw;
+    min-width: 38vw;
   }
   @media (max-width: 1220px) {
     flex-direction: column;
-    align-items: center;
+    width: 70vw;
+    justify-content: space-between;
+    height:22vh;
   }
   @media (max-width: 768px) {
     align-content: center;
-    margin-top: 4vw;
     width: 95vw;
   }
 `;
+
+
 
 const BtnMainPage = styled.div<{ theme: Theme }>`
   display: flex;
@@ -85,6 +88,10 @@ const BtnMainPage = styled.div<{ theme: Theme }>`
       border-radius: 5px;
       border: 5px solid ${theme.colors.purple};
 
+      @media (max-width: 1220px) {
+        width: 64vw;
+        margin: 0 clamp(2rem, 0.1875vw, 4rem);
+      }
       @media (max-width: 768px) {
         width: 80vw;
         margin: 0 clamp(2rem, 0.1875vw, 4rem);
@@ -96,14 +103,14 @@ const BtnMainPage = styled.div<{ theme: Theme }>`
     }
 
     &::before {
-      content: 'WANNA C MORE';
+      content: 'Wanna See More Magic';
       color: ${theme.colors.yellow};
       background: ${theme.colors.greyDarkBG1};
       transform: rotateY(0deg) translateZ(2rem);
     }
 
     &::after {
-      content: 'CHECK MY PROJECTS';
+      content: 'Explore Design & Innovation';
       color: ${theme.colors.yellow};
       background: ${theme.colors.greyDarkBG1};
       transform: rotateX(90deg) translateZ(2rem);
@@ -131,15 +138,15 @@ function HomePage({ theme }: HomePageProps) {
             top: '-2rem',
           }}
         />
-      <DecoTagWrapper
-        text={'</body>'}
-        isSpecial={false}
-        style={{
-          position: 'relative',
-          right: 'clamp(25rem, calc(30rem + (100vw - 340px) ), 35rem)',
-          top: '-2rem',
-        }}
-      />
+        <DecoTagWrapper
+          text={'</body>'}
+          isSpecial={false}
+          style={{
+            position: 'relative',
+            right: 'clamp(25rem, calc(30rem + (100vw - 340px) ), 35rem)',
+            top: '-2rem',
+          }}
+        />
         <Header>
           <DecoTag
             text={'<h1>'}
@@ -203,11 +210,14 @@ function HomePage({ theme }: HomePageProps) {
             text='Design'
             style={{ fontSize: 'clamp(3.036rem, 6.072vw, 6.072rem)' }}
           />
-          <DecoTag text={'</h1>'} isSpecial={false} 
-             style={{
+          <DecoTag
+            text={'</h1>'}
+            isSpecial={false}
+            style={{
               position: 'relative',
-              right: 'clamp(-4.5rem, calc(-8rem + (100vw - 320px) * 0.05), 1rem)', 
-              bottom: 'clamp(-2rem, -1rem, 2rem)',  
+              right:
+                'clamp(-4.5rem, calc(-8rem + (100vw - 320px) * 0.05), 1rem)',
+              bottom: 'clamp(-2rem, -1rem, 2rem)',
             }}
           />
         </Header>

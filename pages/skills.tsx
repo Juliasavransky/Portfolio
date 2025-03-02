@@ -15,6 +15,7 @@ export const Row = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  position: absolute;
   left: clamp(2rem, 22vw, 24rem);
   width: clamp(80%, 80%, 100%);
   margin: auto 0;
@@ -66,30 +67,28 @@ export const Column = styled.div`
 `;
 export const SkillsHeaderContainer = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   font-weight: 900;
   letter-spacing: clamp(0.5px, 0.2vw, 2px);
   font-size: clamp(2.5rem, 4vw, 5rem);
   text-align: center;
   line-height: 1.2;
-  max-width: 90%;
+  max-width: 100%;
   word-wrap: break-word;
   margin-top: 3rem;
-
   letter-spacing: clamp(1px, 0.3vw, 3px);
-
-  @media (max-width: 1510px) {
-    width: 40vw;
-    min-width: 40vw;
-    flex-direction: column;
+  
+  @media (max-width: 1220px) {
+    width: 45vw;
+    min-width: 45vw;
     margin-left: 0;
   }
-
+  
   @media (max-width: 768px) {
     width: 100vw;
     max-width: 100vw;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     font-size: clamp(6vw, 7vw, 10vw);
     letter-spacing: clamp(0.5px, 0.2vw, 2px);
@@ -97,18 +96,18 @@ export const SkillsHeaderContainer = styled.div`
     font-size: clamp(5vw, 6vw, 8vw);
     margin-top: 0;
   }
-
+  
   @media (max-width: 428px) {
     font-size: clamp(8vw, 9vw, 12vw);
     letter-spacing: clamp(0px, 0.1vw, 1px);
     font-size: clamp(6vw, 7vw, 9vw);
   }
-
+  
   @media (max-width: 320px) {
     flex-direction: column;
     font-size: clamp(9vw, 10vw, 13vw);
   }
-`;
+  `;
 
 export const SkillsParagraphContainer = styled.div`
   width: clamp(60%, 75%, 90%);
@@ -117,10 +116,10 @@ export const SkillsParagraphContainer = styled.div`
   justify-content: center;
   align-items: flex-start;
   margin-top: clamp(1.5rem, 2vh, 2rem);
-
+  font-weight: 100;
+  
   @media (max-width: 1510px) {
-    /* width: 50vw;
-    max-width: 36vw; */
+ 
   }
 
   @media (max-width: 768px) {
@@ -137,7 +136,6 @@ export const SkillsParagraphContainer = styled.div`
   }
 
   @media (max-width: 320px) {
-   
   }
 `;
 
@@ -145,15 +143,25 @@ function Skills({ theme }: SkillsProps) {
   return (
     <Row>
       <Column>
-        <SkillsHeaderContainer style={{ marginLeft: '0' }}>
-          <DecoTag text={'<h2> '} isSpecial={false} />
+        <SkillsHeaderContainer >
+          <DecoTag text={'<h2> '} isSpecial={false}     
+           style={{
+                position: 'relative',
+                left: 'clamp(-6rem, calc(-10rem + (100vw - 320px) * 0.015), -7rem)',
+                top: '0',
+              }}/>
           <Header>
             <SplitText
-              style={{ fontSize: 'clamp(1.7rem, 4vw, 3rem)' }}
-              text='Me, Myself and I'
+              style={{ fontSize: 'clamp(2.368rem, 5.036vw, 4.536rem)' }}
+              text='Made_to_Shine'
             />
           </Header>
-          <DecoTag text={' </h2>'} isSpecial={false} />
+          <DecoTag text={' </h2>'} isSpecial={false}     
+           style={{
+                position: 'relative',
+                right: 'clamp(-6rem, calc(-10rem + (100vw - 320px) * 0.015), -7rem)',
+                top: '0',
+              }}/>
         </SkillsHeaderContainer>
         <br />
         <SkillsParagraphContainer>
@@ -168,15 +176,15 @@ function Skills({ theme }: SkillsProps) {
               }}
             />
             <br />
-            Aspiring Front End Developer, in the process of a career change from
-            Industrial Design, just before my big break… I am a fast learner,
-            with excellent analytical skills, passionate about challenges and
-            learning new technologies. I volunteer in the She Codes community as
-            a Web module Leader, supporting course participants in their studies
-            of HTML5, CSS3, JavaScript, React-JS. I contribute to the
-            open-source project "Brave Together" I'm looking for a Junior Web
-            Developer position where I can bring value to the team with my
-            knowledge and skills.
+            Hi, I'm Julia, an Industrial <strong> Designer </strong> and Front-End 
+            <strong> Developer </strong>  who
+            thrives on challenges and innovation. Technology excites me, but
+            what truly drives me is creating unique and engaging user
+            experiences making the web-sites with <strong>Personality and Purpose</strong>. More
+            dynamic, visually exciting, and less uniform space. I believe great
+            design should captivate, surprise, and break the mold. With a sharp
+            eye for aesthetics and a love for the unexpected, <strong> I craft digital experiences </strong>
+             that are anything but ordinary.
             <br />
             <DecoTag
               text={'</p>'}

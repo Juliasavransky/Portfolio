@@ -45,7 +45,6 @@ export const ProjectsContainer = styled.div`
 export const ProjectsHeaderContainer = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: baseline;
   font-weight: 900;
   letter-spacing: clamp(2px, 0.5vw, 4px);
   font-size: clamp(3rem, 3.8vw, 6rem);
@@ -57,14 +56,14 @@ export const ProjectsHeaderContainer = styled.div`
     flex-direction: column;
     margin-left: 0;
   }
-
-  @media (max-width: 768px) {
+  @media (max-width: 1220px) {
     width: 95vw;
     max-width: 95vw;
     font-size: clamp(7vw, 7.5vw, 12vw);
     margin-top: 3rem;
     line-height: 1.5;
   }
+
   `;
 export const ProjectsHeader = styled.div`
   flex-direction: row;
@@ -95,7 +94,6 @@ const SmallTitleContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-
   @media (max-width: 1510px) {
   }
   @media (max-width: 1220px) {
@@ -157,7 +155,7 @@ function Projects({ theme }: ProjectsProps) {
         </ProjectsHeader>
         <SmallTitleContainer>
           <DecoTag text={'<p>'} isSpecial={false} />
-          <SmallTitle>Welcome to check some of my projects</SmallTitle>
+          <SmallTitle>Step into my world of creative web experiences</SmallTitle>
           <DecoTag text={'</p>'} isSpecial={false} />
         </SmallTitleContainer>
       </ProjectsHeaderContainer>

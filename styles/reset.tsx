@@ -35,7 +35,7 @@ const Reset = () => (
       dd {
         margin: 0;
         max-width: 100vw;
-        overflow-wrap: break-word;
+        /* overflow-wrap: break-word; */
       }
 
       /* Set core body defaults */

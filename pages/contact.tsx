@@ -7,7 +7,7 @@ import ContactForm from '@/components/contactForm';
 import styled from '@emotion/styled';
 
 export const ContactMainPageContainer = styled.div`
-  /* height: 100vh; */
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -21,52 +21,51 @@ export const ContactMainPageContainer = styled.div`
   }
   @media (max-width: 1220px) {
     left: 0;
+    bottom:0;
+    height:92%;
     width: 100vw;
   }
-
+  
   @media (max-width: 768px) {
     width: 100vw;
     left: 0;
   }
-
+  
   @media (max-width: 428px) {
   }
-
+  
   @media (max-width: 320px) {
   }
-`;
+  `;
 const DecoTagWrapper = styled(DecoTag)`
   @media (max-width: 768px) {
     display: none;
   }
-`;
+  `;
 
 export const ContactHeaderContainer = styled.div`
   display: flex;
   font-weight: 900;
   letter-spacing: clamp(2px, 0.5vw, 4px);
   font-size: clamp(3rem, 3.8vw, 6rem);
+  
 
-  @media (max-width: 1510px) {
-    width: 40vw;
-    min-width: 40vw;
-  }
-
+  
   @media (max-width: 768px) {
-    width: 100vw;
-    max-width: 100vw;
-    flex-direction: row;
+    width: 60vw;
+    max-width: 60vw;
+    flex-direction: column;
     align-items: center;
     font-size: clamp(7vw, 7.5vw, 12vw);
     line-height: 0.3;
-    margin-top: 3.5rem;
+    margin-top: 1.5rem;
   }
-
+  
   @media (max-width: 428px) {
     flex-direction: column;
     align-items: center;
   }
-`;
+  `;
 
 export const ContactHeader = styled.div`
   display: flex;
@@ -117,24 +116,28 @@ function Contact() {
         <DecoTag
           text={'<h2>'}
           isSpecial={false}
-          style={{    position: 'relative',
+          style={{
+            position: 'relative',
             right: 'clamp(6rem, calc(7rem + (100vw + 320px) * 0.015), 8rem)',
-            top: '0' }}
+            top: '0',
+          }}
         />
 
         <ContactHeader>
           <SplitText
             style={{ fontSize: 'clamp(2rem, 6vw, 4.5rem)' }}
-            text='Contact_Me'
+            text='Let’s_Talk!'
           />
         </ContactHeader>
 
         <DecoTag
           text={'</h2>'}
           isSpecial={false}
-          style={{ position: 'relative',
+          style={{
+            position: 'relative',
             left: 'clamp(6rem, calc(7rem + (100vw + 320px) * 0.015), 8rem)',
-            top: '0' }}
+            top: '0',
+          }}
         />
       </ContactHeaderContainer>
 
@@ -149,7 +152,7 @@ function Contact() {
           }}
         />
         <Paragraph theme={theme}>
-          I would love to hear from you and promising to return an email 😎
+        And Create Something Extraordinary 
         </Paragraph>
         <DecoTag
           text={'</p>'}

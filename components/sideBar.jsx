@@ -46,6 +46,7 @@ const NavList = styled.ul`
   flex-direction: column;
   list-style: none;
   min-width: clamp(8vw, 10vw, 15vw);
+  overflow-wrap: normal;
 
   @media (max-width: 1220px) {
     flex-direction: row;
