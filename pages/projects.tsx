@@ -50,7 +50,7 @@ export const ProjectsHeaderContainer = styled.div`
   letter-spacing: clamp(2px, 0.5vw, 4px);
   font-size: clamp(3rem, 3.8vw, 6rem);
   width: 100vw;
-
+  
   @media (max-width: 1510px) {
     width: 40vw;
     min-width: 40vw;
@@ -65,7 +65,7 @@ export const ProjectsHeaderContainer = styled.div`
     margin-top: 3rem;
     line-height: 1.5;
   }
-`;
+  `;
 export const ProjectsHeader = styled.div`
   flex-direction: row;
   display: flex;
@@ -74,6 +74,8 @@ export const ProjectsHeader = styled.div`
   width: 100%;
   max-width: 100%;
   font-size: clamp(3rem, 6vw, 4.5rem);
+  flex-wrap: nowrap;
+  align-items: center;
   @media (max-width: 1510px) {
   }
   @media (max-width: 768px) {
@@ -140,9 +142,18 @@ function Projects({ theme }: ProjectsProps) {
     <ProjectsContainer>
       <ProjectsHeaderContainer>
         <ProjectsHeader>
-          <DecoTag text={'<h2>'} isSpecial={false} />
-          <SplitText text='My Projects' />
-          <DecoTag text={'</h2>'} isSpecial={false} />
+          <DecoTag text={'<h2>'} isSpecial={false}         
+          style={{
+            position: 'relative',
+            left: 'clamp(-0.5rem, calc(-10rem + (100vw - 320px) * 0.015), -7rem)',
+            top: '0',
+          }}/>
+          <SplitText text='My_Projects' />
+          <DecoTag text={'</h2>'} isSpecial={false}   style={{
+            position: 'relative',
+            left: 'clamp(1rem, calc(-10rem + (100vw - 320px) * 0.015), -7rem)',
+            top: '0',
+          }}/>
         </ProjectsHeader>
         <SmallTitleContainer>
           <DecoTag text={'<p>'} isSpecial={false} />

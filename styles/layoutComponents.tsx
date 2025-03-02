@@ -38,8 +38,7 @@ export const HeaderContainer = styled.div`
   line-height: 1.2;
   max-width: 90%;
   word-wrap: break-word;
-  margin-top: 3rem;
-
+  margin-top: 3rem;  
   letter-spacing: clamp(1px, 0.3vw, 3px);
 
   @media (max-width: 1510px) {

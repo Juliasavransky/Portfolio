@@ -117,20 +117,24 @@ function Contact() {
         <DecoTag
           text={'<h2>'}
           isSpecial={false}
-          style={{ marginRight: '2rem' }}
+          style={{    position: 'relative',
+            right: 'clamp(6rem, calc(7rem + (100vw + 320px) * 0.015), 8rem)',
+            top: '0' }}
         />
 
         <ContactHeader>
           <SplitText
             style={{ fontSize: 'clamp(2rem, 6vw, 4.5rem)' }}
-            text='Contact  Me'
+            text='Contact_Me'
           />
         </ContactHeader>
 
         <DecoTag
           text={'</h2>'}
           isSpecial={false}
-          style={{ marginLeft: '2rem' }}
+          style={{ position: 'relative',
+            left: 'clamp(6rem, calc(7rem + (100vw + 320px) * 0.015), 8rem)',
+            top: '0' }}
         />
       </ContactHeaderContainer>
 
@@ -164,18 +168,18 @@ function Contact() {
         text={'</body>'}
         isSpecial={false}
         style={{
-          marginLeft: 'auto',
-          marginRight: '4rem',
-          marginBottom: '1rem',
+          position: 'relative',
+          left: 'clamp(26rem, calc(30rem + (100vw - 340px) ), 35rem)',
+          top: '2rem',
         }}
       />
-      <DecoTag
+      <DecoTagWrapper
         text={'</html>'}
         isSpecial={false}
         style={{
           position: 'relative',
-          left: 'clamp(6rem, calc(7.5rem + (100vw - 340px) ), 9rem)',
-          top: '3rem',
+          left: 'clamp(30rem, calc(35rem + (100vw - 340px) ), 40rem)',
+          top: '4rem',
         }}
       />
     </ContactMainPageContainer>

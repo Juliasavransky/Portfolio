@@ -117,125 +117,99 @@ const DecoTagWrapper = styled(DecoTag)`
   }
 `;
 
-// function HomePage({ theme }: HomePageProps) {
-//   const AnimatedSplitText = motion(SplitText);
-
-//   return (
-//     <MainPageContainer>
-//       <DecoTagWrapper
-//         text={'<html>'}
-//         style={{
-//           position: 'absolute',
-//           top: 'clamp(0.5rem, 1vw, 1.5rem)',
-//           left: 'clamp(0.5rem, 1vw, 1.5rem)',
-//         }}
-//         isSpecial={false}
-//         />
-//       <DecoTagWrapper
-//         text={'<body>'}
-//         style={{
-//           position: 'absolute',
-//           top: 'clamp(3rem, 4vw, 4.5rem)',
-//           left: 'clamp(1rem, 2vw, 2.5rem)',
-//         }}
-//         isSpecial={false}
-//       />
-
-//       <HeaderContainer>
-
-//         <Header>
-//         <DecoTag text={'<h1>'} style={{ marginLeft: '0' }} className="special" isSpecial={true} />
-//           <AnimatedSplitText
-//             style={{ fontSize: 'clamp(2.4rem, 4.8vw, 4.8rem)' }}
-//             text='Welcome '
-//           />
-//           <Spacer />
-//           <AnimatedSplitText
-//             style={{ fontSize: 'clamp(2.4rem, 4.8vw, 4.8rem)' }}
-//             text='to '
-//           />
-//         </Header>
-//         <Header>
-//           <TheJ
-//             theme={theme}
-//             style={{ fontSize: 'clamp(3.036rem, 6.072vw, 6.072rem)' }}
-//           >
-//             W
-//           </TheJ>
-//           <AnimatedSplitText
-//             style={{ fontSize: 'clamp(2.4rem, 4.8vw, 4.8rem)' }}
-//             text='eb '
-//           />
-//           <Spacer>
-//             <TheJ
-//               theme={theme}
-//               style={{ fontSize: 'clamp(3.036rem, 6.072vw, 6.072rem)' }}
-//             >
-//               W
-//             </TheJ>
-//           </Spacer>
-
-//           <AnimatedSplitText
-//             style={{ fontSize: 'clamp(2.4rem, 4.8vw, 4.8rem)' }}
-//             text='itch'
-//           />
-//           <Spacer />
-//         </Header>
-//         <Header>
-//           <AnimatedSplitText
-//             style={{ fontSize: 'clamp(2.4rem, 4.8vw, 4.8rem)' }}
-//             text='Frontend '
-//           />
-//           <Spacer />
-//           <AnimatedSplitText
-//             style={{ fontSize: 'clamp(2.4rem, 4.8vw, 4.8rem)' }}
-//             text='Developer'
-//           />
-//           <DecoTag text={'</h1>'} isSpecial={false}/>
-//         </Header>
-
-//       </HeaderContainer>
-//       <Btn>
-//         <DecoTag text={'<button>'} style={{ marginBottom: '1rem' }}isSpecial={false} />
-//         <BtnMainPage theme={theme}>
-//           <Link
-//             style={{
-//               textDecoration: 'none',
-//             }}
-//             href='/projects'
-//           ></Link>
-//         </BtnMainPage>
-//         <DecoTag text={'</button>'} style={{ marginTop: '1.5rem' }} isSpecial={false}/>
-//       </Btn>
-//     </MainPageContainer>
-//   );
-// }
 function HomePage({ theme }: HomePageProps) {
   const AnimatedSplitText = motion(SplitText);
   return (
     <MainPageContainer>
       <HeaderContainer>
+        <DecoTagWrapper
+          text={'</html>'}
+          isSpecial={false}
+          style={{
+            position: 'relative',
+            right: 'clamp(35rem, calc(30rem + (100vw - 340px) ), 45rem)',
+            top: '-2rem',
+          }}
+        />
+      <DecoTagWrapper
+        text={'</body>'}
+        isSpecial={false}
+        style={{
+          position: 'relative',
+          right: 'clamp(25rem, calc(30rem + (100vw - 340px) ), 35rem)',
+          top: '-2rem',
+        }}
+      />
         <Header>
           <DecoTag
             text={'<h1>'}
-            style={{ marginLeft: '0' }}
+            style={{
+              position: 'relative',
+              left: 'clamp(-4rem, calc(-10rem + (100vw - 320px) * 0.01), -15rem)',
+              top: '-1rem',
+            }}
             className='special'
             isSpecial={true}
           />
-          <TheJ theme={theme}>W</TheJ>
-          <AnimatedSplitText text='eb ' />
-          <Spacer>
-            <TheJ theme={theme}>W</TheJ>
-          </Spacer>
-          <AnimatedSplitText text='itch' />
+          <span
+            style={{
+              display: 'flex',
+              flexWrap: 'nowrap',
+              alignItems: 'center',
+            }}
+          >
+            <TheJ
+              theme={theme}
+              style={{ fontSize: 'clamp(3.036rem, 6.072vw, 6.072rem)' }}
+            >
+              W
+            </TheJ>
+            <AnimatedSplitText
+              text='eb '
+              style={{ fontSize: 'clamp(3.036rem, 6.072vw, 6.072rem)' }}
+            />
+          </span>
+
+          <Spacer />
+          <span
+            style={{
+              display: 'flex',
+              flexWrap: 'nowrap',
+              alignItems: 'center',
+            }}
+          >
+            <TheJ
+              theme={theme}
+              style={{ fontSize: 'clamp(3.036rem, 6.072vw, 6.072rem)' }}
+            >
+              W
+            </TheJ>
+            <AnimatedSplitText
+              text='itch'
+              style={{ fontSize: 'clamp(3.036rem, 6.072vw, 6.072rem)' }}
+            />
+          </span>
+
           <Spacer />
         </Header>
 
         <Header>
-          <AnimatedSplitText text='Creative ' />
+          <AnimatedSplitText
+            text='Creative '
+            style={{ fontSize: 'clamp(3.036rem, 6.072vw, 6.072rem)' }}
+          />
           <Spacer />
-          <AnimatedSplitText text='Design' />
-          <DecoTag text={'</h1>'} isSpecial={false} />
+          <AnimatedSplitText
+            text='Design'
+            style={{ fontSize: 'clamp(3.036rem, 6.072vw, 6.072rem)' }}
+          />
+          <DecoTag text={'</h1>'} isSpecial={false} 
+             style={{
+              position: 'relative',
+              right: 'clamp(-4.5rem, calc(-8rem + (100vw - 320px) * 0.05), 1rem)', 
+              bottom: 'clamp(-2rem, -1rem, 2rem)',  
+            }}
+          />
         </Header>
       </HeaderContainer>
 
