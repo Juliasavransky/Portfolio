@@ -24,11 +24,7 @@ const ProjectCard = styled.div`
     transition: all 0.5s ease-in-out;
   }
 
-  @media (max-width: 768px) {
-    &:hover .project-card__details {
-      overflow: scroll;
-    }
-  }
+
   &:hover .project-card__image {
     transform: scale(1.2);
     transition: all 0.5s ease-in-out;
@@ -37,9 +33,9 @@ const ProjectCard = styled.div`
 `;
 
 const ProjectCardItem = styled.div`
-  overflow: hidden;
   position: relative;
   border-radius: 10px;
+  overflow: hidden;
   display: flex;
   flex: 1 0 calc(40% - 20px); /* 3 קלפים בשורה */
   min-width: calc(33.33% - 20px); /* מבטיח התאמה */

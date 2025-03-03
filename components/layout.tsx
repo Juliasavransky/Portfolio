@@ -1,5 +1,7 @@
 import React, { ReactNode } from "react";
-import { Global, css } from "@emotion/react";
+import { Global } from "@emotion/react";
+import { globalStyles } from "../styles/globalStyles";
+
 
 type LayoutProps = {
   children: ReactNode;
@@ -7,16 +9,9 @@ type LayoutProps = {
 
 const Layout = ({ children }: LayoutProps) => {
   return (
-    <>
-      <Global
-        styles={css`
-          main {
-            display: flex;
-            font-size: 1.2rem;
-            font-weight: 100;
-          }
-        `}
-      />
+    
+   <>
+      <Global styles={globalStyles} />
       <main>{children}</main>
     </>
   );
