@@ -61,7 +61,7 @@ const TextArea = styled.textarea<{ theme: Theme }>`
   transition: transform 0.3s;
 
   &:focus ~ button {
-  background-color: rgba(123, 123, 125, 0.5) !important;
+  background-color: rgba(123, 123, 125, 0.5) ;
   outline: none;
 }
 

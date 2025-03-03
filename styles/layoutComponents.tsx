@@ -143,8 +143,8 @@ export const ParagraphContainer = styled.div`
 `;
 
 export const Paragraph = styled.p<{ theme: Theme }>`
-  font-size: clamp(1rem, 1.5vw, 1.5rem);
-  font-weight: 400;
+font-size: clamp(1.25rem, 1.875vw, 1.5rem);
+font-weight: 400;
   margin: 1rem auto;
   text-align: center;
   max-width: 80%;

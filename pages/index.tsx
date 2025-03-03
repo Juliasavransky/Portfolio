@@ -17,7 +17,7 @@ type HomePageProps = {
   theme: Theme;
 };
 
-const TheJ = styled.span<{ theme: Theme }>`
+const TheW = styled.span<{ theme: Theme }>`
   line-height: clamp(1.8rem, 4vw, 5.9rem);
   text-shadow: 1vmin 0 ${theme.colors.yellow};
   color: ${theme.colors.purple};
@@ -30,28 +30,24 @@ const Btn = styled.div`
   flex-direction: row;
   align-items: center;
   width: 36vw;
-  height:20vh;
+  height: 20vh;
 
-
-
-  @media (max-width: 1510px) {
+  /* @media (max-width: 1510px) {
     margin: 0 auto;
     width: 38vw;
     min-width: 38vw;
-  }
+  } */
   @media (max-width: 1220px) {
     flex-direction: column;
     width: 70vw;
-    justify-content: space-between;
-    height:22vh;
+    /* justify-content: space-between; */
+    height: 22vh;
   }
   @media (max-width: 768px) {
-    align-content: center;
+    /* align-content: center; */
     width: 95vw;
   }
 `;
-
-
 
 const BtnMainPage = styled.div<{ theme: Theme }>`
   display: flex;
@@ -61,9 +57,7 @@ const BtnMainPage = styled.div<{ theme: Theme }>`
   font-size: clamp(1.5rem, 3.5vw, 2rem);
   text-align: center;
   margin: 0 auto;
-
-  @media (max-width: 1510px) {
-  }
+  position: relative;
 
   & > a {
     font-size: clamp(1.5rem, 3.5vw, 2rem);
@@ -72,6 +66,7 @@ const BtnMainPage = styled.div<{ theme: Theme }>`
     transform: translateZ(-20px);
     transition: transform 0.3s;
     font-weight: 100;
+    position: relative;
 
     &:hover {
       transform: translateZ(-2rem) rotateX(-90deg);
@@ -165,12 +160,12 @@ function HomePage({ theme }: HomePageProps) {
               alignItems: 'center',
             }}
           >
-            <TheJ
+            <TheW
               theme={theme}
               style={{ fontSize: 'clamp(3.036rem, 6.072vw, 6.072rem)' }}
             >
               W
-            </TheJ>
+            </TheW>
             <AnimatedSplitText
               text='eb '
               style={{ fontSize: 'clamp(3.036rem, 6.072vw, 6.072rem)' }}
@@ -185,12 +180,12 @@ function HomePage({ theme }: HomePageProps) {
               alignItems: 'center',
             }}
           >
-            <TheJ
+            <TheW
               theme={theme}
               style={{ fontSize: 'clamp(3.036rem, 6.072vw, 6.072rem)' }}
             >
               W
-            </TheJ>
+            </TheW>
             <AnimatedSplitText
               text='itch'
               style={{ fontSize: 'clamp(3.036rem, 6.072vw, 6.072rem)' }}
