@@ -32,19 +32,13 @@ const Btn = styled.div`
   width: 36vw;
   height: 20vh;
 
-  /* @media (max-width: 1510px) {
-    margin: 0 auto;
-    width: 38vw;
-    min-width: 38vw;
-  } */
+  
   @media (max-width: 1220px) {
     flex-direction: column;
     width: 70vw;
-    /* justify-content: space-between; */
     height: 22vh;
   }
   @media (max-width: 768px) {
-    /* align-content: center; */
     width: 95vw;
   }
 `;
