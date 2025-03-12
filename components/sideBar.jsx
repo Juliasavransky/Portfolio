@@ -217,8 +217,8 @@ function SideBar() {
         <NavList>
           {navLinks.map(({ href, label }) => (
             <NavItem key={href}>
-              <Link href={href}>
-                <NavLink >{label}</NavLink>
+              <Link href={href}   passHref legacyBehavior>
+                <NavLink style={{ textDecoration: 'none'}}>{label}</NavLink>
               </Link>
             </NavItem>
           ))}
@@ -226,8 +226,13 @@ function SideBar() {
           <Icons>
             {socialLinks.map(({ href, title, icon, dataIcon }) => (
               <IconD key={title} data-icon={dataIcon}>
-                <Link href={href} target="_blank" rel="noopener noreferrer">
-                  <svg viewBox="0 0 32 32"><title>{title}</title><path d={icon}></path></svg>
+                <Link href={href} passHref legacyBehavior>
+                  <a target="_blank" rel="noopener noreferrer" title={title}>
+                    <svg viewBox="0 0 32 32">
+                      <title>{title}</title>
+                      <path d={icon}></path>
+                    </svg>
+                  </a>
                 </Link>
               </IconD>
             ))}
