@@ -61,15 +61,15 @@ const BtnMainPage = styled.div<{ theme: Theme }>`
     font-weight: 100;
     position: relative;
 
-    /* &:hover {
+    &:hover {
       transform: translateZ(-2rem) rotateX(-90deg);
-    } */
+    }
 
-    @media (hover: hover) and (pointer: fine) {
+    /* @media (hover: hover) and (pointer: fine) {
       & > a:hover {
         transform: translateZ(-2rem) rotateX(-90deg);
       }
-    }
+    } */
 
     &::before,
     &::after {

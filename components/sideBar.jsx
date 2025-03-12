@@ -18,6 +18,7 @@ const linkedinAnimation = keyframes`
 const Nav = styled.nav`
   flex: 0 0 clamp(5%, 10%, 15%);
   position: relative;
+  z-index: 1000;
   @media (max-width: 1510px) {
 
   }
