@@ -32,7 +32,6 @@ const Btn = styled.div`
   width: 36vw;
   height: 20vh;
 
-  
   @media (max-width: 1220px) {
     flex-direction: column;
     width: 70vw;
@@ -62,8 +61,14 @@ const BtnMainPage = styled.div<{ theme: Theme }>`
     font-weight: 100;
     position: relative;
 
-    &:hover {
+    /* &:hover {
       transform: translateZ(-2rem) rotateX(-90deg);
+    } */
+
+    @media (hover: hover) and (pointer: fine) {
+      & > a:hover {
+        transform: translateZ(-2rem) rotateX(-90deg);
+      }
     }
 
     &::before,

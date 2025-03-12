@@ -115,11 +115,10 @@ const NavItem = styled.li`
     padding:  clamp(0.7rem, 0.8rem,1rem) 0.5rem;
     font-size: clamp(0.8rem, 1rem, 1.5rem);
     font-weight: 500;
-
   }
 `;
 
-const NavLink = styled.span`
+const NavLink = styled.a`
   text-decoration: "none";
   color: ${(props) => props.theme.colors.greyLight1};
   position: relative;
