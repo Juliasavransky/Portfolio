@@ -2,7 +2,6 @@ import React from 'react';
 import styled from '@emotion/styled';
 import SplitText from '@/utils/splitText';
 import DecoTag from '@/styles/decoTag';
-import { Spacer } from '../styles/layoutComponents';
 import projectsList from '../utils/projectList.json';
 import Card from '../components/card';
 import { Theme } from '@emotion/react';
@@ -22,13 +21,6 @@ export const ProjectsContainer = styled.div`
   width: clamp(80vw, 90vw, 100vw);
   align-items: center;
 
-  /* @media (max-width: 1510px) {
-    width: 84vw;
-    flex-wrap: wrap;
-    text-align: center;
-    margin-top: clamp(2rem, 3vh, 4rem);
-  } */
-
   @media (max-width: 1220px) {
     left: 0;
     width: 100vw;
@@ -36,10 +28,6 @@ export const ProjectsContainer = styled.div`
     text-align: center;
   }
 
-  /* @media (max-width: 768px) {
-    width: 100vw;
-    left: 0;
-  } */
 `;
 
 export const ProjectsHeaderContainer = styled.div`
