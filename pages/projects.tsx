@@ -7,7 +7,6 @@ import Card from '../components/card';
 import { Theme } from '@emotion/react';
 import { useSplitTextAnimation } from '../hooks/useSplitTextAnimation';
 
-
 type ProjectsProps = {
   theme: Theme;
 };
@@ -29,7 +28,6 @@ export const ProjectsContainer = styled.div`
     flex-wrap: wrap;
     text-align: center;
   }
-
 `;
 
 export const ProjectsHeaderContainer = styled.div`
@@ -53,29 +51,25 @@ export const ProjectsHeader = styled.div`
   flex-wrap: nowrap;
   align-items: center;
   text-align: center;
-  
+
   @media (max-width: 428px) {
     font-size: 2.5rem;
     flex-direction: column;
     flex-wrap: wrap;
   }
-  
 `;
 const SmallTitleContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  
-  `;
+`;
 
 const SmallTitle = styled.p`
   font-size: clamp(1.2rem, 3vw, 1.5rem);
   font-weight: 100;
   text-align: center;
   margin-top: 1.5rem;
-  
-  
-  `;
+`;
 
 const CardWrapper = styled.div`
   margin-top: 3rem;
@@ -90,7 +84,7 @@ const CardWrapper = styled.div`
 function Projects({ theme }: ProjectsProps) {
   const projects = projectsList;
   const texts = ['My_Projects'];
-  const { activeGroup, activeChar, activeFont } = useSplitTextAnimation(texts);
+  const { animateIndex, animateFont } = useSplitTextAnimation(texts);
   return (
     <ProjectsContainer>
       <ProjectsHeaderContainer>
@@ -104,9 +98,12 @@ function Projects({ theme }: ProjectsProps) {
               top: '0',
             }}
           />
-          <SplitText text={texts.join(' ')}
-            animateIndex={activeGroup === 0 ? activeChar : null}
-            animateFont={activeGroup === 0 ? activeFont : null}/>
+          <SplitText
+            text={texts.join(' ')}
+            baseIndex={0}
+            animateIndex={animateIndex}
+            animateFont={animateFont}
+          />
           <DecoTag
             text={'</h2>'}
             isPrimaryTag={true}

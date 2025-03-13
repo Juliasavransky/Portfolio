@@ -7,7 +7,6 @@ import ContactForm from '@/components/contactForm';
 import styled from '@emotion/styled';
 import { useSplitTextAnimation } from '../hooks/useSplitTextAnimation';
 
-
 export const ContactMainPageContainer = styled.div`
   height: 100vh;
   display: flex;
@@ -48,8 +47,8 @@ export const ContactParagraphContainer = styled.div`
   align-items: center;
 `;
 function Contact() {
-    const texts = ['Let’s_Talk!'];
-    const { activeGroup, activeChar, activeFont } = useSplitTextAnimation(texts);
+  const texts = ['Let’s_Talk!'];
+  const { animateIndex, animateFont } = useSplitTextAnimation(texts);
   return (
     <ContactMainPageContainer>
       <ContactHeaderContainer>
@@ -66,8 +65,9 @@ function Contact() {
         <SplitText
           style={{ fontSize: 'clamp(2rem, 6vw, 4.5rem)' }}
           text='Let’s_Talk!'
-          animateIndex={activeGroup === 0 ? activeChar : null}
-          animateFont={activeGroup === 0 ? activeFont : null}
+          baseIndex={0}
+          animateIndex={animateIndex}
+          animateFont={animateFont}
         />
 
         <DecoTag

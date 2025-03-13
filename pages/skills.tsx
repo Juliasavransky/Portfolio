@@ -101,8 +101,8 @@ export const SkillsParagraphContainer = styled.div`
 function Skills({ theme }: SkillsProps) {
 
     const texts = ['Made_to_Shine'];
-    const { activeGroup, activeChar, activeFont } = useSplitTextAnimation(texts);
-  return (
+    const { animateIndex, animateFont } = useSplitTextAnimation(texts);
+    return (
     <Row>
       <Column>
         <SkillsHeaderContainer >
@@ -116,8 +116,9 @@ function Skills({ theme }: SkillsProps) {
             <SplitText
               style={{ fontSize: 'clamp(2.368rem, 5.036vw, 4.536rem)' }}
               text='Made_to_Shine'
-                 animateIndex={activeGroup === 0 ? activeChar : null}
-                animateFont={activeGroup === 0 ? activeFont : null}
+              baseIndex={0}
+              animateIndex={animateIndex}
+              animateFont={animateFont}
             />
           </Header>
           <DecoTag text={' </h2>'} isPrimaryTag={true}     

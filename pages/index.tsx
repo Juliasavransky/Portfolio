@@ -15,7 +15,6 @@ import theme from './../styles/theme';
 import { Btn, BtnMainPage } from '../components/btnMainPage';
 import { useSplitTextAnimation } from '../hooks/useSplitTextAnimation';
 
-
 type HomePageProps = {
   theme: Theme;
 };
@@ -74,8 +73,9 @@ function HomePage({ theme }: HomePageProps) {
       router.push('/projects');
     }
   };
+
   const texts = ['eb ', 'itch', 'Creative ', 'Design'];
-  const { activeGroup, activeChar, activeFont } = useSplitTextAnimation(texts);
+  const { animateIndex, animateFont } = useSplitTextAnimation(texts);
 
   return (
     <MainPageContainer>
@@ -122,12 +122,13 @@ function HomePage({ theme }: HomePageProps) {
             >
               W
             </TheW>
-              <SplitText
-                text='eb '
-                style={{ fontSize: 'clamp(3.036rem, 6.072vw, 6.072rem)' }}
-                animateIndex={activeGroup === 0 ? activeChar : null}
-                animateFont={activeGroup === 0 ? activeFont : null}
-              />
+            <SplitText
+              text='eb '
+              baseIndex={0}
+              style={{ fontSize: 'clamp(3.036rem, 6.072vw, 6.072rem)' }}
+              animateIndex={animateIndex}
+              animateFont={animateFont}
+            />
           </span>
 
           <Spacer />
@@ -144,12 +145,13 @@ function HomePage({ theme }: HomePageProps) {
             >
               W
             </TheW>
-              <SplitText
-                text='itch'
-                style={{ fontSize: 'clamp(3.036rem, 6.072vw, 6.072rem)' }}
-                animateIndex={activeGroup === 0 ? activeChar : null}
-                animateFont={activeGroup === 0 ? activeFont : null}
-              />
+            <SplitText
+              text='itch'
+              baseIndex={3}
+              style={{ fontSize: 'clamp(3.036rem, 6.072vw, 6.072rem)' }}
+              animateIndex={animateIndex}
+              animateFont={animateFont}
+            />
           </span>
 
           <Spacer />
@@ -158,16 +160,18 @@ function HomePage({ theme }: HomePageProps) {
         <Header>
           <SplitText
             text='Creative '
+            baseIndex={7}
             style={{ fontSize: 'clamp(3.036rem, 6.072vw, 6.072rem)' }}
-            animateIndex={activeGroup === 0 ? activeChar : null}
-            animateFont={activeGroup === 0 ? activeFont : null}
+            animateIndex={animateIndex}
+            animateFont={animateFont}
           />
           <Spacer />
           <SplitText
             text='Design'
+            baseIndex={16}
             style={{ fontSize: 'clamp(3.036rem, 6.072vw, 6.072rem)' }}
-            animateIndex={activeGroup === 0 ? activeChar : null}
-            animateFont={activeGroup === 0 ? activeFont : null}
+            animateIndex={animateIndex}
+            animateFont={animateFont}
           />
 
           <DecoTag
