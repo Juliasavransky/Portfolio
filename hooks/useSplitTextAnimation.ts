@@ -49,7 +49,7 @@ export function useSplitTextAnimation(texts: string[]) {
         setAnimateIndex(null);
         setAnimateFont(null);
       }, 500);
-    }, 2000);
+    }, 900);
 
     return () => clearInterval(intervalId);
   }, [texts]);
