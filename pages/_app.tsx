@@ -1,3 +1,29 @@
+import Head from 'next/head';
+<Head>
+  {/* כותרת של הדף */}
+  <title>Web Witch | Creative Design |בניית אתרים</title>
+
+  {/* תיאור שיווקי */}
+  <meta name="description" content="אתר תדמית קסום לעסק שלך ✨ עיצוב עם נגיעה מכושפת, חוויית משתמש מהפנטת ותשומת לב לפרטים הקטנים." />
+
+  {/* Open Graph (Facebook, WhatsApp, LinkedIn) */}
+  <meta property="og:title" content="Web Witch | Creative Design" />
+  <meta property="og:description" content="עיצוב עם נגיעה מכושפת ✨ אתרי תדמית שמייצרים חוויה ייחודית ומושכת." />
+  <meta property="og:image" content="https://webwitch.click/images/5.png" />
+  <meta property="og:url" content="https://webwitch.click/" />
+  <meta property="og:type" content="website" />
+
+  {/* Twitter Card (גם משפיע על וואטסאפ) */}
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Web Witch | Creative Design" />
+  <meta name="twitter:description" content="עיצוב דיגיטלי מהפנט ✨ עם אנימציות, UX מוקפד ונראות שובה לב." />
+  <meta name="twitter:image" content="https://webwitch.click/images/5.png" />
+
+  {/* תיוג לשפות RTL */}
+  <meta name="language" content="HE" />
+  <meta name="robots" content="index, follow" />
+</Head>
+
 import type { AppProps } from "next/app";
 import { ThemeProvider } from "@emotion/react";
 import theme from "../styles/theme";
