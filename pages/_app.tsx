@@ -9,7 +9,7 @@ import Head from 'next/head';
   {/* Open Graph (Facebook, WhatsApp, LinkedIn) */}
   <meta property="og:title" content="Web Witch | Creative Design" />
   <meta property="og:description" content="עיצוב עם נגיעה מכושפת ✨ אתרי תדמית שמייצרים חוויה ייחודית ומושכת." />
-  <meta property="og:image" content="https://webwitch.click/images/5.png" />
+  <meta property="og:image" content="https://webwitch.click/images/og-image.png" />
   <meta property="og:url" content="https://webwitch.click/" />
   <meta property="og:type" content="website" />
 
@@ -17,7 +17,7 @@ import Head from 'next/head';
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Web Witch | Creative Design" />
   <meta name="twitter:description" content="עיצוב דיגיטלי מהפנט ✨ עם אנימציות, UX מוקפד ונראות שובה לב." />
-  <meta name="twitter:image" content="https://webwitch.click/images/5.png" />
+  <meta name="twitter:image" content="https://webwitch.click/images/og-image.png" />
 
   {/* תיוג לשפות RTL */}
   <meta name="language" content="HE" />
