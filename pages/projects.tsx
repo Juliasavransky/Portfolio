@@ -94,7 +94,7 @@ function Projects({ theme }: ProjectsProps) {
         <ProjectsHeader>
           <DecoTag
             text={'<h2>'}
-            isSpecial={false}
+            isPrimaryTag={false}
             style={{
               position: 'relative',
               left: 'clamp(-0.5rem, calc(-10rem + (100vw - 320px) * 0.015), -7rem)',
@@ -104,7 +104,7 @@ function Projects({ theme }: ProjectsProps) {
           <SplitText text='My_Projects' />
           <DecoTag
             text={'</h2>'}
-            isSpecial={false}
+            isPrimaryTag={true}
             style={{
               position: 'relative',
               left: 'clamp(1rem, calc(-10rem + (100vw - 320px) * 0.015), -7rem)',
@@ -113,11 +113,11 @@ function Projects({ theme }: ProjectsProps) {
           />
         </ProjectsHeader>
         <SmallTitleContainer>
-          <DecoTag text={'<p>'} isSpecial={false} />
+          <DecoTag text={'<p>'} isPrimaryTag={false} />
           <SmallTitle>
             Step into my world of creative web experiences
           </SmallTitle>
-          <DecoTag text={'</p>'} isSpecial={false} />
+          <DecoTag text={'</p>'} isPrimaryTag={false} />
         </SmallTitleContainer>
       </ProjectsHeaderContainer>
 

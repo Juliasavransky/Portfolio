@@ -82,7 +82,7 @@ function HomePage({ theme }: HomePageProps) {
       <HeaderContainer>
         <DecoTagWrapper
           text={'</html>'}
-          isSpecial={false}
+          isPrimaryTag={false}
           style={{
             position: 'relative',
             right: 'clamp(35rem, calc(30rem + (100vw - 340px) ), 45rem)',
@@ -91,7 +91,7 @@ function HomePage({ theme }: HomePageProps) {
         />
         <DecoTagWrapper
           text={'</body>'}
-          isSpecial={false}
+          isPrimaryTag={false}
           style={{
             position: 'relative',
             right: 'clamp(25rem, calc(30rem + (100vw - 340px) ), 35rem)',
@@ -107,7 +107,7 @@ function HomePage({ theme }: HomePageProps) {
               top: '-1rem',
             }}
             className='special'
-            isSpecial={true}
+            isPrimaryTag={true}
           />
           <span
             style={{
@@ -163,7 +163,7 @@ function HomePage({ theme }: HomePageProps) {
           />
           <DecoTag
             text={'</h1>'}
-            isSpecial={false}
+            isPrimaryTag={false}
             style={{
               position: 'relative',
               right:
@@ -178,7 +178,7 @@ function HomePage({ theme }: HomePageProps) {
         <DecoTag
           text={'<button>'}
           style={{ marginBottom: '1rem' }}
-          isSpecial={false}
+          isPrimaryTag={false}
         />
         <BtnMainPage theme={theme}>
           <Link href='/projects' onClick={handleClick} ref={linkRef}></Link>
@@ -186,7 +186,7 @@ function HomePage({ theme }: HomePageProps) {
         <DecoTag
           text={'</button>'}
           style={{ marginTop: '1.5rem' }}
-          isSpecial={false}
+          isPrimaryTag={false}
         />
       </Btn>
     </MainPageContainer>

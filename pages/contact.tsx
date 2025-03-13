@@ -51,7 +51,7 @@ function Contact() {
       <ContactHeaderContainer>
         <DecoTag
           text={'<h2>'}
-          isSpecial={false}
+          isPrimaryTag={false}
           style={{
             position: 'relative',
             right: 'clamp(6rem, calc(7rem + (100vw + 320px) * 0.015), 8rem)',
@@ -66,7 +66,7 @@ function Contact() {
 
         <DecoTag
           text={'</h2>'}
-          isSpecial={false}
+          isPrimaryTag={false}
           style={{
             position: 'relative',
             left: 'clamp(6rem, calc(7rem + (100vw + 320px) * 0.015), 8rem)',
@@ -78,7 +78,7 @@ function Contact() {
       <ContactParagraphContainer>
         <DecoTag
           text={'<p>'}
-          isSpecial={false}
+          isPrimaryTag={false}
           style={{
             position: 'relative',
             left: 'clamp(1.5rem, calc(-10rem + (100vw - 320px) * 0.015), -7rem)',
@@ -88,7 +88,7 @@ function Contact() {
         <Paragraph theme={theme}>And Create Something Extraordinary</Paragraph>
         <DecoTag
           text={'</p>'}
-          isSpecial={false}
+          isPrimaryTag={false}
           style={{
             position: 'relative',
             left: 'clamp(-1.5rem, calc(-10rem + (100vw - 320px) * 0.015), -7rem)',
@@ -101,7 +101,7 @@ function Contact() {
 
       <DecoTagWrapper
         text={'</body>'}
-        isSpecial={false}
+        isPrimaryTag={false}
         style={{
           position: 'relative',
           left: 'clamp(26rem, calc(30rem + (100vw - 340px) ), 35rem)',
@@ -110,7 +110,7 @@ function Contact() {
       />
       <DecoTagWrapper
         text={'</html>'}
-        isSpecial={false}
+        isPrimaryTag={false}
         style={{
           position: 'relative',
           left: 'clamp(30rem, calc(35rem + (100vw - 340px) ), 40rem)',

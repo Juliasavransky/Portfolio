@@ -137,7 +137,7 @@ function ContactForm({ theme }: contactFormProps) {
   return (
     <>
       <Form onSubmit={handleSubmit}>
-        <DecoTag text={'<form>'} isSpecial={false} />
+        <DecoTag text={'<form>'} isPrimaryTag={true} />
         <FormGroup>
           <Input
             type='text'
@@ -185,7 +185,7 @@ function ContactForm({ theme }: contactFormProps) {
         >
           {loading ? 'Sending...' : 'Send message!'}
         </ContactBtn>
-        <DecoTag text={'</form>'} isSpecial={false} />
+        <DecoTag text={'</form>'} isPrimaryTag={false} />
       </Form>
 
       {showPopup && (

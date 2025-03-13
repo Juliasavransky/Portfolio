@@ -101,7 +101,7 @@ function Skills({ theme }: SkillsProps) {
     <Row>
       <Column>
         <SkillsHeaderContainer >
-          <DecoTag text={'<h2> '} isSpecial={false}     
+          <DecoTag text={'<h2> '} isPrimaryTag={false}     
            style={{
                 position: 'relative',
                 left: 'clamp(-6rem, calc(-10rem + (100vw - 320px) * 0.015), -7rem)',
@@ -113,7 +113,7 @@ function Skills({ theme }: SkillsProps) {
               text='Made_to_Shine'
             />
           </Header>
-          <DecoTag text={' </h2>'} isSpecial={false}     
+          <DecoTag text={' </h2>'} isPrimaryTag={true}     
            style={{
                 position: 'relative',
                 right: 'clamp(-6rem, calc(-10rem + (100vw - 320px) * 0.015), -7rem)',
@@ -125,7 +125,7 @@ function Skills({ theme }: SkillsProps) {
           <Paragraph theme={theme}>
             <DecoTag
               text={'<p>'}
-              isSpecial={false}
+              isPrimaryTag={false}
               style={{
                 position: 'relative',
                 left: 'clamp(-8.5rem, calc(-10rem + (100vw - 320px) * 0.015), -7rem)',
@@ -145,7 +145,7 @@ function Skills({ theme }: SkillsProps) {
             <br />
             <DecoTag
               text={'</p>'}
-              isSpecial={false}
+              isPrimaryTag={false}
               style={{
                 position: 'relative',
                 left: 'clamp(8rem, calc(10rem + (100vw - 320px) * -0.014), 8rem)',
