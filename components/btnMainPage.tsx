@@ -38,16 +38,20 @@ const BtnMainPage = styled.div<{ theme: Theme }>`
     transition: transform 0.3s;
     font-weight: 100;
     position: relative;
+    text-decoration: none;
+    color: ${theme.colors.yellow};
 
-    &:hover {
-      transform: translateZ(-2rem) rotateX(-90deg);
-    }
-
-    /* @media (hover:hover) and (pointer:fine) {
-      & > a:hover {
+    /* אפקט ריחוף רגיל לדסקטופ */
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
         transform: translateZ(-2rem) rotateX(-90deg);
       }
-    } */
+    }
+
+    /* אפקט הפעלה בלחיצה במובייל */
+    &.force-hover {
+      transform: translateZ(-2rem) rotateX(-90deg);
+    }
 
     &::before,
     &::after {

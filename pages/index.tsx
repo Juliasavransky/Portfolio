@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useRef } from 'react';
+import { useRouter } from 'next/router';
 import styled from '@emotion/styled';
 import SplitText from '@/utils/splitText';
 import DecoTag from '@/styles/decoTag';
@@ -31,8 +32,22 @@ const DecoTagWrapper = styled(DecoTag)`
   }
 `;
 
+
 function HomePage({ theme }: HomePageProps) {
   const AnimatedSplitText = motion(SplitText);
+  const router = useRouter();
+  const linkRef = useRef<HTMLAnchorElement>(null);
+  
+  const handleClick = (e: React.MouseEvent) => {
+    e.preventDefault(); // מונע ניווט מיידי
+  
+    if (linkRef.current) {
+      linkRef.current.classList.add('force-hover');
+      setTimeout(() => {
+        router.push('/projects');
+      }, 600); // זמן של האנימציה
+    }
+  };
   return (
     <MainPageContainer>
       <HeaderContainer>
@@ -137,7 +152,7 @@ function HomePage({ theme }: HomePageProps) {
           isSpecial={false}
         />
         <BtnMainPage theme={theme}>
-          <Link href='/projects'></Link>
+          <Link href='/projects' onClick={handleClick} ref={linkRef}></Link>
         </BtnMainPage>
         <DecoTag
           text={'</button>'}
