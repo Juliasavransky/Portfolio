@@ -42,10 +42,8 @@ function HomePage({ theme }: HomePageProps) {
     e.preventDefault();
   
     if (!linkRef.current) return;
-  
     const link = linkRef.current;
   
-    // הוספת class להפעלת אנימציה
     link.classList.add("force-hover");
   
     const isTouchDevice =
@@ -53,18 +51,31 @@ function HomePage({ theme }: HomePageProps) {
       ("ontouchstart" in window || navigator.maxTouchPoints > 0);
   
     if (isTouchDevice) {
-      const handleTransitionEnd = () => {
-        router.push("/projects");
+      const wait = (ms: number) =>
+        new Promise<void>((resolve) => {
+          const start = performance.now();
+          const loop = (now: number) => {
+            if (now - start >= ms) resolve();
+            else requestAnimationFrame(loop);
+          };
+          requestAnimationFrame(loop);
+        });
+  
+      const handleTransitionEnd = async () => {
         link.removeEventListener("transitionend", handleTransitionEnd);
+  
+        // ❗ מחכה טיפה כדי שהמשתמש יספיק "להרגיש" את האפקט
+        await wait(700); // 0.7 שניות אחרי שהאפקט נגמר
+        router.push("/projects");
       };
   
-      // מאזינים לסיום ה־transition
       link.addEventListener("transitionend", handleTransitionEnd);
     } else {
-      // דסקטופ: ניווט מיידי
+      // בדסקטופ – נווט מיידית (או אפשר גם פה לעשות אפקט דומה)
       router.push("/projects");
     }
   };
+  
   
   return (
     <MainPageContainer>
