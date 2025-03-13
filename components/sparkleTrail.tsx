@@ -13,21 +13,17 @@ interface SparkleTrailProps {
 
 const SparkleTrail: React.FC<SparkleTrailProps> = ({ children }) => {
   const [sparkles, setSparkles] = useState<Sparkle[]>([]);
-  const mousePosition = useRef({ x: 0, y: 0 });
   const animationFrame = useRef<number | null>(null);
 
   useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      mousePosition.current = { x: e.clientX, y: e.clientY };
-
+    const updateSparkles = (x: number, y: number) => {
       if (!animationFrame.current) {
         animationFrame.current = requestAnimationFrame(() => {
           setSparkles((prev) => {
-            // מגביל את כמות החלקיקים ל-30 בלבד
             const newSparkle: Sparkle = {
               id: Date.now() + Math.random(),
-              x: e.clientX,
-              y: e.clientY,
+              x,
+              y,
             };
             return [...prev.slice(-29), newSparkle];
           });
@@ -36,15 +32,29 @@ const SparkleTrail: React.FC<SparkleTrailProps> = ({ children }) => {
       }
     };
 
+    const handleMouseMove = (e: MouseEvent) => {
+      updateSparkles(e.clientX, e.clientY);
+    };
+
+    const handleTouchMove = (e: TouchEvent) => {
+      if (e.touches.length > 0) {
+        const touch = e.touches[0];
+        updateSparkles(touch.clientX, touch.clientY);
+      }
+    };
+
     window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("touchmove", handleTouchMove);
+
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("touchmove", handleTouchMove);
       if (animationFrame.current) cancelAnimationFrame(animationFrame.current);
     };
   }, []);
 
   return (
-    <div style={{ position: "relative",  width: "100vw", height: "100vh" }}>
+    <div style={{ position: "relative", width: "100vw", height: "100vh" }}>
       <AnimatePresence>
         {sparkles.map((sparkle) => (
           <motion.div
