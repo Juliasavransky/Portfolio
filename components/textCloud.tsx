@@ -19,7 +19,7 @@ const TextCloud = () => {
       "HTML", "CSS", "JavaScript", "React JS", "Redux", "SCSS",
       "TypeScript", "Context", "Node.js", "Git", "Material-UI",
       "Figma", "JSON", "Zeplin", "Ajax", "API", "Next.js",
-      "MUI", "WordPress", "UX", "UI",
+      "MUI", "WordPress", "UX", "UI","Gutenberg", "Headless"
     ];
 
     const options = {
