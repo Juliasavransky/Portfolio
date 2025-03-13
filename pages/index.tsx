@@ -39,15 +39,33 @@ function HomePage({ theme }: HomePageProps) {
   const linkRef = useRef<HTMLAnchorElement>(null);
   
   const handleClick = (e: React.MouseEvent) => {
-    e.preventDefault(); // מונע ניווט מיידי
+    e.preventDefault();
   
-    if (linkRef.current) {
-      linkRef.current.classList.add('force-hover');
-      setTimeout(() => {
-        router.push('/projects');
-      }, 1600); // זמן של האנימציה
+    if (!linkRef.current) return;
+  
+    const link = linkRef.current;
+  
+    // הוספת class להפעלת אנימציה
+    link.classList.add("force-hover");
+  
+    const isTouchDevice =
+      typeof window !== "undefined" &&
+      ("ontouchstart" in window || navigator.maxTouchPoints > 0);
+  
+    if (isTouchDevice) {
+      const handleTransitionEnd = () => {
+        router.push("/projects");
+        link.removeEventListener("transitionend", handleTransitionEnd);
+      };
+  
+      // מאזינים לסיום ה־transition
+      link.addEventListener("transitionend", handleTransitionEnd);
+    } else {
+      // דסקטופ: ניווט מיידי
+      router.push("/projects");
     }
   };
+  
   return (
     <MainPageContainer>
       <HeaderContainer>
