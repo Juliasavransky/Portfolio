@@ -5,6 +5,8 @@ import SplitText from '@/utils/splitText';
 import styled from '@emotion/styled';
 import React from 'react';
 import { Theme } from '@emotion/react';
+import { useSplitTextAnimation } from '../hooks/useSplitTextAnimation';
+
 
 type SkillsProps = {
   theme: Theme;
@@ -97,6 +99,9 @@ export const SkillsParagraphContainer = styled.div`
 `;
 
 function Skills({ theme }: SkillsProps) {
+
+    const texts = ['Made_to_Shine'];
+    const { activeGroup, activeChar, activeFont } = useSplitTextAnimation(texts);
   return (
     <Row>
       <Column>
@@ -111,6 +116,8 @@ function Skills({ theme }: SkillsProps) {
             <SplitText
               style={{ fontSize: 'clamp(2.368rem, 5.036vw, 4.536rem)' }}
               text='Made_to_Shine'
+                 animateIndex={activeGroup === 0 ? activeChar : null}
+                animateFont={activeGroup === 0 ? activeFont : null}
             />
           </Header>
           <DecoTag text={' </h2>'} isPrimaryTag={true}     

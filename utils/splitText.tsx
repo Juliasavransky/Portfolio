@@ -1,126 +1,121 @@
-import React, { CSSProperties } from 'react';
-import { color, motion } from 'framer-motion';
-import {
-  Barrio,
-  Cherish,
-  Nosifer,
-  Londrina_Sketch,
-  Fredericka_the_Great,
-  Roboto,
-} from '@next/font/google';
-
+import React from 'react';
 interface SplitTextProps {
-  text: string;
-  style?: CSSProperties;
-  className?: string;
+  text: string |string[]; 
+  style?: React.CSSProperties;
+  animateIndex?: number | null;
+  animateFont?: string | null;
 }
 
-const barrio = Barrio({
-  subsets: ['latin'],
-  weight: '400',
-});
-
-const cherish = Cherish({
-  subsets: ['latin'],
-  weight: '400',
-});
-
-const nosifer = Nosifer({
-  subsets: ['latin'],
-  weight: '400',
-});
-const londrina_Sketch = Londrina_Sketch({
-  subsets: ['latin'],
-  weight: '400',
-});
-
-const fredericka_The_Great = Fredericka_the_Great({
-  subsets: ['latin'],
-  weight: '400',
-});
-
-const roboto = Roboto({
-  subsets: ['latin'],
-  weight: ['900'],
-});
-
-const myFonts = [
-  roboto.className,
-  barrio.className,
-  cherish.className,
-  nosifer.className,
-  londrina_Sketch.className,
-  fredericka_The_Great.className,
-];
-
 const splitTextMotions = {
-  hidden: {
-    x: '-100vw',
-    opacity: 0,
-  },
+  hidden: { x: '-100vw', opacity: 0 },
   visible: {
     x: 0,
     opacity: 1,
-  },
-  transition: {
-    type: 'spring',
-    stiffness: 100,
-    mass: 5,
-    damping: 10,
-    when: 'beforeChildren',
-    staggerChildren: 0.7,
+    transition: {
+      type: 'spring',
+      stiffness: 100,
+      mass: 5,
+      damping: 10,
+      when: 'beforeChildren',
+      staggerChildren: 0.1,
+    },
   },
 };
-
+// const splitTextMotions = {
+//   hidden: {},
+//   visible: {},
+// };
 const spanMotions = {
-  hidden: {
-    opacity: 0,
-    scale: 0.1,
-  },
-  visible: {
-    opacity: 1,
-    scale: 1,
-  },
+  hidden: { opacity: 0, scale: 0.1 },
+  visible: { opacity: 1, scale: 1 },
 };
 
-function SplitText({ text, style, className }: SplitTextProps) {
+// function SplitText({ text, style, className }: SplitTextProps) {
+//   const [activeIndex, setActiveIndex] = useState<number | null>(null);
+//   const [activeFont, setActiveFont] = useState<string>(fontClasses[0]);
+
+//   useEffect(() => {
+//     const interval = setInterval(() => {
+//       const randomIndex = Math.floor(Math.random() * text.length);
+//       const randomFont = fontClasses[Math.floor(Math.random() * fontClasses.length)];
+
+//       setActiveIndex(randomIndex);
+//       setActiveFont(randomFont);
+
+//       const timeout = setTimeout(() => {
+//         setActiveIndex(null);
+//       }, 1000); // משך זמן השינוי
+
+//       return () => clearTimeout(timeout);
+//     }, 2000); // כל כמה זמן תתרחש אנימציה חדשה
+
+//     return () => clearInterval(interval);
+//   }, [text]);
+
+//   return (
+//     <motion.div
+//       variants={splitTextMotions}
+//       initial='hidden'
+//       animate='visible'
+//       style={{ display: 'flex', gap: '5px', flexWrap: 'nowrap' }}
+//     >
+//       {text.split('').map((char, index) => {
+//         const isAnimated = index === activeIndex;
+//         const fontClass = isAnimated ? activeFont : fontClasses[0];
+
+//         return (
+//           <motion.span
+//             key={index}
+//             variants={spanMotions}
+//             className={fontClass}
+//             style={{
+//               ...style,
+//               transition: 'all 0.3s ease-in-out',
+//               color: char === '_' ? 'transparent' : 'inherit',
+//             }}
+//           >
+//             {char}
+//           </motion.span>
+//         );
+//       })}
+//     </motion.div>
+//   );
+// }
+
+function SplitText({
+  text,
+  style,
+  animateIndex,
+  animateFont,
+}: SplitTextProps) {
+  const textToRender = Array.isArray(text) ? text.join('') : text;
+
   return (
-    <motion.div
-      variants={splitTextMotions}
-      initial='hidden'
-      animate='visible'
-      style={{ display: 'flex', gap: '5px', flexWrap: 'nowrap' }}
-    >
-      {text.split('').map((char, index) => (
-        <motion.span
-          key={index}
-          variants={spanMotions}
-          whileHover={{
-            transition: {
-              type: 'spring',
-              stiffness: 100,
-              damping: 20,
-              duration: 1,
-            },
-          }}
-          className={`${myFonts[0]}`} // הפונט תמיד חוזר לברירת המחדל
-          onMouseEnter={(e) => {
-            e.currentTarget.className =
-              myFonts[Math.floor(Math.random() * myFonts.length)];
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.className = myFonts[0]; // חזרה לפונט המקורי אחרי hover
-          }}
-          style={{
-            ...style,
-            color: char === '_' ? 'transparent' : 'inherit',
-          }}
-        >
-          {char}
-        </motion.span>
-      ))}
-    </motion.div>
+    <div style={{ display: 'flex', gap: '5px', flexWrap: 'nowrap' }}>
+      {textToRender.split('').map((char, index) => {
+        const isActive = index === animateIndex;
+        const fontClass = isActive && animateFont ? animateFont : 'font-roboto'; // או הפונט ברירת המחדל שלך
+
+        return (
+          <span
+            key={index}
+            className={fontClass}
+            style={{
+              ...style,
+              transition: 'all 0.3s ease-in-out',
+              color: char === '_' ? 'transparent' : 'inherit',
+            }}
+          >
+            {char}
+          </span>
+        );
+      })}
+    </div>
   );
 }
 
+
 export default SplitText;
+
+
+

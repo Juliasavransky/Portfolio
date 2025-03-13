@@ -93,7 +93,7 @@ const DecoTag = ({ text, style, className, isPrimaryTag, children }: DecoTagProp
         <TooltipWrapper>
         {children}
         <TooltipBubble className={showTooltip && !interacted ? 'show' : ''}>
-        👆 נסי לגעת בי ✨
+        👆 נסי לגעת בנו ✨
         </TooltipBubble>
       </TooltipWrapper>
         )}

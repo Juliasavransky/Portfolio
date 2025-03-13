@@ -12,8 +12,9 @@ import {
 } from '../styles/layoutComponents';
 import { Theme } from '@emotion/react';
 import theme from './../styles/theme';
-import { motion } from 'framer-motion';
 import { Btn, BtnMainPage } from '../components/btnMainPage';
+import { useSplitTextAnimation } from '../hooks/useSplitTextAnimation';
+
 
 type HomePageProps = {
   theme: Theme;
@@ -32,24 +33,22 @@ const DecoTagWrapper = styled(DecoTag)`
   }
 `;
 
-
 function HomePage({ theme }: HomePageProps) {
-  const AnimatedSplitText = motion(SplitText);
   const router = useRouter();
   const linkRef = useRef<HTMLAnchorElement>(null);
-  
+
   const handleClick = (e: React.MouseEvent) => {
     e.preventDefault();
-  
+
     if (!linkRef.current) return;
     const link = linkRef.current;
-  
-    link.classList.add("force-hover");
-  
+
+    link.classList.add('force-hover');
+
     const isTouchDevice =
-      typeof window !== "undefined" &&
-      ("ontouchstart" in window || navigator.maxTouchPoints > 0);
-  
+      typeof window !== 'undefined' &&
+      ('ontouchstart' in window || navigator.maxTouchPoints > 0);
+
     if (isTouchDevice) {
       const wait = (ms: number) =>
         new Promise<void>((resolve) => {
@@ -60,23 +59,24 @@ function HomePage({ theme }: HomePageProps) {
           };
           requestAnimationFrame(loop);
         });
-  
+
       const handleTransitionEnd = async () => {
-        link.removeEventListener("transitionend", handleTransitionEnd);
-  
+        link.removeEventListener('transitionend', handleTransitionEnd);
+
         // ❗ מחכה טיפה כדי שהמשתמש יספיק "להרגיש" את האפקט
         await wait(700); // 0.7 שניות אחרי שהאפקט נגמר
-        router.push("/projects");
+        router.push('/projects');
       };
-  
-      link.addEventListener("transitionend", handleTransitionEnd);
+
+      link.addEventListener('transitionend', handleTransitionEnd);
     } else {
       // בדסקטופ – נווט מיידית (או אפשר גם פה לעשות אפקט דומה)
-      router.push("/projects");
+      router.push('/projects');
     }
   };
-  
-  
+  const texts = ['eb ', 'itch', 'Creative ', 'Design'];
+  const { activeGroup, activeChar, activeFont } = useSplitTextAnimation(texts);
+
   return (
     <MainPageContainer>
       <HeaderContainer>
@@ -122,10 +122,12 @@ function HomePage({ theme }: HomePageProps) {
             >
               W
             </TheW>
-            <AnimatedSplitText
-              text='eb '
-              style={{ fontSize: 'clamp(3.036rem, 6.072vw, 6.072rem)' }}
-            />
+              <SplitText
+                text='eb '
+                style={{ fontSize: 'clamp(3.036rem, 6.072vw, 6.072rem)' }}
+                animateIndex={activeGroup === 0 ? activeChar : null}
+                animateFont={activeGroup === 0 ? activeFont : null}
+              />
           </span>
 
           <Spacer />
@@ -142,25 +144,32 @@ function HomePage({ theme }: HomePageProps) {
             >
               W
             </TheW>
-            <AnimatedSplitText
-              text='itch'
-              style={{ fontSize: 'clamp(3.036rem, 6.072vw, 6.072rem)' }}
-            />
+              <SplitText
+                text='itch'
+                style={{ fontSize: 'clamp(3.036rem, 6.072vw, 6.072rem)' }}
+                animateIndex={activeGroup === 0 ? activeChar : null}
+                animateFont={activeGroup === 0 ? activeFont : null}
+              />
           </span>
 
           <Spacer />
         </Header>
 
         <Header>
-          <AnimatedSplitText
+          <SplitText
             text='Creative '
             style={{ fontSize: 'clamp(3.036rem, 6.072vw, 6.072rem)' }}
+            animateIndex={activeGroup === 0 ? activeChar : null}
+            animateFont={activeGroup === 0 ? activeFont : null}
           />
           <Spacer />
-          <AnimatedSplitText
+          <SplitText
             text='Design'
             style={{ fontSize: 'clamp(3.036rem, 6.072vw, 6.072rem)' }}
+            animateIndex={activeGroup === 0 ? activeChar : null}
+            animateFont={activeGroup === 0 ? activeFont : null}
           />
+
           <DecoTag
             text={'</h1>'}
             isPrimaryTag={false}

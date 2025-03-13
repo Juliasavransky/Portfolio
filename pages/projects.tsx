@@ -5,6 +5,8 @@ import DecoTag from '@/styles/decoTag';
 import projectsList from '../utils/projectList.json';
 import Card from '../components/card';
 import { Theme } from '@emotion/react';
+import { useSplitTextAnimation } from '../hooks/useSplitTextAnimation';
+
 
 type ProjectsProps = {
   theme: Theme;
@@ -87,7 +89,8 @@ const CardWrapper = styled.div`
 
 function Projects({ theme }: ProjectsProps) {
   const projects = projectsList;
-
+  const texts = ['My_Projects'];
+  const { activeGroup, activeChar, activeFont } = useSplitTextAnimation(texts);
   return (
     <ProjectsContainer>
       <ProjectsHeaderContainer>
@@ -101,7 +104,9 @@ function Projects({ theme }: ProjectsProps) {
               top: '0',
             }}
           />
-          <SplitText text='My_Projects' />
+          <SplitText text={texts.join(' ')}
+            animateIndex={activeGroup === 0 ? activeChar : null}
+            animateFont={activeGroup === 0 ? activeFont : null}/>
           <DecoTag
             text={'</h2>'}
             isPrimaryTag={true}
