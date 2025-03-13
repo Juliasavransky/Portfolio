@@ -45,7 +45,7 @@ function HomePage({ theme }: HomePageProps) {
       linkRef.current.classList.add('force-hover');
       setTimeout(() => {
         router.push('/projects');
-      }, 600); // זמן של האנימציה
+      }, 1600); // זמן של האנימציה
     }
   };
   return (
