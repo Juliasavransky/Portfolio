@@ -5,8 +5,9 @@ import SplitText from '@/utils/splitText';
 import theme from '@/styles/theme';
 import ContactForm from '@/components/contactForm';
 import styled from '@emotion/styled';
+import Link from 'next/link';
 import { useSplitTextAnimation } from '../hooks/useSplitTextAnimation';
-
+import { socialLinks, IconD } from '../components/socialLinks';
 export const ContactMainPageContainer = styled.div`
   height: 100vh;
   display: flex;
@@ -31,6 +32,15 @@ const DecoTagWrapper = styled(DecoTag)`
   }
 `;
 
+const IconsContactWrapper = styled.div`
+display:none;
+  @media (max-width: 768px) {
+    display: flex;
+    justify-content:space-around;
+    width: 90%;
+  }
+`;
+
 export const ContactHeaderContainer = styled.div`
   display: flex;
   font-weight: 900;
@@ -46,11 +56,26 @@ export const ContactParagraphContainer = styled.div`
   justify-content: center;
   align-items: center;
 `;
+
 function Contact() {
   const texts = ['Let’s_Talk!'];
   const { animateIndex, animateFont } = useSplitTextAnimation(texts);
   return (
     <ContactMainPageContainer>
+      <IconsContactWrapper>
+        {socialLinks.map(({ href, title, icon, dataIcon }) => (
+          <IconD key={title} data-icon={dataIcon}>
+            <Link href={href} passHref legacyBehavior>
+              <a target='_blank' rel='noopener noreferrer' title={title}>
+                <svg viewBox='0 0 32 32'>
+                  <title>{title}</title>
+                  <path d={icon}></path>
+                </svg>
+              </a>
+            </Link>
+          </IconD>
+        ))}
+      </IconsContactWrapper>
       <ContactHeaderContainer>
         <DecoTag
           text={'<h2>'}
