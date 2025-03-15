@@ -33,10 +33,10 @@ const DecoTagWrapper = styled(DecoTag)`
 `;
 
 const IconsContactWrapper = styled.div`
-display:none;
+  display: none;
   @media (max-width: 768px) {
     display: flex;
-    justify-content:space-around;
+    justify-content: space-around;
     width: 90%;
   }
 `;
@@ -63,18 +63,23 @@ function Contact() {
   return (
     <ContactMainPageContainer>
       <IconsContactWrapper>
-        {socialLinks.map(({ href, title, icon, dataIcon }) => (
-          <IconD key={title} data-icon={dataIcon}>
-            <Link href={href} passHref legacyBehavior>
-              <a target='_blank' rel='noopener noreferrer' title={title}>
-                <svg viewBox='0 0 32 32'>
-                  <title>{title}</title>
-                  <path d={icon}></path>
-                </svg>
-              </a>
-            </Link>
-          </IconD>
-        ))}
+        {socialLinks.map(
+          ({ href, title, icon, dataIcon, greenPartWhatsapp }) => (
+            <IconD key={title} data-icon={dataIcon}>
+              <Link href={href} passHref legacyBehavior>
+                <a target='_blank' rel='noopener noreferrer' title={title}>
+                  <svg viewBox='0 0 32 32'>
+                    <title>{title}</title>
+                    <path d={icon}></path>
+                    {greenPartWhatsapp && (
+                      <path d={greenPartWhatsapp} className='icon-animated' />
+                    )}
+                  </svg>
+                </a>
+              </Link>
+            </IconD>
+          )
+        )}
       </IconsContactWrapper>
       <ContactHeaderContainer>
         <DecoTag
