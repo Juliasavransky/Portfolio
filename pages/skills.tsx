@@ -127,9 +127,8 @@ function Skills({ theme }: SkillsProps) {
               top: '0',
             }}
           />
-
         </SkillsHeaderContainer>
-                  <ProfileImg />
+        <ProfileImg />
         <br />
         <SkillsParagraphContainer>
           <Paragraph theme={theme}>
@@ -143,17 +142,17 @@ function Skills({ theme }: SkillsProps) {
               }}
             />
             <br />
-            Hi, I'm Julia, an Industrial <strong> Designer </strong> and
-            Front-End
-            <strong> Developer </strong> who thrives on challenges and
-            innovation. Technology excites me, but what truly drives me is
-            creating unique and engaging user experiences making the web-sites
-            with <strong>Personality and Purpose</strong>. More dynamic,
-            visually exciting, and less uniform space. I believe great design
-            should captivate, surprise, and break the mold. With a sharp eye for
-            aesthetics and a love for the unexpected,{' '}
-            <strong> I craft digital experiences </strong>
-            that are anything but ordinary.
+            Hi, I'm Julia, an Industrial <strong style={{color:'#ffcc00'}}>Designer
+             and Front-End Developer</strong> who
+            thrives on challenges and innovation. Technology excites me, but
+            what truly drives me is creating <strong style={{color:'#ffcc00'}}>unique and engaging user
+            experiences</strong> — making websites with Personality and Purpose. More
+            dynamic, visually exciting, and less uniform space. I believe great
+            design should <strong style={{color:'#ffcc00'}}>captivate, surprise, and break the mold</strong>. With a sharp
+            eye for aesthetics and a love for the unexpected, <strong style={{color:'#ffcc00'}}>I craft digital
+            experiences that are anything but ordinary</strong>. I design and build
+            websites, landing pages, and other digital products — from concept
+            to code — blending creativity and functionality into every pixel.
             <br />
             <DecoTag
               text={'</p>'}
