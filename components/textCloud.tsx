@@ -25,7 +25,7 @@ const TextCloud = () => {
     const options = {
       radius: getResponsiveRadius(),
       keep: true,
-      maxSpeed: window.innerWidth < 768 ? "fast" : "fast",
+      maxSpeed: window.innerWidth < 768 ? "normal" : "fast",
       initSpeed: window.innerWidth < 768 ? "normal" : "fast",
       direction: 135,
     };
