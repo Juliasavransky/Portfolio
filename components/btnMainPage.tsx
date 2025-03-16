@@ -79,7 +79,7 @@ const BtnMainPage = styled.div<{ theme: Theme }>`
     }
 
     &::before {
-      content: 'Wanna See More Magic';
+      content: 'Click to Reveal the Magic';
       color: ${theme.colors.yellow};
       background: ${theme.colors.greyDarkBG1};
       transform: rotateY(0deg) translateZ(2rem);
