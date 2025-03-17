@@ -1,6 +1,6 @@
 [
   {
-    "projectName": "Pokémon cards memory game",
+    "projectName": "Pokémon memory game",
     "gitHubLink": "https://github.com/Juliasavransky/Pokemon-cards-memory-game",
     "pageLink": "https://juliasavransky.github.io/Pokemon-cards-memory-game/",
     "summary": "The game has unlimited levels, whereas in each level the number of cards rises.The figures on the cards are randomly chosen from the 560 figures of Pokémon, using the Pokemon API. The score is differentially calculated between levels.",
@@ -17,7 +17,7 @@
     "projectName": "Simon says",
     "gitHubLink": "https://github.com/Juliasavransky/Simon-Says---Memory-game",
     "pageLink": "https://juliasavransky.github.io/Simon-Says---Memory-game/",
-    "summary": "A classic memory game of Simon,in which a single player competes with the computer. The computer chooses a random sequence made of the four colors and the player needs to repeat that sequence. On each level, the sequence gets longer  (a new color is added to the last sequence).  For each level the player gets a score saved in the local storage.  Once the player fails to repeat the sequence, they can restart the game.",
+    "summary": "A classic memory game of Simon, in which a single player competes with the computer. The computer chooses a random sequence made of four colors and the player needs to repeat that sequence. On each level, the sequence gets longer. For each level the player gets a score saved. Once the player fails to repeat the sequence, they can restart the game.",
     "img": "/images/simon2.jpg"
   },
   {
@@ -38,7 +38,7 @@
     "projectName": "Pass on",
     "gitHubLink": "https://github.com/Juliasavransky/FNP",
     "pageLink": "https://juliasavransky.github.io/FNP/#/",
-    "summary": "A social media app for sharing second-hand items of children and babies. The app is a bulletin board of items users wish to give away and items the users are looking for. The app allows users: to publish ads about giving away or asking for items; to contact other users by mail and schedule the transfer of the item; to define a smart agent which will notify the user an automated notification once another user publishes that item.",
+    "summary": "A social media app for sharing second-hand children and baby items. The app is a bulletin board of items users wish to give away or are looking for. Users can publish ads to give or request items, contact others by mail to arrange transfers, and define a smart agent to receive automated notifications when relevant items are posted.",
     "img": "/images/pass-on.jpg"
   }
 ]

@@ -17,6 +17,15 @@ type CardProps = {
 const ProjectCard = styled.div`
   margin: 1.5rem auto;
   justify-content: center;
+  background: ${theme.colors.white};
+  padding: 0.7rem 0.7rem 1.5rem;
+  border-radius: 3px;
+  box-shadow: 0 0.2rem 1.2rem rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  flex-wrap: wrap;
+
 
   &:hover .project-card__details {
     opacity: 1;
@@ -33,13 +42,13 @@ const ProjectCard = styled.div`
 
 const ProjectCardItem = styled.div`
   position: relative;
-  border-radius: 10px;
+  border-radius: 3px;
   overflow: hidden;
   display: flex;
   margin: 10px; /* רווחים בין הקלפים */
-  flex: 1 0 calc(40% - 20px); 
-  min-width: calc(33.33% - 20px); 
-
+  flex: 1 0 calc(40% - 20px);
+  min-width: calc(33.33% - 20px);
+  border: 2px solid rgba(${theme.colors.greyLight1}, 0.6);
 `;
 
 const ProjectCardIMage = styled.div`
@@ -70,10 +79,13 @@ const ProjectCardDetails = styled.div<{ theme: Theme }>`
 `;
 const DetailsTitle = styled.h2<{ theme: Theme }>`
   font-size: ${theme.size.fontSmall};
-  font-weight: 700;
-  color: ${theme.colors.white};
-  letter-spacing: 3px;
-  margin-bottom: 1rem;
+  font-weight: 500;
+  color: ${theme.colors.greyDarkBG2};
+  letter-spacing: 2px;
+  word-spacing: 3px;
+  margin-top: 1rem;
+  word-break: break-word;
+
 `;
 const DetailsDescription = styled.p<{ theme: Theme }>`
   font-size: ${theme.size.fontTiny};
@@ -104,10 +116,8 @@ const DetailsLink = styled.div<{ theme: Theme }>`
 const ResponsiveImage = styled(Image)`
   width: 100%;
   height: clamp(180px, 75vw, 390px);
-  max-height: 260px;
-  aspect-ratio: 4/3;
+  aspect-ratio: 5/6;
   object-fit: cover;
-  border-radius: 10px;
 `;
 
 function Card({
@@ -120,6 +130,7 @@ function Card({
 }: CardProps) {
   return (
     <ProjectCard>
+      <DetailsTitle theme={theme}>{projectName}</DetailsTitle>
       <ProjectCardItem>
         <ProjectCardIMage className='project-card__image'>
           <ResponsiveImage
@@ -132,7 +143,7 @@ function Card({
         </ProjectCardIMage>
 
         <ProjectCardDetails className='project-card__details' theme={theme}>
-          <DetailsTitle theme={theme}>{projectName}</DetailsTitle>
+          {/* <DetailsTitle theme={theme}>{projectName}</DetailsTitle> */}
           <DetailsDescription theme={theme}>{summary}</DetailsDescription>
 
           <DetailsButton>
