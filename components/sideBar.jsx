@@ -5,6 +5,7 @@ import {
   socialLinks,
   IconD,
 } from "../components/socialLinks";
+import { useRouter } from 'next/router';
 
 
 const Nav = styled.nav`
@@ -12,7 +13,7 @@ const Nav = styled.nav`
   position: relative;
   z-index: 1000;
   @media (max-width: 1510px) {
-
+    
   }
   @media (max-width: 1220px) {
     display: flex;
@@ -31,7 +32,7 @@ const Nav = styled.nav`
     max-width: 100%;
     margin: 0 auto;
   }
-`;
+  `;
 
 const SideBarNav = styled.div`
   position: fixed;
@@ -41,18 +42,18 @@ const SideBarNav = styled.div`
     position: relative;
     margin-top: 0;
   }
-
+  
   @media (max-width: 768px) {
-width:90vw;
+    width:90vw;
   }
-`;
+  `;
 
 const NavList = styled.ul`
   display: flex;
   flex-direction: column;
   list-style: none;
   min-width: 10vw;
-
+  
   @media (max-width: 1220px) {
     flex-direction: row;
     justify-content: space-around;
@@ -61,7 +62,7 @@ const NavList = styled.ul`
     justify-content: center;
     border-bottom: 7px solid ${(props) => props.theme.colors.purple};
   }
-`;
+  `;
 
 const NavItem = styled.li`
   box-sizing: content-box;
@@ -77,8 +78,8 @@ const NavItem = styled.li`
     background-color: ${(props) => props.theme.colors.yellow};
     transform: scaleY(0);
     transition:
-      transform 0.3s,
-      width 0.4s cubic-bezier(1, 0, 0, 1) 0.2s;
+    transform 0.3s,
+    width 0.4s cubic-bezier(1, 0, 0, 1) 0.2s;
   }
   &:hover {
     color:${(props) => props.theme.colors.greyDarkBG1};
@@ -87,6 +88,18 @@ const NavItem = styled.li`
     transform: scaleY(1);
     width: 100%;
   }
+  /* מצב active (מותאם לפי prop) */
+  ${(props) =>
+    props.$active &&
+    `
+    color: ${props.theme.colors.greyDarkBG1};
+
+    &::before {
+      transform: scaleY(1);
+      width: 100%;
+    }
+  `}
+
   &:first-of-type {
     border-top: 1px solid ${(props) => props.theme.colors.greyDarkBG1};
   }
@@ -96,7 +109,7 @@ const NavItem = styled.li`
   position: relative;
   border-bottom: 1px solid ${(props) => props.theme.colors.greyLight1};
   width: clamp(8vw, 10vw, 15vw);
-
+  
   @media (max-width: 1220px) {
     border-bottom: none;
     width: auto;
@@ -107,18 +120,20 @@ const NavItem = styled.li`
     font-size: clamp(0.8rem, 1rem, 1.5rem);
     font-weight: 500;
   }
-`;
+  `;
+
+
 
 const NavLink = styled.a`
   text-decoration: "none";
   position: relative;
-  color: ${(props) => props.theme.colors.greyLight1};
+color: ${(props) => props.theme.colors.greyLight1};
 font-weight: 500;
 
-  @media (max-width: 768px) {
-    margin-left: 0;
-    letter-spacing: clamp(1px, 2.5px, 4px);
-  }
+@media (max-width: 768px) {
+  margin-left: 0;
+  letter-spacing: clamp(1px, 2.5px, 4px);
+}
 `;
 
 
@@ -134,27 +149,34 @@ const Icons = styled.div`
     flex-direction:row;
     align-items:center;
   }
-`;
+  `;
 
 const navLinks = [
-  { href: "/", label: "Home" },
-  { href: "/skills", label: "About" },
-  { href: "/projects", label: "Projects" },
-  { href: "/contact", label: "Contact" },
+  { href: "/", pathname: "Home" },
+  { href: "/skills", pathname: "About" },
+  { href: "/projects", pathname: "Projects" },
+  { href: "/contact", pathname: "Contact" },
 ];
 
 function SideBar() {
+  const router = useRouter();
   return (
     <Nav>
       <SideBarNav>
         <NavList>
-          {navLinks.map(({ href, label }) => (
-            <NavItem key={href}>
-              <Link href={href} passHref legacyBehavior>
-                <NavLink style={{ textDecoration: 'none' }}>{label}</NavLink>
-              </Link>
-            </NavItem>
-          ))}
+          {navLinks.map(({ href, pathname }) => {
+            const isActive = router.pathname === href;
+            return (
+              <NavItem key={href} $active={isActive}>
+                <Link href={href} passHref legacyBehavior>
+                  <NavLink
+                    style={{ textDecoration: 'none' }}>
+                    {pathname}
+                  </NavLink>
+                </Link>
+              </NavItem>
+            )
+          })}
 
           <Icons>
             {socialLinks.map(({ href, title, icon, dataIcon }) => (

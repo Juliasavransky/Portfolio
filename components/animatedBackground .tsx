@@ -21,8 +21,8 @@ const AnimatedBackground: React.FC<AnimatedBackgroundProps> = ({
     let width = (canvas.width = window.innerWidth);
     let height = (canvas.height = window.innerHeight);
 
-    const particleCount = 100;
-    const colors = ['#ffffff', '#FFD700', '#e81cff']; // לבן, זהב, תכלת, ורוד
+    const particleCount = 70;
+    const colors = ['#ffffff', '#FFD700', '#e81cff'];
     const particles: {
       x: number;
       y: number;
@@ -35,7 +35,7 @@ const AnimatedBackground: React.FC<AnimatedBackgroundProps> = ({
 
     for (let i = 0; i < particleCount; i++) {
       const radius = Math.random() * 2 + Math.random() * 2.5; // חלק קטנים, חלק גדולים יותר
-      const blur = radius > 3; // רק הגדולים יהיו עם blur
+      const blur = radius > 0; // רק הגדולים יהיו עם blur
       particles.push({
         x: Math.random() * width,
         y: Math.random() * height,
