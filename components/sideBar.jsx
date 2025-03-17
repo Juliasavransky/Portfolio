@@ -81,14 +81,14 @@ const NavItem = styled.li`
       width 0.4s cubic-bezier(1, 0, 0, 1) 0.2s;
   }
   &:hover {
-    color: white;
+    color:${(props) => props.theme.colors.greyDarkBG1};
   }
   &:hover::before {
     transform: scaleY(1);
     width: 100%;
   }
   &:first-of-type {
-    border-top: 1px solid ${(props) => props.theme.colors.greyLight1};
+    border-top: 1px solid ${(props) => props.theme.colors.greyDarkBG1};
   }
   padding: clamp(1rem, 1.5rem, 2rem) clamp(1rem, 1.5rem, 2rem);
   letter-spacing: clamp(2px, 5px, 8px);
@@ -111,12 +111,10 @@ const NavItem = styled.li`
 
 const NavLink = styled.a`
   text-decoration: "none";
-  color: ${(props) => props.theme.colors.greyLight1};
   position: relative;
+  color: ${(props) => props.theme.colors.greyLight1};
+font-weight: 500;
 
-  &:hover {
-    color: inherit;
-  }
   @media (max-width: 768px) {
     margin-left: 0;
     letter-spacing: clamp(1px, 2.5px, 4px);

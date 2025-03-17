@@ -1,9 +1,12 @@
-// components/AnimatedBackground.tsx
 'use client';
+import React, { ReactNode } from 'react';
+import { Children, useEffect, useRef } from 'react';
 
-import { useEffect, useRef } from 'react';
+type AnimatedBackgroundProps = {
+  children: ReactNode;
+};
 
-const AnimatedBackground: React.FC<{ children: React.ReactNode }> = ({
+const AnimatedBackground: React.FC<AnimatedBackgroundProps> = ({
   children,
 }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -18,43 +21,56 @@ const AnimatedBackground: React.FC<{ children: React.ReactNode }> = ({
     let width = (canvas.width = window.innerWidth);
     let height = (canvas.height = window.innerHeight);
 
-    const particleCount = 80;
+    const particleCount = 100;
+    const colors = ['#ffffff', '#FFD700', '#e81cff']; // לבן, זהב, תכלת, ורוד
     const particles: {
       x: number;
       y: number;
       radius: number;
       dx: number;
       dy: number;
+      color: string;
+      blur: boolean;
     }[] = [];
 
     for (let i = 0; i < particleCount; i++) {
+      const radius = Math.random() * 2 + Math.random() * 2.5; // חלק קטנים, חלק גדולים יותר
+      const blur = radius > 3; // רק הגדולים יהיו עם blur
       particles.push({
         x: Math.random() * width,
         y: Math.random() * height,
-        radius: Math.random() * 2 + 1,
-        dx: (Math.random() - 0.5) * 0.5, // מהירות איטית
-        dy: (Math.random() - 0.5) * 0.5,
+        radius,
+        dx: (Math.random() - 0.5) * 0.4,
+        dy: (Math.random() - 0.5) * 0.4,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        blur,
       });
     }
 
     const animate = () => {
       ctx.clearRect(0, 0, width, height);
-      ctx.fillStyle = '#111'; // רקע כהה
-      ctx.fillRect(0, 0, width, height);
-
-      ctx.fillStyle = 'rgba(255, 255, 255, 0.8)'; // צבע העיגולים
 
       for (const p of particles) {
         p.x += p.dx;
         p.y += p.dy;
 
-        // Bounce מהקצה
+        // גבולות
         if (p.x < 0 || p.x > width) p.dx *= -1;
         if (p.y < 0 || p.y > height) p.dy *= -1;
 
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+
+        if (p.blur) {
+          ctx.shadowBlur = 10;
+          ctx.shadowColor = p.color;
+        } else {
+          ctx.shadowBlur = 0;
+        }
+
+        ctx.fillStyle = p.color;
         ctx.fill();
+        ctx.closePath();
       }
 
       animationRef.current = requestAnimationFrame(animate);
