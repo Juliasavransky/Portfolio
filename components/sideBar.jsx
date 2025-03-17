@@ -88,13 +88,13 @@ const NavItem = styled.li`
     width: 100%;
   }
   &:first-of-type {
-    border-top: 1px solid ${(props) => props.theme.colors.greyLight2};
+    border-top: 1px solid ${(props) => props.theme.colors.greyLight1};
   }
   padding: clamp(1rem, 1.5rem, 2rem) clamp(1rem, 1.5rem, 2rem);
   letter-spacing: clamp(2px, 5px, 8px);
   cursor: pointer;
   position: relative;
-  border-bottom: 1px solid ${(props) => props.theme.colors.greyLight2};
+  border-bottom: 1px solid ${(props) => props.theme.colors.greyLight1};
   width: clamp(8vw, 10vw, 15vw);
 
   @media (max-width: 1220px) {

@@ -6,5 +6,7 @@ export const globalStyles = css`
     font-size: 1.2rem;
     font-weight: 100;
     min-height: 100vh; 
+    user-select: none;
+    -webkit-user-select: none;
   }
 `;

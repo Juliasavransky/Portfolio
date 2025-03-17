@@ -142,15 +142,15 @@ function Skills({ theme }: SkillsProps) {
               }}
             />
             <br />
-            Hi, I'm Julia, an Industrial <strong style={{color:'#ffcc00'}}>Designer
-             and Front-End Developer</strong> who
+            Hi, I'm Julia, an Industrial <span style={{color:'#ffcc00'}}>Designer
+             and Front-End Developer</span> who
             thrives on challenges and innovation. Technology excites me, but
-            what truly drives me is creating <strong style={{color:'#ffcc00'}}>unique and engaging user
-            experiences</strong> — making websites with Personality and Purpose. More
+            what truly drives me is creating <span style={{color:'#ffcc00'}}>unique and engaging user
+            experiences</span> — making websites with Personality and Purpose. More
             dynamic, visually exciting, and less uniform space. I believe great
-            design should <strong style={{color:'#ffcc00'}}>captivate, surprise, and break the mold</strong>. With a sharp
-            eye for aesthetics and a love for the unexpected, <strong style={{color:'#ffcc00'}}>I craft digital
-            experiences that are anything but ordinary</strong>. I design and build
+            design should <span style={{color:'#ffcc00'}}>captivate, surprise, and break the mold</span>. With a sharp
+            eye for aesthetics and a love for the unexpected, <span style={{color:'#ffcc00'}}>I craft digital
+            experiences that are anything but ordinary</span>. I design and build
             websites, landing pages, and other digital products — from concept
             to code — blending creativity and functionality into every pixel.
             <br />

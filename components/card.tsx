@@ -60,7 +60,7 @@ const ProjectCardDetails = styled.div<{ theme: Theme }>`
   opacity: 0;
   transition: all 0.5s ease-in-out;
   backface-visibility: hidden;
-  color: ${theme.colors.greyLight2};
+  color: ${theme.colors.greyLight1};
 
   &:hover {
     opacity: 1;

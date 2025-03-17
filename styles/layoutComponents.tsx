@@ -56,9 +56,10 @@ export const Header = styled.div`
   margin-top: 1rem;
   margin-bottom: 1rem;
   text-align: center;
-  max-width: 80%;
+  width: 80%;
   gap: 0.2em;
 
+  /* border: 1px solid red; */
   @media (max-width: 768px) {
     font-size: 2.5rem;
   }
@@ -78,8 +79,7 @@ export const Paragraph = styled.p<{ theme: Theme }>`
   margin: 1rem auto;
   text-align: center;
   width: 100%;
-  
-  @media (max-width: 768px) {
-    min-width: 90%;
-  }
+  letter-spacing: clamp(1px, 0.3vw, 2px);
+  word-spacing: 0.1rem;
+
 `;

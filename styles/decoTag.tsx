@@ -30,11 +30,10 @@ const Tag = styled.span<{ isPrimaryTag?: boolean }>`
   line-height: 1;
   color: #7b7b7d;
   cursor: grab;
-  user-select: none;
-  -webkit-user-select: none;
+
 
   @media (max-width: 768px) {
-    font-size: clamp(2rem, 4vw, 3rem);
+    font-size: clamp(1.5rem, 4vw, 3rem);
   }
 
   @media (max-width: 310px) {

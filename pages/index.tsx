@@ -103,8 +103,8 @@ function HomePage({ theme }: HomePageProps) {
             text={'<h1>'}
             style={{
               position: 'relative',
-              left: 'clamp(-4rem, calc(-10rem + (100vw - 320px) * 0.01), -15rem)',
-              top: '-1rem',
+              left: 'clamp(0rem, calc(-10rem + (100vw - 320px) * 0.01), -15rem)',
+              top: '-1.5rem',
             }}
             className='special'
             isPrimaryTag={true}
@@ -155,9 +155,9 @@ function HomePage({ theme }: HomePageProps) {
           </span>
 
           <Spacer />
-        </Header>
+        {/* </Header> */}
 
-        <Header>
+        {/* <Header> */}
           <SplitText
             text='Creative '
             baseIndex={7}
@@ -166,6 +166,7 @@ function HomePage({ theme }: HomePageProps) {
             animateFont={animateFont}
           />
           <Spacer />
+       
           <SplitText
             text='Design'
             baseIndex={16}
@@ -173,6 +174,7 @@ function HomePage({ theme }: HomePageProps) {
             animateIndex={animateIndex}
             animateFont={animateFont}
           />
+       
 
           <DecoTag
             text={'</h1>'}
@@ -180,7 +182,7 @@ function HomePage({ theme }: HomePageProps) {
             style={{
               position: 'relative',
               right:
-                'clamp(-4.5rem, calc(-8rem + (100vw - 320px) * 0.05), 1rem)',
+                'clamp(0rem, calc(-8rem + (100vw - 320px) * 0.05), 1rem)',
               bottom: 'clamp(-2rem, -1rem, 2rem)',
             }}
           />
