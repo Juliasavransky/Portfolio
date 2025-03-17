@@ -14,6 +14,8 @@ import { Theme } from '@emotion/react';
 import theme from './../styles/theme';
 import { Btn, BtnMainPage } from '../components/btnMainPage';
 import { useSplitTextAnimation } from '../hooks/useSplitTextAnimation';
+import AnimatedBackground  from '../components/animatedBackground ';
+
 
 type HomePageProps = {
   theme: Theme;
@@ -78,133 +80,131 @@ function HomePage({ theme }: HomePageProps) {
   const { animateIndex, animateFont } = useSplitTextAnimation(texts);
 
   return (
-    <MainPageContainer>
-      <HeaderContainer>
-        <DecoTagWrapper
-          text={'</html>'}
-          isPrimaryTag={false}
-          style={{
-            position: 'relative',
-            right: 'clamp(35rem, calc(30rem + (100vw - 340px) ), 45rem)',
-            top: '-2rem',
-          }}
-        />
-        <DecoTagWrapper
-          text={'</body>'}
-          isPrimaryTag={false}
-          style={{
-            position: 'relative',
-            right: 'clamp(25rem, calc(30rem + (100vw - 340px) ), 35rem)',
-            top: '-2rem',
-          }}
-        />
-        <Header>
-          <DecoTag
-            text={'<h1>'}
-            style={{
-              position: 'relative',
-              left: 'clamp(0rem, calc(-10rem + (100vw - 320px) * 0.01), -15rem)',
-              top: '-1.5rem',
-            }}
-            className='special'
-            isPrimaryTag={true}
-          />
-          <span
-            style={{
-              display: 'flex',
-              flexWrap: 'nowrap',
-              alignItems: 'center',
-            }}
-          >
-            <TheW
-              theme={theme}
-              style={{ fontSize: 'clamp(3.036rem, 6.072vw, 6.072rem)' }}
-            >
-              W
-            </TheW>
-            <SplitText
-              text='eb '
-              baseIndex={0}
-              style={{ fontSize: 'clamp(3.036rem, 6.072vw, 6.072rem)' }}
-              animateIndex={animateIndex}
-              animateFont={animateFont}
-            />
-          </span>
-
-          <Spacer />
-          <span
-            style={{
-              display: 'flex',
-              flexWrap: 'nowrap',
-              alignItems: 'center',
-            }}
-          >
-            <TheW
-              theme={theme}
-              style={{ fontSize: 'clamp(3.036rem, 6.072vw, 6.072rem)' }}
-            >
-              W
-            </TheW>
-            <SplitText
-              text='itch'
-              baseIndex={3}
-              style={{ fontSize: 'clamp(3.036rem, 6.072vw, 6.072rem)' }}
-              animateIndex={animateIndex}
-              animateFont={animateFont}
-            />
-          </span>
-
-          <Spacer />
-        {/* </Header> */}
-
-        {/* <Header> */}
-          <SplitText
-            text='Creative '
-            baseIndex={7}
-            style={{ fontSize: 'clamp(3.036rem, 6.072vw, 6.072rem)' }}
-            animateIndex={animateIndex}
-            animateFont={animateFont}
-          />
-          <Spacer />
-       
-          <SplitText
-            text='Design'
-            baseIndex={16}
-            style={{ fontSize: 'clamp(3.036rem, 6.072vw, 6.072rem)' }}
-            animateIndex={animateIndex}
-            animateFont={animateFont}
-          />
-       
-
-          <DecoTag
-            text={'</h1>'}
+    <AnimatedBackground >
+      <MainPageContainer>
+        <HeaderContainer>
+          <DecoTagWrapper
+            text={'</html>'}
             isPrimaryTag={false}
             style={{
               position: 'relative',
-              right:
-                'clamp(0rem, calc(-8rem + (100vw - 320px) * 0.05), 1rem)',
-              bottom: 'clamp(-2rem, -1rem, 2rem)',
+              right: 'clamp(35rem, calc(30rem + (100vw - 340px) ), 45rem)',
+              top: '-2rem',
             }}
           />
-        </Header>
-      </HeaderContainer>
+          <DecoTagWrapper
+            text={'</body>'}
+            isPrimaryTag={false}
+            style={{
+              position: 'relative',
+              right: 'clamp(25rem, calc(30rem + (100vw - 340px) ), 35rem)',
+              top: '-2rem',
+            }}
+          />
+          <Header>
+            <DecoTag
+              text={'<h1>'}
+              style={{
+                position: 'relative',
+                left: 'clamp(0rem, calc(-10rem + (100vw - 320px) * 0.01), -15rem)',
+                top: '-1.5rem',
+              }}
+              className='special'
+              isPrimaryTag={true}
+            />
+            <span
+              style={{
+                display: 'flex',
+                flexWrap: 'nowrap',
+                alignItems: 'center',
+              }}
+            >
+              <TheW
+                theme={theme}
+                style={{ fontSize: 'clamp(3.036rem, 6.072vw, 6.072rem)' }}
+              >
+                W
+              </TheW>
+              <SplitText
+                text='eb '
+                baseIndex={0}
+                style={{ fontSize: 'clamp(3.036rem, 6.072vw, 6.072rem)' }}
+                animateIndex={animateIndex}
+                animateFont={animateFont}
+              />
+            </span>
 
-      <Btn>
-        <DecoTag
-          text={'<button>'}
-          style={{ marginBottom: '1rem' }}
-          isPrimaryTag={false}
-        />
-        <BtnMainPage theme={theme}>
-          <Link href='/projects' onClick={handleClick} ref={linkRef}></Link>
-        </BtnMainPage>
-        <DecoTag
-          text={'</button>'}
-          style={{ marginTop: '1.5rem' }}
-          isPrimaryTag={false}
-        />
-      </Btn>
-    </MainPageContainer>
+            <Spacer />
+            <span
+              style={{
+                display: 'flex',
+                flexWrap: 'nowrap',
+                alignItems: 'center',
+              }}
+            >
+              <TheW
+                theme={theme}
+                style={{ fontSize: 'clamp(3.036rem, 6.072vw, 6.072rem)' }}
+              >
+                W
+              </TheW>
+              <SplitText
+                text='itch'
+                baseIndex={3}
+                style={{ fontSize: 'clamp(3.036rem, 6.072vw, 6.072rem)' }}
+                animateIndex={animateIndex}
+                animateFont={animateFont}
+              />
+            </span>
+
+            <Spacer />
+            <SplitText
+              text='Creative '
+              baseIndex={7}
+              style={{ fontSize: 'clamp(3.036rem, 6.072vw, 6.072rem)' }}
+              animateIndex={animateIndex}
+              animateFont={animateFont}
+            />
+            <Spacer />
+
+            <SplitText
+              text='Design'
+              baseIndex={16}
+              style={{ fontSize: 'clamp(3.036rem, 6.072vw, 6.072rem)' }}
+              animateIndex={animateIndex}
+              animateFont={animateFont}
+            />
+
+            <DecoTag
+              text={'</h1>'}
+              isPrimaryTag={false}
+              style={{
+                position: 'relative',
+                right:
+                  'clamp(0rem, calc(-8rem + (100vw - 320px) * 0.05), 1rem)',
+                bottom: 'clamp(-2rem, -1rem, 2rem)',
+              }}
+            />
+          </Header>
+        </HeaderContainer>
+
+        <Btn>
+          <DecoTag
+            text={'<button>'}
+            style={{ marginBottom: '1rem' }}
+            isPrimaryTag={false}
+          />
+          <BtnMainPage theme={theme}>
+            <Link href='/projects' onClick={handleClick} ref={linkRef}></Link>
+          </BtnMainPage>
+          <DecoTag
+            text={'</button>'}
+            style={{ marginTop: '1.5rem' }}
+            isPrimaryTag={false}
+          />
+        </Btn>
+      </MainPageContainer>
+    </AnimatedBackground>
   );
 }
 
