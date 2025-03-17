@@ -19,10 +19,10 @@ const Nav = styled.nav`
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    position: absolute;
+    position: sticky;
     top: 0;
-    width: 100%;
-    margin: 0 auto;
+    width: 100vw;
+    background-color: ${(props) => props.theme.colors.greyDarkBG1};
   }
   @media (max-width: 768px) {
     display: flex;
