@@ -8,6 +8,7 @@ import styled from '@emotion/styled';
 import Link from 'next/link';
 import { useSplitTextAnimation } from '../hooks/useSplitTextAnimation';
 import { socialLinks, IconD } from '../components/socialLinks';
+
 export const ContactMainPageContainer = styled.div`
   height: 100vh;
   display: flex;

@@ -65,7 +65,7 @@ function HomePage({ theme }: HomePageProps) {
         link.removeEventListener('transitionend', handleTransitionEnd);
 
         // ❗ מחכה טיפה כדי שהמשתמש יספיק "להרגיש" את האפקט
-        await wait(700); // 0.7 שניות אחרי שהאפקט נגמר
+        await wait(1000); // 0.7 שניות אחרי שהאפקט נגמר
         router.push('/projects');
       };
 

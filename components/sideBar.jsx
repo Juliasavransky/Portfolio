@@ -44,7 +44,7 @@ const SideBarNav = styled.div`
   }
   
   @media (max-width: 768px) {
-    width:90vw;
+    width:100vw;
   }
   `;
 

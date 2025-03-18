@@ -54,7 +54,7 @@ const SparkleTrail: React.FC<SparkleTrailProps> = ({ children }) => {
   }, []);
 
   return (
-    <div style={{ position: "relative", width: "100vw", height: "100vh" }}>
+    <div style={{ position: "relative", width: "100vw" }}>
       <AnimatePresence>
         {sparkles.map((sparkle) => (
           <motion.div
