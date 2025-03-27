@@ -1,6 +1,10 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { fontClasses } from '../utils/fontList';
+import { fontClasses, hebrewFontClasses } from '../styles/fonts/font';
+import { useTheme } from '@emotion/react';
+import { Theme } from '../styles/theme';
+
+
 interface SplitTextProps {
   text: string;
   style?: React.CSSProperties;
@@ -8,6 +12,9 @@ interface SplitTextProps {
   baseIndex: number;
   animateIndex: number | null;
   animateFont: string | null;
+  theme: Theme;
+  lang?: 'en' | 'he'; // Define Lang as a union type for English and Hebrew
+  initialDict: Record<string, string>;
 }
 
 const splitTextMotions = {
@@ -39,29 +46,54 @@ function SplitText({
   animateIndex,
   animateFont,
 }: SplitTextProps) {
-  return (
-    <motion.div style={{ display: 'flex', gap: '5px', flexWrap: 'nowrap' }}>
-      {text.split('').map((char, i) => {
-        const globalIndex = baseIndex + i;
-        const isActive = globalIndex === animateIndex;
-        const fontClass = isActive
-          ? animateFont || fontClasses[0]
-          : fontClasses[0];
+  const theme = useTheme();
+  let globalIndex = baseIndex;
+  const fontSet = theme.lang === 'he' ? hebrewFontClasses : fontClasses;
 
-        return (
-          <motion.span
-            key={i}
-            className={fontClass}
-            style={{
-              ...style,
-              transition: 'all 0.3s ease-in-out',
-              color: char === '_' ? 'transparent' : 'inherit',
-            }}
-          >
-            {char}
-          </motion.span>
-        );
-      })}
+  return (
+    <motion.div
+      style={{
+        display: 'flex',
+        flexWrap: 'wrap',
+        gap: '0.3ch',
+        textAlign: 'center',
+      }}
+    >
+      {text.split('_').map((word, wordIdx) => (
+        <span
+          key={wordIdx}
+          style={{
+            display: 'inline-block',
+            whiteSpace: 'nowrap',
+            direction: 'inherit',
+          }}
+        >
+          {word.split('').map((char, i) => {
+            const isActive = globalIndex === animateIndex;
+            const fontClass = isActive ? animateFont || fontSet[0] : fontSet[0];
+
+            const span = (
+              <motion.span
+                key={i}
+                className={fontClass}
+                style={{
+                  ...style,
+                  transition: 'all 0.3s ease-in-out',
+                  color: char === '_' ? 'transparent' : 'inherit',
+                }}
+              >
+                {char}
+              </motion.span>
+            );
+
+            globalIndex++;
+            return span;
+          })}
+
+          {/* רווח אחרי כל מילה */}
+          <span style={{ display: 'inline-block', width: '0.4ch' }} />
+        </span>
+      ))}
     </motion.div>
   );
 }

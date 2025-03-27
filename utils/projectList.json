@@ -1,44 +1,75 @@
 [
   {
-    "projectName": "Pokémon memory game",
-    "gitHubLink": "https://github.com/Juliasavransky/Pokemon-cards-memory-game",
     "pageLink": "https://juliasavransky.github.io/Pokemon-cards-memory-game/",
-    "summary": "The game has unlimited levels, whereas in each level the number of cards rises.The figures on the cards are randomly chosen from the 560 figures of Pokémon, using the Pokemon API. The score is differentially calculated between levels.",
-    "img": "/images/pokemon2.jpg"
+    "img": "/images/pokemon2.jpg",
+    "projectName": {
+      "en": "Pokémon Challenge",
+      "he": "משחק זיכרון פוקימון"
+    },
+    "summary": {
+      "en": "🔥 The ultimate memory challenge for true Pokémon lovers! 🔥 Classic gameplay meets a wild twist — every card is a surprise from a 560-character Pokémon pool. 🚀 As levels grow, so does the challenge. No two rounds are alike. Colorful, addictive, and brain-boosting fun for all ages.\n✨ Gotta match ’em all — how far will your memory take you?",
+      "he": "🔥 משחק הזיכרון האולטימטיבי למאסטרי פוקימון! 🔥 טוויסט מרענן לקלאסיקה – 560 דמויות רנדומליות, שלבים בלי סוף, ואתגר שכל הזמן משתנה.\n🌟 גרפיקה צבעונית, קצב ממכר, וכיף שמתאים לכולם. כמה רחוק תגיעו?"
+    }
   },
   {
-    "projectName": "T.I.M = time is money",
-    "gitHubLink": "https://github.com/Juliasavransky/Tim",
     "pageLink": "https://github.com/Juliasavransky/Tim",
-    "summary": "A social media app, in which members can offer various services, each one according to their knowledge,  experience and will. For example, private lessons, pet care, alternative medicine etc. Each TIM member who provides a service to another member, gets points (coins) for that service, and with these coins  they can pay for a service from another member.",
-    "img": "/images/tim2.jpg"
+    "img": "/images/tim2.jpg",
+    "projectName": {
+      "en": "TIM = Time Is Money",
+      "he": "זמן זה כסף"
+    },
+    "summary": {
+      "en": "✨ A smart community where your time is your currency. Trade skills — no money, just talent and goodwill. Give. Get. Grow.\n🌱 Whether you teach, heal, walk dogs or design, TIM lets you shine and earn.",
+      "he": "✨ קהילה שבה הכישורים שלך הם המטבע. כל שירות שתציע – יעניק לך נקודות שתוכל לממש.\n💡 נותן שיעורים? מעצב גרפי? אוהב לעזור? הזמן שלך שווה זהב – TIM מחכה לך."
+    }
   },
   {
-    "projectName": "Simon says",
-    "gitHubLink": "https://github.com/Juliasavransky/Simon-Says---Memory-game",
+    "img": "/images/simon2.jpg",
     "pageLink": "https://juliasavransky.github.io/Simon-Says---Memory-game/",
-    "summary": "A classic memory game of Simon, in which a single player competes with the computer. The computer chooses a random sequence made of four colors and the player needs to repeat that sequence. On each level, the sequence gets longer. For each level the player gets a score saved. Once the player fails to repeat the sequence, they can restart the game.",
-    "img": "/images/simon2.jpg"
+    "projectName": {
+      "en": "Simon Says",
+      "he": "סימון אומר"
+    },
+    "summary": {
+      "en": "⚡ Classic memory game with a modern twist. Follow the light pattern, test your brain, and push your limits.\nHow long can you keep up?",
+      "he": "⚡ המשחק שכולנו גדלנו עליו – עכשיו עם עיצוב חדש וקצב ממכר.\nזכרו את הרצף, תנו למוח לעבוד. כמה רחוק תצליחו להגיע?"
+    }
   },
   {
-    "projectName": "Star wars",
-    "gitHubLink": "https://github.com/Juliasavransky/star-wars-films",
+    "img": "/images/star-wars.jpg",
     "pageLink": "https://juliasavransky.github.io/star-wars-films/",
-    "summary": "A small app which allows getting a summary about every Star Wars  movie and choose the user's favorite. The app uses an SWAPI API for getting the data.For building this app I've used react hooks, local storage.",
-    "img": "/images/star-wars.jpg"
+    "projectName": {
+      "en": "Star Wars Recap App",
+      "he": "מלחמת הכוכבים"
+    },
+    "summary": {
+      "en": "🌌 A bite-sized galactic experience. Pick your favorite Star Wars movie and relive the saga. Clean, simple, and surprisingly fun.",
+      "he": "🌌 חוויה גלקטית קומפקטית. בחרו את הסרט האהוב עליכם ממלחמת הכוכבים וקבלו סיכום מיידי. עיצוב מינימליסטי – אפקט מקסימלי."
+    }
   },
   {
-    "projectName": "Weather app",
-    "gitHubLink": "https://github.com/Juliasavransky/weatherApp",
     "pageLink": "https://juliasavransky.github.io/weatherApp/",
-    "summary": "App that shows the weather for 5 days ahead everywhere in the world. On the initial run, the app requests access for the user's location and shows the weather there. The app feature's a search bar allowing the user to get the weather for a specific place they type in. The user can choose between Celsius and Fahrenheit units. The app has a responsive layout. The app uses openweathermap API.",
-    "img": "/images/wether2.jpg"
+    "img": "/images/wether2.jpg",
+    "projectName": {
+      "en": "Weather App",
+      "he": "אפליקציית מזג אוויר"
+    },
+    "summary": {
+      "en": "☀️ 5-day weather forecast in one sleek app! Check your location or any city on Earth. Switch between °C and °F, enjoy a smooth, responsive UI. Powered by OpenWeatherMap API.",
+      "he": "☀️ תחזית מזג אוויר ל-5 ימים מכל מקום בעולם – בעיצוב חכם ונוח. בחרו בין צלזיוס לפרנהייט, קבלו תחזית מיידית, ותיהנו מחוויית שימוש חלקה."
+    }
   },
   {
-    "projectName": "Pass on",
-    "gitHubLink": "https://github.com/Juliasavransky/FNP",
+    "img": "/images/pass-on.jpg",
     "pageLink": "https://juliasavransky.github.io/FNP/#/",
-    "summary": "A social media app for sharing second-hand children and baby items. The app is a bulletin board of items users wish to give away or are looking for. Users can publish ads to give or request items, contact others by mail to arrange transfers, and define a smart agent to receive automated notifications when relevant items are posted.",
-    "img": "/images/pass-on.jpg"
+    "projectName": {
+      "en": "Pass On–Parent to Parent",
+      "he": "תעביר את זה הלאה"
+    },
+    "summary": {
+      "en": "👶♻️ Second-hand, first-class. A kind community for parents to share and find baby & kids items. Smart alerts. Heartwarming concept.",
+      "he": "👶♻️ פשוט להעביר – פשוט לקבל. אפליקציה להורים שמחפשים (או מוסרים) ציוד לתינוקות וילדים. קהילה תומכת, ממשק פשוט, אפקט גדול."
+    }
   }
 ]
+    

@@ -3,12 +3,12 @@ import React, { useEffect, useState } from "react";
 import TagCloud from "TagCloud";
 
 const TextCloud = () => {
-  const [radius, setRadius] = useState(300); // ברירת מחדל
+  const [radius, setRadius] = useState(450); // ברירת מחדל
 
   useEffect(() => {
     if (typeof window === "undefined") return; // מוודא שהקוד רץ רק בדפדפן
 
-    const getResponsiveRadius = () => (window.innerWidth < 768 ? 150 : 300);
+    const getResponsiveRadius = () => (window.innerWidth < 768 ? 150 : 450);
     setRadius(getResponsiveRadius());
 
     const updateRadius = () => setRadius(getResponsiveRadius());
@@ -25,7 +25,7 @@ const TextCloud = () => {
     const options = {
       radius: getResponsiveRadius(),
       keep: true,
-      maxSpeed: window.innerWidth < 768 ? "normal" : "fast",
+      maxSpeed: window.innerWidth < 768 ? "slow" : "normal",
       initSpeed: window.innerWidth < 768 ? "normal" : "fast",
       direction: 135,
     };

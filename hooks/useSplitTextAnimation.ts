@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { fontClasses } from '../utils/fontList';
+import { fontClasses } from '../styles/fonts/font';
 
 type PickKey = string; // e.g., '1-3' = group 1, char 3
 

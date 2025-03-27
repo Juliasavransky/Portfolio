@@ -1,6 +1,6 @@
 'use client';
 import React, { ReactNode } from 'react';
-import { Children, useEffect, useRef } from 'react';
+import {  useEffect, useRef } from 'react';
 
 type AnimatedBackgroundProps = {
   children: ReactNode;

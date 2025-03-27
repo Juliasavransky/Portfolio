@@ -1,5 +1,5 @@
 import React, { CSSProperties, useState,useEffect } from 'react';
-import { La_Belle_Aurore } from '@next/font/google';
+import { laBelle } from '../styles/fonts/font';
 import styled from '@emotion/styled';
 import animationsList from './animationList';
 import { motion } from 'framer-motion';
@@ -11,10 +11,7 @@ const getRandomAnimation = (): AnimationType => {
   return keys[Math.floor(Math.random() * keys.length)];
 };
 
-const laBelle = La_Belle_Aurore({
-  subsets: ['latin'],
-  weight: '400',
-});
+
 
 type DecoTagProps = {
   text?: string;

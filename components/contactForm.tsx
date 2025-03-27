@@ -1,106 +1,28 @@
 import React, { FormEvent, useState } from 'react';
 import DecoTag from '@/styles/decoTag';
-import styled from '@emotion/styled';
-import { Theme } from '@emotion/react';
-import theme from '@/styles/theme';
+import { useTranslation } from '@/hooks/useTranslation';
+import { useTheme } from '@emotion/react';
+import {
+  Form,
+  FormGroup,
+  Input,
+  TextArea,
+  ContactBtn,
+} from '@/styles/contactFormComponents';
 
-type contactFormProps = {
-  theme: Theme;
-};
-const Form = styled.form`
-  display: flex;
-  width: clamp(300px, 50%, 600px);
-  flex-direction: column;
-  margin-top: 3rem;
-`;
 
-const FormGroup = styled.div`
-  display: flex;
-  justify-content: space-between;
-  gap: 0 clamp(0.5rem, 2vw, 2rem);
-`;
+const ContactForm: React.FC = () => {
+  const { t } = useTranslation('contact');
+  const theme = useTheme();
+  const lang = 'he'; // Define the lang variable
 
-const Input = styled.input<{ theme: Theme }>`
-  margin: 1vh 0;
-  font-size: ${theme.size.fontSmall};
-  color: ${theme.colors.greyLight1};
-  padding: clamp(0.75rem, 1vw, 1rem) clamp(1rem, 1.5vw, 1.5rem);
-  background-color: rgba(#8d8d8d, 0.5);
-  border: none;
-  transition: box-shadow 0.3s;
-  max-height: 5vh;
-
-  &:focus {
-    outline: none;
-    box-shadow: 0 0.5rem 2rem rgba(#8d8d8d, 0.5);
-    border-bottom: 3px solid rgba(#ffcc00, 1);
-  }
-
-  &:focus:invalid {
-    border-bottom: 3px solid red;
-  }
-
-  &::placeholder {
-    color: ${theme.colors.greyLight1};
-  }
-`;
-
-const TextArea = styled.textarea<{ theme: Theme }>`
-  resize: none;
-  width: 100%;
-  height: clamp(8rem, 10vw, 12rem);
-  max-height: 15vh;
-  margin: 1vh 0;
-  font-size: ${theme.size.fontSmall};
-  color: ${theme.colors.greyLight1};
-  padding: clamp(1rem, 1.5vw, 1.5rem) clamp(1.5rem, 2vw, 2rem);
-  border-radius: 2px;
-  background-color: rgba(#8d8d8d, 0.5);
-  border: none;
-  box-shadow: 0 1rem 2rem transparent;
-  transition: transform 0.3s;
-
-  &:focus ~ button {
-  background-color: rgba(123, 123, 125, 0.5) ;
-  outline: none;
-}
-
-  &:focus {
-    outline: none;
-    box-shadow: 0 0.5rem 2rem rgba(#8d8d8d, 0.5);
-    border-bottom: 3px solid rgba(#ffcc00, 1);
-  }
-
-  &:focus:invalid {
-    border-bottom: 3px solid red;
-  }
-
-  &::placeholder {
-    color: ${theme.colors.greyLight1};
-  }
-`;
-
-const ContactBtn = styled.button<{ theme: Theme }>`
-  margin-top: 1vh;
-  padding: clamp(1rem, 1.5vw, 1.5rem);
-  border: none;
-  background-color: rgba(#7b7b7d, 0.5);
-  color: ${theme.colors.white};
-  font-size: ${theme.size.fontSmall};
-  max-height: 5vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-`;
-
-function ContactForm({ theme }: contactFormProps) {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     subject: '',
     message: '',
   });
+
   const [loading, setLoading] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
 
@@ -110,49 +32,48 @@ function ContactForm({ theme }: contactFormProps) {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  interface FormData {
-    name: string;
-    email: string;
-    subject: string;
-    message: string;
-  }
-
-  interface HandleSubmitEvent extends FormEvent<HTMLFormElement> {}
-
-  const handleSubmit = async (e: HandleSubmitEvent): Promise<void> => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
 
-    const res = await fetch('/api/contact', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(formData),
-    });
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
 
-    setLoading(false);
-    setShowPopup(true);
-    setTimeout(() => setShowPopup(false), 3000);
-    setFormData({ name: '', email: '', subject: '', message: '' });
+      if (!res.ok) throw new Error('Network response error');
+
+      setShowPopup(true);
+      setFormData({ name: '', email: '', subject: '', message: '' });
+    } catch (error) {
+      console.error('Error sending form:', error);
+    } finally {
+      setLoading(false);
+      setTimeout(() => setShowPopup(false), 3000);
+    }
   };
+
   return (
     <>
       <Form onSubmit={handleSubmit}>
         <DecoTag text={'<form>'} isPrimaryTag={true} />
         <FormGroup>
-          <Input
+          <Input lang={lang}
             type='text'
             name='name'
-            placeholder='Name'
+            placeholder={t.name}
             required
             value={formData.name}
             onChange={handleChange}
             theme={theme}
             style={{ width: '50%' }}
           />
-          <Input
+          <Input lang={lang}
             type='email'
             name='email'
-            placeholder='Email'
+            placeholder={t.email}
             required
             value={formData.email}
             onChange={handleChange}
@@ -161,18 +82,18 @@ function ContactForm({ theme }: contactFormProps) {
           />
         </FormGroup>
 
-        <Input
+        <Input lang={lang}
           type='text'
           name='subject'
-          placeholder='Subject'
+          placeholder={t.subject}
           required
           value={formData.subject}
           onChange={handleChange}
           theme={theme}
         />
-        <TextArea
+        <TextArea lang={lang}
           name='message'
-          placeholder='Message'
+          placeholder={t.message}
           required
           value={formData.message}
           onChange={handleChange}
@@ -183,14 +104,14 @@ function ContactForm({ theme }: contactFormProps) {
           disabled={loading || Object.values(formData).some((v) => !v)}
           theme={theme}
         >
-          {loading ? 'Sending...' : 'Send message!'}
+          {loading ? t.sending : t.send}
         </ContactBtn>
         <DecoTag text={'</form>'} isPrimaryTag={false} />
       </Form>
 
       {showPopup && (
         <div className='popup'>
-          <p>💌 ההודעה נשלחה בהצלחה!</p>
+          <p>{t.sent}</p>
         </div>
       )}
 
@@ -230,6 +151,6 @@ function ContactForm({ theme }: contactFormProps) {
       `}</style>
     </>
   );
-}
+};
 
 export default ContactForm;

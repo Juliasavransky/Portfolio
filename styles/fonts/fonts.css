@@ -1,0 +1,8 @@
+@font-face {
+  font-family: 'Alef MultiGndr';
+  src: url('../../public/fonts/AlefMultiGndr-Regular.woff') format('woff'),
+    url('../../public/fonts/AlefMultiGndr-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}

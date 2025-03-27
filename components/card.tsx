@@ -2,30 +2,44 @@ import React from 'react';
 import Link from 'next/link';
 import styled from '@emotion/styled';
 import Image from 'next/image';
-import { Theme } from '@emotion/react';
-import theme from '@/styles/theme';
+import { laBelle, amatic } from '../styles/fonts/font';
+import { useTranslation } from '@/hooks/useTranslation';
+import '@emotion/react';
+import { Theme as CustomTheme } from '../styles/theme';
+
+declare module '@emotion/react' {
+  export interface Theme extends CustomTheme {}
+}
 
 type CardProps = {
   projectName?: string;
-  gitHubLink: URL | string;
   pageLink: URL | string;
   summary?: string;
   img: string;
-  theme: Theme;
+  className?: string;
+  lang: string;
 };
 
+function hexToRgb(hex: string): string {
+  const sanitized = hex.replace('#', '');
+  const bigint = parseInt(sanitized, 16);
+  const r = (bigint >> 16) & 255;
+  const g = (bigint >> 8) & 255;
+  const b = bigint & 255;
+  return `${r}, ${g}, ${b}`;
+}
+
 const ProjectCard = styled.div`
-  margin: 1.5rem auto;
+  margin: 2rem;
   justify-content: center;
-  background: ${theme.colors.white};
-  padding: 0.7rem 0.7rem 1.5rem;
+  background: ${({ theme }) => theme.colors.white};
+  padding: 1rem 1rem 2rem;
   border-radius: 3px;
   box-shadow: 0 0.2rem 1.2rem rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column-reverse;
   align-items: center;
   flex-wrap: wrap;
-
 
   &:hover .project-card__details {
     opacity: 1;
@@ -45,10 +59,11 @@ const ProjectCardItem = styled.div`
   border-radius: 3px;
   overflow: hidden;
   display: flex;
-  margin: 10px; /* רווחים בין הקלפים */
   flex: 1 0 calc(40% - 20px);
   min-width: calc(33.33% - 20px);
-  border: 2px solid rgba(${theme.colors.greyLight1}, 0.6);
+  ${({ theme }) => `
+    border: 2px solid rgba(${hexToRgb(theme.colors.greyLight1)}, 0.3);
+  `}
 `;
 
 const ProjectCardIMage = styled.div`
@@ -61,7 +76,7 @@ const ProjectCardIMage = styled.div`
     filter: blur(1px) brightness(40%) saturate(1.3);
   }
 `;
-const ProjectCardDetails = styled.div<{ theme: Theme }>`
+const ProjectCardDetails = styled.div`
   position: absolute;
   top: 70%;
   margin-left: 2rem;
@@ -69,7 +84,7 @@ const ProjectCardDetails = styled.div<{ theme: Theme }>`
   opacity: 0;
   transition: all 0.5s ease-in-out;
   backface-visibility: hidden;
-  color: ${theme.colors.greyLight1};
+  color: ${({ theme }) => theme.colors.greyLight1};
 
   &:hover {
     opacity: 1;
@@ -77,19 +92,28 @@ const ProjectCardDetails = styled.div<{ theme: Theme }>`
     transition: all 0.6s ease-in-out;
   }
 `;
-const DetailsTitle = styled.h2<{ theme: Theme }>`
-  font-size: ${theme.size.fontSmall};
-  font-weight: 500;
-  color: ${theme.colors.greyDarkBG2};
-  letter-spacing: 2px;
-  word-spacing: 3px;
-  margin-top: 1rem;
-  word-break: break-word;
+const DetailsTitle = styled.h2`
+  font-size: ${({ theme }) => theme.size.fontReg};
+  color: ${({ theme }) => theme.colors.greyDarkBG1};
+  margin-top: 2rem;
+  position: relative;
 
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -0.125rem;
+    left: -0.5rem;
+    right: -0.5rem;
+    height: 0.75rem;
+    background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/664131/underline.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
 `;
-const DetailsDescription = styled.p<{ theme: Theme }>`
-  font-size: ${theme.size.fontTiny};
-  color: ${theme.colors.white};
+
+const DetailsDescription = styled.p`
+  font-size: calc(${({ theme }) => theme.size.fontSmall}*.8);
+  color: ${({ theme }) => theme.colors.white};
   font-weight: 100;
   margin-bottom: 1.6rem;
   width: 95%;
@@ -100,16 +124,16 @@ const DetailsButton = styled.div`
   justify-content: space-around;
   align-items: center;
 `;
-const DetailsLink = styled.div<{ theme: Theme }>`
+const DetailsLink = styled.div`
   text-decoration: none;
-  font-size: ${theme.size.fontTiny};
-  color: ${theme.colors.white};
+  font-size: ${({ theme }) => theme.size.fontSmall};
+  color: ${({ theme }) => theme.colors.white};
   transition: all 0.3s;
 
   &:hover {
-    color: ${theme.colors.yellow};
+    color: ${({ theme }) => theme.colors.yellow};
     transform: rotate(-5deg) scale(1.25);
-    border-bottom: solid 1px ${theme.colors.purple};
+    border-bottom: solid 1px ${({ theme }) => theme.colors.purple};
   }
 `;
 
@@ -120,17 +144,18 @@ const ResponsiveImage = styled(Image)`
   object-fit: cover;
 `;
 
-function Card({
-  projectName,
-  gitHubLink,
-  pageLink,
-  summary,
-  img,
-  theme,
-}: CardProps) {
+function Card({ projectName, pageLink, summary, img, lang }: CardProps) {
+  const { t } = useTranslation('projects');
+
   return (
     <ProjectCard>
-      <DetailsTitle theme={theme}>{projectName}</DetailsTitle>
+      <DetailsTitle
+        className={lang === 'he' ? amatic.className : laBelle.className}
+      >
+        <Link href={pageLink} target='_blank'>
+          {projectName}
+        </Link>
+      </DetailsTitle>
       <ProjectCardItem>
         <ProjectCardIMage className='project-card__image'>
           <ResponsiveImage
@@ -142,16 +167,12 @@ function Card({
           />
         </ProjectCardIMage>
 
-        <ProjectCardDetails className='project-card__details' theme={theme}>
-          {/* <DetailsTitle theme={theme}>{projectName}</DetailsTitle> */}
-          <DetailsDescription theme={theme}>{summary}</DetailsDescription>
+        <ProjectCardDetails className='project-card__details'>
+          <DetailsDescription>{summary}</DetailsDescription>
 
           <DetailsButton>
             <Link href={pageLink} target='_blank'>
-              <DetailsLink theme={theme}>Visit the page &#8594;</DetailsLink>
-            </Link>
-            <Link href={gitHubLink} target='_blank'>
-              <DetailsLink theme={theme}>See the code &#8594;</DetailsLink>
+              <DetailsLink>{t.visitLink} &#8594;</DetailsLink>
             </Link>
           </DetailsButton>
         </ProjectCardDetails>

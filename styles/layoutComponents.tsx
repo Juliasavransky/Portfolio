@@ -1,12 +1,14 @@
-import { Theme } from '@emotion/react';
 import styled from '@emotion/styled';
+import DecoTag from './decoTag';
+
+// אין צורך להוסיף Theme ידנית - Emotion מזהה את זה אוטומטית אם יש styled.d.ts
 
 export const MainPageContainer = styled.div`
-  height: 100vh;
+  height: 95vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-around;
   width: 90vw;
   position: absolute;
   left: clamp(2rem, 15vw, 12rem);
@@ -21,7 +23,7 @@ export const HeaderContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-weight: 900;
+  font-weight: 700;
   font-size: clamp(2.5rem, 4vw, 5rem);
   text-align: center;
   line-height: 1.2;
@@ -32,7 +34,6 @@ export const HeaderContainer = styled.div`
     width: 95vw;
     max-width: 95vw;
     flex-direction: column;
-    font-size: clamp(6vw, 7vw, 10vw);
     font-size: clamp(5vw, 6vw, 8vw);
     margin-top: 5rem;
   }
@@ -52,20 +53,11 @@ export const Header = styled.div`
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
   text-align: center;
-  width: 80%;
-  gap: 0.2em;
 
-  /* border: 1px solid red; */
-  @media (max-width: 768px) {
-    font-size: 2.5rem;
-  }
-
-  @media (max-width: 428px) {
+  @media (max-width: 500px) {
     font-size: 2rem;
+    padding: 0 2rem;
   }
 `;
 
@@ -73,13 +65,29 @@ export const Spacer = styled.span`
   margin-left: clamp(0.5rem, 1.5vw, 2rem);
 `;
 
-export const Paragraph = styled.p<{ theme: Theme }>`
-  font-size: clamp(1.25rem, 1.875vw, 1.5rem);
+export const Paragraph = styled.p`
+  font-size: ${({ theme }) => theme.size.fontReg};
   font-weight: 400;
   margin: 1rem auto;
   text-align: center;
-  width: 100%;
   letter-spacing: clamp(1px, 0.3vw, 2px);
   word-spacing: 0.1rem;
 
+`;
+
+
+export const TheW = styled.span`
+  font-size: ${({ theme }) => theme.size.fontHuge};
+  line-height: clamp(1.8rem, 4vw, 5.9rem);
+  text-shadow: 2vmin 0 ${({ theme }) => theme.colors.yellow};
+  color: ${({ theme }) => theme.colors.purple};
+  padding-right: 0.7vw;
+  
+`;
+
+
+export const DecoTagWrapper = styled(DecoTag)`
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;

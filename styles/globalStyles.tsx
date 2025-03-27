@@ -10,3 +10,4 @@ export const globalStyles = css`
     -webkit-user-select: none;
   }
 `;
+
