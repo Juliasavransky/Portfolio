@@ -6,10 +6,10 @@ import { useTranslation } from '@/hooks/useTranslation';
 import { useTheme } from '@emotion/react';
 import SocialLinks from './socialLinks'; // Adjust the path as necessary
 import LanguageSwitcher from './languageSwitcher'; // Adjust the path as necessary
-import { NavItem, NavLink } from '../styles/sideBarComponents'; // Adjust the path as necessary
+import { Icons, NavItem, NavLink } from '../styles/sideBarComponents'; // Adjust the path as necessary
 
 interface MenuProps {
-  lang: string;
+  lang: 'en' | 'he';
   initialDict: Record<string, string>;
 }
 const MenuButtonContainer = styled.div`
@@ -83,14 +83,14 @@ const MobileMenu: React.FC<MenuProps> = ({ lang, initialDict }) => {
   const theme = useTheme();
 
   const navLinks = [
-    { href: '/home', label: 'Home' },
-    { href: '/about', label: 'About' },
-    { href: '/projects', label: 'Projects' },
-    { href: '/contact', label: 'Contact' },
+    { href: `/${lang}/home`, key: 'home' },
+    { href: `/${lang}/about`, key: 'about' },
+    { href: `/${lang}/projects`, key: 'projects' },
+    { href: `/${lang}/contact`, key: 'contact' },
   ];
 
   return (
-    <div >
+    <div>
       <MenuButtonContainer>
         <LanguageSwitcher />
         <MenuButton
@@ -104,23 +104,26 @@ const MobileMenu: React.FC<MenuProps> = ({ lang, initialDict }) => {
       </MenuButtonContainer>
 
       <MenuOverlay isOpen={isOpen}>
-        {navLinks.map(({ href, label }) => {
+        {navLinks.map(({ href, key }) => {
           const isActive = router.asPath === href;
           return (
-            <NavItem key={label} theme={theme}>
+            <NavItem key={key} theme={theme}>
               <Link href={href} passHref legacyBehavior>
                 <NavLink
                   onClick={() => setIsOpen(false)}
                   theme={theme}
                   $active={isActive}
+                  lang={lang}
                 >
-                  {t[label] || label}
+                  {t[key]}
                 </NavLink>
               </Link>
             </NavItem>
           );
         })}
-        <SocialLinks />
+        <Icons>
+          <SocialLinks />
+        </Icons>
       </MenuOverlay>
     </div>
   );

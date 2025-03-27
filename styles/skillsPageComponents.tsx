@@ -43,7 +43,7 @@ export const SkillsHeaderContainer = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  font-weight: 900;
+  font-weight: 600;
   font-size: clamp(2.5rem, 4vw, 5rem);
   text-align: center;
   line-height: 1.2;

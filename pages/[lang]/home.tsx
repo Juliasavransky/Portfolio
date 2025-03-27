@@ -12,7 +12,7 @@ import {
 } from '../../styles/layoutComponents';
 import { useSplitTextAnimation } from '../../hooks/useSplitTextAnimation';
 import AnimatedBackground from '../../components/animatedBackground ';
-import { MagicButton, Btn,  } from '../../components/magicButton.tsx';
+import { MagicButton, Btn } from '../../components/magicButton.tsx';
 import { GetServerSideProps } from 'next';
 import { getDictionary, Lang } from '../../hooks/getDictionary';
 import { useTranslation } from '../../hooks/useTranslation';
@@ -66,7 +66,7 @@ export default function Home({ lang, initialDict }: Props) {
                 }}
               />
               <span
-                // className={roboto.className}
+                className={roboto.className}
                 style={{
                   display: 'flex',
                   flexWrap: 'nowrap',
@@ -75,8 +75,8 @@ export default function Home({ lang, initialDict }: Props) {
               >
                 <TheW theme={theme}>W</TheW>
                 <SplitText
-                     lang='en'
-                     initialDict={initialDict}
+                  lang='en'
+                  initialDict={initialDict}
                   text='eb '
                   baseIndex={0}
                   style={{
@@ -97,8 +97,8 @@ export default function Home({ lang, initialDict }: Props) {
               >
                 <TheW theme={theme}>W</TheW>
                 <SplitText
-                      lang='en'
-                      initialDict={initialDict}
+                  lang='en'
+                  initialDict={initialDict}
                   text='itch'
                   baseIndex={3}
                   style={{

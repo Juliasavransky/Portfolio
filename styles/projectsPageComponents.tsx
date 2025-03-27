@@ -20,7 +20,7 @@ export const ProjectsContainer = styled.div`
 `;
 
 export const ProjectsHeaderContainer = styled.div`
-  font-weight: 900;
+  font-weight: 600;
   letter-spacing: clamp(2px, 0.5vw, 4px);
   font-size: clamp(3rem, 3.8vw, 6rem);
   width: 100%;

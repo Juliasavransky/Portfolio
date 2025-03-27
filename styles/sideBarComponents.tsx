@@ -128,13 +128,11 @@ export const NavLink = styled.a<NavLinkProps>`
 `;
 
 export const Icons = styled.div`
-  display: none;
 
-  @media (min-width: 768px) {
-    display: flex;
-    justify-content: space-evenly;
-    margin-top: 3rem;
-  }
+display: flex;
+justify-content: space-evenly;
+margin-top: 3rem;
+ 
 
   @media (max-width: 1220px) {
     margin-top: 0;

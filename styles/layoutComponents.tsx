@@ -23,7 +23,7 @@ export const HeaderContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-weight: 700;
+  font-weight: 600;
   font-size: clamp(2.5rem, 4vw, 5rem);
   text-align: center;
   line-height: 1.2;

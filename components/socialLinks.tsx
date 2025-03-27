@@ -9,6 +9,20 @@ const ringAnimation = keyframes`
   60% { transform: scale(1.2) translate(-3px, 3px); }
   100% { transform: scale(1) translate(0, 0); }
 `;
+const Icons = styled.div`
+
+  @media (min-width: 768px) {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 3rem;
+  }
+
+  @media (max-width: 1220px) {
+    margin-top: 0;
+    flex-direction: row;
+    align-items: center;
+  }
+`;
 
 const IconD = styled.div`
   position: relative;
@@ -105,23 +119,25 @@ const LinkedInIcon = ({ href, title }: { href: string; title: string }) => {
   const { viewBox, path } = icons[index];
 
   return (
-    <IconD
-      data-icon='linkedin'
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => {
-        setHovered(false);
-        setIndex(0);
-      }}
-    >
-      <Link href={href} passHref legacyBehavior>
-        <a target='_blank' rel='noopener noreferrer' title={title}>
-          <svg viewBox={viewBox}>
-            <title>{title}</title>
-            <path d={path}></path>
-          </svg>
-        </a>
-      </Link>
-    </IconD>
+    <>
+      <IconD
+        data-icon='linkedin'
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => {
+          setHovered(false);
+          setIndex(0);
+        }}
+      >
+        <Link href={href} passHref legacyBehavior>
+          <a target='_blank' rel='noopener noreferrer' title={title}>
+            <svg viewBox={viewBox}>
+              <title>{title}</title>
+              <path d={path}></path>
+            </svg>
+          </a>
+        </Link>
+      </IconD>
+    </>
   );
 };
 
