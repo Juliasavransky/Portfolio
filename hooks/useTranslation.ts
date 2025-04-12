@@ -7,14 +7,17 @@ export const useTranslation = (
   initialDict?: Record<string, string>
 ) => {
   const router = useRouter();
-  const lang = (router.query.lang as Lang) || 'he';
-
+  const [lang, setLang] = useState<Lang>('he');
   const [t, setT] = useState<Record<string, string>>(initialDict || {});
 
   useEffect(() => {
-    // נטען מחדש כל פעם שהשפה משתנה
-    getDictionary(namespace, lang).then(setT);
-  }, [lang, namespace]);
+    if (!router.isReady) return;
+
+    const currentLang = (router.query.lang as Lang) || 'he';
+    setLang(currentLang);
+
+    getDictionary(namespace, currentLang).then(setT);
+  }, [router.isReady, router.query.lang, namespace]);
 
   return { t, lang };
 };

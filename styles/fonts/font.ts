@@ -93,7 +93,7 @@ export const fredericka = Fredericka_the_Great({
   weight: '400',
 });
 
-export const fontClasses = [
+export const englishfontClasses = [
   roboto.className,
   barrio.className,
   cherish.className,
@@ -110,3 +110,4 @@ export const hebrewFontClasses = [
   solitreo.className,
   amatic.className,
 ];
+

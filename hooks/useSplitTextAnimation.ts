@@ -1,58 +1,66 @@
 import { useEffect, useRef, useState } from 'react';
-import { fontClasses } from '../styles/fonts/font';
-
-type PickKey = string; // e.g., '1-3' = group 1, char 3
+import { englishfontClasses, hebrewFontClasses } from '../styles/fonts/font';
+import { useTranslation } from './useTranslation'; // עדכני את הנתיב בהתאם
 
 export function useSplitTextAnimation(texts: string[]) {
+  const { lang } = useTranslation('common'); // או כל namespace שתבחרי
   const [animateIndex, setAnimateIndex] = useState<number | null>(null);
   const [animateFont, setAnimateFont] = useState<string | null>(null);
-  const cooldownMap = useRef<Map<number, number>>(new Map());
+
+  const charQueueRef = useRef<number[]>([]);
+  const textLengthRef = useRef<number>(0);
+
+
+    // פונקציית ערבוב (Fisher-Yates Shuffle)
+    const shuffleArray = (array: number[]) => {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+      return array;
+    };
+
+      // עדכון התור בכל שינוי טקסט
+  useEffect(() => {
+    let index = 0;
+    const queue: number[] = [];
+
+    texts.forEach((text) => {
+      text.split('').forEach((char) => {
+        if (char !== '_') queue.push(index);
+        index++;
+      });
+    });
+
+    textLengthRef.current = index;
+    charQueueRef.current = shuffleArray(queue);
+  }, [texts]);
 
   useEffect(() => {
-    if (!(cooldownMap.current instanceof Map)) {
-      cooldownMap.current = new Map();
-    }
+    const fontClasses = lang === 'he' ? hebrewFontClasses : englishfontClasses;
 
     const intervalId = setInterval(() => {
-      const allChars: number[] = [];
+      const queue = charQueueRef.current;
 
-      let globalIndex = 0;
+      if (queue.length === 0) return;
 
-      texts.forEach((text) => {
-        text.split('').forEach((char) => {
-          if (char !== '_') {
-            const cooldown = cooldownMap.current.get(globalIndex) || 0;
-            if (cooldown === 0) {
-              allChars.push(globalIndex);
-            } else {
-              cooldownMap.current.set(globalIndex, cooldown - 1);
-            }
-          }
-          globalIndex++;
-        });
-      });
-
-      if (allChars.length === 0) return;
-
-      const chosenIndex = allChars[Math.floor(Math.random() * allChars.length)];
-      const randomFont =
-        fontClasses[Math.floor(Math.random() * fontClasses.length)];
+      const chosenIndex = queue.shift()!;
+      const randomFont = fontClasses[Math.floor(Math.random() * fontClasses.length)];
 
       setAnimateIndex(chosenIndex);
       setAnimateFont(randomFont);
-      cooldownMap.current.set(
-        chosenIndex,
-        texts.join('').length // cooldown באורך הטקסט הכולל
-      );
+
+      // דחיפה חזרה לסוף התור
+      queue.push(chosenIndex);
 
       setTimeout(() => {
         setAnimateIndex(null);
         setAnimateFont(null);
       }, 500);
-    }, 900);
+    }, 700);
 
     return () => clearInterval(intervalId);
-  }, [texts]);
+  }, [lang]);
 
   return { animateIndex, animateFont };
 }

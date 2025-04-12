@@ -79,9 +79,10 @@ export const Paragraph = styled.p`
 export const TheW = styled.span`
   font-size: ${({ theme }) => theme.size.fontHuge};
   line-height: clamp(1.8rem, 4vw, 5.9rem);
-  text-shadow: 2vmin 0 ${({ theme }) => theme.colors.yellow};
+  text-shadow: 2.2vmin 0 ${({ theme }) => theme.colors.yellow};
   color: ${({ theme }) => theme.colors.purple};
-  padding-right: 0.7vw;
+  padding-right: 0.8vw;
+  font-weight: 900;
   
 `;
 

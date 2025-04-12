@@ -70,7 +70,9 @@ function SplitText({
         >
           {word.split('').map((char, i) => {
             const isActive = globalIndex === animateIndex;
-            const fontClass = isActive ? animateFont || fontSet[0] : fontSet[0];
+            const fontClass = isActive 
+            ? animateFont || fontSet[0] 
+            : fontSet[0];
 
             const span = (
               <motion.span
@@ -80,6 +82,14 @@ function SplitText({
                   ...style,
                   transition: 'all 0.3s ease-in-out',
                   color: char === '_' ? 'transparent' : 'inherit',
+                  display: 'inline-flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  // width: '0.8em',       // רוחב אחיד לכל אות
+                  height: '1em',      // גובה אחיד לכל אות
+                  lineHeight: '1',
+                  overflow: 'hidden',
+                  verticalAlign: 'middle',
                 }}
               >
                 {char}
@@ -91,7 +101,7 @@ function SplitText({
           })}
 
           {/* רווח אחרי כל מילה */}
-          <span style={{ display: 'inline-block', width: '0.4ch' }} />
+          <span style={{ display: 'inline-block', width: '1ch' }} />
         </span>
       ))}
     </motion.div>

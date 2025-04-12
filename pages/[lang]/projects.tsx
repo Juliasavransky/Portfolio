@@ -54,7 +54,7 @@ function Projects({ lang, initialDict }: ProjectsProps) {
                 animateFont={animateFont}
                 style={{
                   fontSize: `${theme.size.fontH2}`,
-                  fontFamily: 'Roboto, sans-serif',
+                  // fontFamily: 'Roboto, sans-serif',
                 }}
               />
             </TextWrapper>

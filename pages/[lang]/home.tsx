@@ -66,7 +66,6 @@ export default function Home({ lang, initialDict }: Props) {
                 }}
               />
               <span
-                className={roboto.className}
                 style={{
                   display: 'flex',
                   flexWrap: 'nowrap',
@@ -87,7 +86,6 @@ export default function Home({ lang, initialDict }: Props) {
                   theme={theme}
                 />
               </span>
-              <Spacer />
               <span
                 style={{
                   display: 'flex',
@@ -123,6 +121,7 @@ export default function Home({ lang, initialDict }: Props) {
                 <Paragraph theme={theme}>{t.subtitle}</Paragraph>
               </TextWrapper>
             </Header>
+            
           </HeaderContainer>
 
           <Btn>
