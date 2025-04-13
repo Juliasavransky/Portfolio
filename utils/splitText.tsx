@@ -1,9 +1,8 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
-import { fontClasses, hebrewFontClasses } from '../styles/fonts/font';
+import { englishfontClasses, hebrewFontClasses } from '../styles/fonts/font';
 import { useTheme } from '@emotion/react';
 import { Theme } from '../styles/theme';
-
 
 interface SplitTextProps {
   text: string;
@@ -17,38 +16,38 @@ interface SplitTextProps {
   initialDict: Record<string, string>;
 }
 
-const splitTextMotions = {
-  hidden: { x: '-100vw', opacity: 0 },
-  visible: {
-    x: 0,
-    opacity: 1,
-    transition: {
-      type: 'spring',
-      stiffness: 100,
-      mass: 5,
-      damping: 10,
-      when: 'beforeChildren',
-      staggerChildren: 0.1,
-    },
-  },
-};
-
-const spanMotions = {
-  hidden: { opacity: 0, scale: 0.1 },
-  visible: { opacity: 1, scale: 1 },
-};
-
 function SplitText({
   text,
   style,
-  className,
   baseIndex,
   animateIndex,
   animateFont,
 }: SplitTextProps) {
   const theme = useTheme();
+  const fontSet = theme.lang === 'he' ? hebrewFontClasses : englishfontClasses;
+
+  const [wordWidths, setWordWidths] = useState<number[]>([]);
+  const wordRefs = useRef<(HTMLSpanElement | null)[]>([]);
+  useEffect(() => {
+    const widths = wordRefs.current.map((el) =>
+      el ? el.getBoundingClientRect().width : 0
+    );
+    setWordWidths(widths);
+  }, [text, animateFont]);
+
+  const [charWidths, setCharWidths] = useState<number[]>([]);
+  const charRefs = useRef<(HTMLSpanElement | null)[]>([]); // שמירה על רפרנסים
+
+  const allChars = text.replaceAll('_', '').split('');
+  const charCount = allChars.length;
+  useEffect(() => {
+    // מדידת הרוחב של כל אות
+    const widths = charRefs.current.map(
+      (el) => (el ? el.getBoundingClientRect().width : 0.65 * 16) // fallback: 0.65em ב־px
+    );
+    setCharWidths(widths);
+  }, [text, animateFont]); // נריץ מחדש רק אם הטקסט או הפונט משתנים
   let globalIndex = baseIndex;
-  const fontSet = theme.lang === 'he' ? hebrewFontClasses : fontClasses;
 
   return (
     <motion.div
@@ -59,51 +58,57 @@ function SplitText({
         textAlign: 'center',
       }}
     >
-      {text.split('_').map((word, wordIdx) => (
-        <span
-          key={wordIdx}
-          style={{
-            display: 'inline-block',
-            whiteSpace: 'nowrap',
-            direction: 'inherit',
-          }}
-        >
-          {word.split('').map((char, i) => {
-            const isActive = globalIndex === animateIndex;
-            const fontClass = isActive 
-            ? animateFont || fontSet[0] 
-            : fontSet[0];
+      {text.split('_').map((word, wordIdx) => {
+        const wordWidth = wordWidths[wordIdx] || 'auto';
+        return (
+          <span
+            key={wordIdx}
+            ref={(el) => (wordRefs.current[wordIdx] = el)}
+            style={{
+              display: 'inline-block',
+              whiteSpace: 'nowrap',
+              direction: 'inherit',
+              width: wordWidth,
+              transition: 'width 0.3s ease-in-out',
+              marginInlineEnd: '0.5ch', // << הוספת רווח בין מילים
+            }}
+          >
+            {word.split('').map((char, i) => {
+              const isActive = globalIndex === animateIndex;
+              const fontClass = isActive
+                ? animateFont || fontSet[0]
+                : fontSet[0];
 
-            const span = (
-              <motion.span
-                key={i}
-                className={fontClass}
-                style={{
-                  ...style,
-                  transition: 'all 0.3s ease-in-out',
-                  color: char === '_' ? 'transparent' : 'inherit',
-                  display: 'inline-flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  // width: '0.8em',       // רוחב אחיד לכל אות
-                  height: '1em',      // גובה אחיד לכל אות
-                  lineHeight: '1',
-                  overflow: 'hidden',
-                  verticalAlign: 'middle',
-                }}
-              >
-                {char}
-              </motion.span>
-            );
+              const width = charWidths[globalIndex] || 'auto';
 
-            globalIndex++;
-            return span;
-          })}
+              const span = (
+                <motion.span
+                  key={i}
+                  className={fontClass}
+                  ref={(el) => (charRefs.current[globalIndex] = el)}
+                  style={{
+                    ...style,
+                    transition: 'all 0.3s ease-in-out',
+                    color: char === '_' ? 'transparent' : 'inherit',
+                    display: 'inline-flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    width,
+                    height: '1em', // גובה אחיד לכל אות
+                    lineHeight: '1',
+                    verticalAlign: 'middle',
+                  }}
+                >
+                  {char}
+                </motion.span>
+              );
 
-          {/* רווח אחרי כל מילה */}
-          <span style={{ display: 'inline-block', width: '1ch' }} />
-        </span>
-      ))}
+              globalIndex++;
+              return span;
+            })}
+          </span>
+        );
+      })}
     </motion.div>
   );
 }

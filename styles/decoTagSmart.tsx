@@ -1,9 +1,10 @@
-import React, { CSSProperties, useState,useEffect } from 'react';
+import React, { CSSProperties, useState, useEffect } from 'react';
 import { laBelle } from '../styles/fonts/font';
 import styled from '@emotion/styled';
 import animationsList from './animationList';
 import { motion } from 'framer-motion';
 import { TooltipBubble, TooltipWrapper } from '../components/toolTip';
+
 type AnimationType = keyof typeof animationsList;
 
 const getRandomAnimation = (): AnimationType => {
@@ -11,9 +12,7 @@ const getRandomAnimation = (): AnimationType => {
   return keys[Math.floor(Math.random() * keys.length)];
 };
 
-
-
-type DecoTagProps = {
+type DecoTagSmartProps = {
   text?: string;
   style?: CSSProperties;
   className?: string;
@@ -28,7 +27,6 @@ const Tag = styled.span<{ isPrimaryTag?: boolean }>`
   color: #7b7b7d;
   cursor: grab;
 
-
   @media (max-width: 768px) {
     font-size: clamp(1.5rem, 4vw, 3rem);
   }
@@ -37,31 +35,24 @@ const Tag = styled.span<{ isPrimaryTag?: boolean }>`
     font-size: 2rem;
   }
 `;
-const DecoTag = ({ text, style, className, isPrimaryTag, children }: DecoTagProps) => {
 
-  const [animation, setAnimation] = useState<AnimationType>(
-    getRandomAnimation()
-  );
+const DecoTagSmart = ({ text, style, className, isPrimaryTag, children }: DecoTagSmartProps) => {
+  const [animation, setAnimation] = useState<AnimationType>(getRandomAnimation());
   const [showTooltip, setShowTooltip] = useState(false);
   const [interacted, setInteracted] = useState(false);
 
-
-  // Tooltip רק אם זה אלמנט מרכזי, ולא הייתה אינטראקציה
   useEffect(() => {
     if (!isPrimaryTag) return;
-  
-    // בדיקה אם המשתמש כבר ראה את הטולטיפ
+
     const hasSeen = localStorage.getItem('hasSeenDecoTooltip') === 'true';
-  
     if (hasSeen || interacted) return;
-  
+
     const timer = setTimeout(() => {
       setShowTooltip(true);
-    }, 3000); // אחרי 3 שניות
-  
+    }, 3000);
+
     return () => clearTimeout(timer);
   }, [isPrimaryTag, interacted]);
-  
 
   const handleInteraction = () => {
     setInteracted(true);
@@ -69,14 +60,14 @@ const DecoTag = ({ text, style, className, isPrimaryTag, children }: DecoTagProp
     localStorage.setItem('hasSeenDecoTooltip', 'true');
     setAnimation(getRandomAnimation());
   };
-  
+
   return (
     <motion.div
       variants={animationsList[animation]}
-      initial='hidden'
-      animate='visible'
-      whileHover='visible'
-      onClick={handleInteraction} // מוסיף תמיכה במובייל
+      initial="hidden"
+      animate="visible"
+      whileHover="visible"
+      onClick={handleInteraction}
       onHoverStart={handleInteraction}
       transition={{ duration: 0.6, ease: 'easeInOut' }}
     >
@@ -86,16 +77,16 @@ const DecoTag = ({ text, style, className, isPrimaryTag, children }: DecoTagProp
       >
         {text}
         {showTooltip && isPrimaryTag && (
-        <TooltipWrapper>
-        {children}
-        <TooltipBubble className={showTooltip && !interacted ? 'show' : ''}>
-        👆 נסי לגעת בנו ✨
-        </TooltipBubble>
-      </TooltipWrapper>
+          <TooltipWrapper>
+            {children}
+            <TooltipBubble className={showTooltip && !interacted ? 'show' : ''}>
+              👆 נסי לגעת בנו ✨
+            </TooltipBubble>
+          </TooltipWrapper>
         )}
       </Tag>
     </motion.div>
   );
 };
 
-export default DecoTag;
+export default DecoTagSmart;

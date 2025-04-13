@@ -57,7 +57,7 @@ export function useSplitTextAnimation(texts: string[]) {
         setAnimateIndex(null);
         setAnimateFont(null);
       }, 500);
-    }, 700);
+    }, 1000);
 
     return () => clearInterval(intervalId);
   }, [lang]);

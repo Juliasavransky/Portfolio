@@ -1,5 +1,5 @@
 import React from 'react';
-import DecoTag from '@/styles/decoTag';
+import DecoTagSmart from '@/styles/decoTagSmart';
 import {
   ContactMainPageContainer,
   IconsContactWrapper,
@@ -33,7 +33,7 @@ function Contact({ lang, initialDict }: Props) {
           <SocialLinks />
         </IconsContactWrapper>
         <ContactHeaderContainer>
-          <DecoTag
+          <DecoTagSmart
             text={'<h2>'}
             isPrimaryTag={false}
             style={{
@@ -58,7 +58,7 @@ function Contact({ lang, initialDict }: Props) {
             />
           </TextWrapper>
 
-          <DecoTag
+          <DecoTagSmart
             text={'</h2>'}
             isPrimaryTag={false}
             style={{
@@ -70,7 +70,7 @@ function Contact({ lang, initialDict }: Props) {
         </ContactHeaderContainer>
 
         <ContactParagraphContainer>
-          <DecoTag
+          <DecoTagSmart
             text={'<p>'}
             isPrimaryTag={false}
             style={{
@@ -81,7 +81,7 @@ function Contact({ lang, initialDict }: Props) {
           />
           <Paragraph theme={theme}>{t.subtitle}</Paragraph>
 
-          <DecoTag
+          <DecoTagSmart
             text={'</p>'}
             isPrimaryTag={false}
             style={{

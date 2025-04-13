@@ -1,5 +1,5 @@
 import React, { FormEvent, useState } from 'react';
-import DecoTag from '@/styles/decoTag';
+import DecoTagSmart from '@/styles/decoTagSmart';
 import { useTranslation } from '@/hooks/useTranslation';
 import { useTheme } from '@emotion/react';
 import {
@@ -58,7 +58,7 @@ const ContactForm: React.FC = () => {
   return (
     <>
       <Form onSubmit={handleSubmit}>
-        <DecoTag text={'<form>'} isPrimaryTag={true} />
+        <DecoTagSmart text={'<form>'} isPrimaryTag={true} />
         <FormGroup>
           <Input lang={lang}
             type='text'
@@ -106,7 +106,7 @@ const ContactForm: React.FC = () => {
         >
           {loading ? t.sending : t.send}
         </ContactBtn>
-        <DecoTag text={'</form>'} isPrimaryTag={false} />
+        <DecoTagSmart text={'</form>'} isPrimaryTag={false} />
       </Form>
 
       {showPopup && (

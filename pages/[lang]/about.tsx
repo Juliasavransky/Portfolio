@@ -5,7 +5,7 @@ import {
   SkillsParagraphContainer,
   BouncingArrow,
 } from '@/styles/skillsPageComponents';
-import DecoTag from '@/styles/decoTag';
+import DecoTagSmart from '@/styles/decoTagSmart';
 import { Header, Paragraph } from '@/styles/layoutComponents';
 import SplitText from '@/utils/splitText';
 import React from 'react';
@@ -30,7 +30,7 @@ function About({ lang, initialDict }: SkillsProps) {
   return (
     <Row>
       <SkillsHeaderContainer>
-        <DecoTag
+        <DecoTagSmart
           text={'<h2> '}
           isPrimaryTag={false}
           style={{
@@ -57,7 +57,7 @@ function About({ lang, initialDict }: SkillsProps) {
      
           </TextWrapper>
         </Header>
-        <DecoTag
+        <DecoTagSmart
           text={' </h2>'}
           isPrimaryTag={true}
           style={{
@@ -71,7 +71,7 @@ function About({ lang, initialDict }: SkillsProps) {
       <ProfileImg />
       <SkillsParagraphContainer>
         <Paragraph theme={theme}>
-          <DecoTag
+          <DecoTagSmart
             text={'<p>'}
             isPrimaryTag={false}
             style={{
@@ -84,7 +84,7 @@ function About({ lang, initialDict }: SkillsProps) {
           {t.part2} <span style={{ color: '#ffcc00' }}>{t.highlight2}</span>{' '}
           {t.part3} <span style={{ color: '#ffcc00' }}>{t.highlight3}</span>{' '}
           {t.part4}
-          <DecoTag
+          <DecoTagSmart
             text={'</p>'}
             isPrimaryTag={false}
             style={{

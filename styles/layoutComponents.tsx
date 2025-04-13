@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import DecoTag from './decoTag';
+import DecoTagSmart from './decoTagSmart';
 
 // אין צורך להוסיף Theme ידנית - Emotion מזהה את זה אוטומטית אם יש styled.d.ts
 
@@ -87,7 +87,7 @@ export const TheW = styled.span`
 `;
 
 
-export const DecoTagWrapper = styled(DecoTag)`
+export const DecoTagWrapper = styled(DecoTagSmart)`
   @media (max-width: 768px) {
     display: none;
   }

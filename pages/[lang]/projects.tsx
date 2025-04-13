@@ -8,7 +8,7 @@ import {
   CardWrapper,
 } from '@/styles/projectsPageComponents';
 import SplitText from '@/utils/splitText';
-import DecoTag from '@/styles/decoTag';
+import DecoTagSmart from '@/styles/decoTagSmart';
 import projectsList from '../../utils/projectList.json';
 import Card from '../../components/card';
 import { useSplitTextAnimation } from '../../hooks/useSplitTextAnimation';
@@ -34,7 +34,7 @@ function Projects({ lang, initialDict }: ProjectsProps) {
       <ProjectsContainer>
         <ProjectsHeaderContainer>
           <ProjectsHeader>
-            <DecoTag
+            <DecoTagSmart
               text={'<h2>'}
               isPrimaryTag={false}
               style={{
@@ -58,7 +58,7 @@ function Projects({ lang, initialDict }: ProjectsProps) {
                 }}
               />
             </TextWrapper>
-            <DecoTag
+            <DecoTagSmart
               text={'</h2>'}
               isPrimaryTag={true}
               style={{
@@ -69,9 +69,9 @@ function Projects({ lang, initialDict }: ProjectsProps) {
             />
           </ProjectsHeader>
           <SmallTitleContainer>
-            <DecoTag text={'<p>'} isPrimaryTag={false} />
+            <DecoTagSmart text={'<p>'} isPrimaryTag={false} />
             <SmallTitle>{t.subtitle}</SmallTitle>
-            <DecoTag text={'</p>'} isPrimaryTag={false} />
+            <DecoTagSmart text={'</p>'} isPrimaryTag={false} />
           </SmallTitleContainer>
         </ProjectsHeaderContainer>
 

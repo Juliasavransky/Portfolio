@@ -1,11 +1,9 @@
 import React from 'react';
 import SplitText from '@/utils/splitText';
-import DecoTag from '@/styles/decoTag';
 import {
   MainPageContainer,
   HeaderContainer,
   Header,
-  Spacer,
   DecoTagWrapper,
   TheW,
   Paragraph,
@@ -19,6 +17,7 @@ import { useTranslation } from '../../hooks/useTranslation';
 import { useCustomTheme } from '../../hooks/useTheme';
 import TextWrapper from '../../components/TextWrapper';
 import { roboto } from '../../styles/fonts/font';
+import  DecoTagSmart  from '@/styles/decoTagSmart';
 
 type Props = {
   lang: Lang;
@@ -55,7 +54,7 @@ export default function Home({ lang, initialDict }: Props) {
               }}
             />
             <Header>
-              <DecoTag
+              <DecoTagSmart
                 text={'<h1>'}
                 isPrimaryTag={true}
                 className='special'
@@ -107,13 +106,12 @@ export default function Home({ lang, initialDict }: Props) {
                   theme={theme}
                 />
               </span>
-              <DecoTag
+              <DecoTagSmart
                 text={'</h1>'}
                 isPrimaryTag={false}
                 style={{
                   position: 'relative',
-                  right:
-                    'clamp(0rem, calc(-8rem + (100vw - 320px) * 0.05), 1rem)',
+                  right: 'clamp(0rem, calc(-8rem + (100vw - 320px) * 0.05), 1rem)',
                   bottom: 'clamp(-2rem, -1rem, 2rem)',
                 }}
               />
@@ -121,11 +119,10 @@ export default function Home({ lang, initialDict }: Props) {
                 <Paragraph theme={theme}>{t.subtitle}</Paragraph>
               </TextWrapper>
             </Header>
-            
           </HeaderContainer>
 
           <Btn>
-            <DecoTag
+            <DecoTagSmart
               text={'<button>'}
               style={{ marginBottom: '1rem' }}
               isPrimaryTag={false}
@@ -135,8 +132,7 @@ export default function Home({ lang, initialDict }: Props) {
               backText={t.buttonBack}
               href={`/${lang}/projects`}
             />
-
-            <DecoTag
+            <DecoTagSmart
               text={'</button>'}
               style={{ marginTop: '1.5rem' }}
               isPrimaryTag={false}
@@ -150,8 +146,7 @@ export default function Home({ lang, initialDict }: Props) {
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const langParam = context.params?.lang;
-  const lang: Lang =
-    langParam === 'he' || langParam === 'en' ? langParam : 'he';
+  const lang: Lang = langParam === 'he' || langParam === 'en' ? langParam : 'he';
   const initialDict = await getDictionary('home', lang);
 
   return {
