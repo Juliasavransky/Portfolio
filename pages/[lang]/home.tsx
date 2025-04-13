@@ -1,6 +1,4 @@
-// 🧙‍♀️ Refactored Home Page with simplified tag positioning and debug utility
-
-import React, { useEffect } from 'react';
+import React from 'react';
 import SplitText from '@/utils/splitText';
 import {
   MainPageContainer,
@@ -18,38 +16,7 @@ import { getDictionary, Lang } from '../../hooks/getDictionary';
 import { useTranslation } from '../../hooks/useTranslation';
 import { useCustomTheme } from '../../hooks/useTheme';
 import TextWrapper from '../../components/TextWrapper';
-import { roboto } from '../../styles/fonts/font';
 import DecoTagSmart from '@/styles/decoTagSmart';
-
-// Utility for consistent tag styling
-const decoStyle = (pos: 'topLeft' | 'bottomRight' | 'left' | 'right', offset = '0') => {
-  const base = {
-    position: 'relative' as const,
-  };
-  switch (pos) {
-    case 'topLeft':
-      return { ...base, top: offset, left: offset };
-    case 'bottomRight':
-      return { ...base, bottom: offset, right: offset };
-    case 'left':
-      return { ...base, left: offset };
-    case 'right':
-      return { ...base, right: offset };
-    default:
-      return base;
-  }
-};
-
-// Debug utility to log tag positions
-const useTagDebugger = () => {
-  useEffect(() => {
-    const tags = document.querySelectorAll('[data-tag]');
-    tags.forEach((tag) => {
-      const rect = tag.getBoundingClientRect();
-      console.log(`[${tag.getAttribute('data-tag')}] top: ${rect.top}px, left: ${rect.left}px`);
-    });
-  }, []);
-};
 
 type Props = {
   lang: Lang;
@@ -59,96 +26,106 @@ type Props = {
 export default function Home({ lang, initialDict }: Props) {
   const { t } = useTranslation('home', initialDict);
   const theme = useCustomTheme();
-  const texts = ['eb_', 'itch'];
-  const { animateIndex, animateFont } = useSplitTextAnimation(texts);
-
-  useTagDebugger(); // 🔍 debug helper
+  const { animateIndex, animateFont } = useSplitTextAnimation(['eb_', 'itch'], lang);
 
   return (
-    <div>
       <AnimatedBackground>
         <MainPageContainer>
-          <HeaderContainer>
-            <DecoTagWrapper
-              text={'</html>'}
-              isPrimaryTag={false}
-              style={{ ...decoStyle('right', '32rem') }}
-              data-tag="html"
-            />
-            <DecoTagWrapper
-              text={'</body>'}
-              isPrimaryTag={false}
-              style={{ ...decoStyle('right', '26rem') }}
-              data-tag="body"
-            />
+          <DecoTagWrapper
+               text={'</html>'}
+               isPrimaryTag={false}
+               style={{
+                 position: 'absolute',
+                 left:'0',
+                //  right: 'clamp(35rem, calc(30rem + (100vw - 340px) ), 45rem)',
+                 top: '0',
+               }}
+             />
+                 <DecoTagWrapper
+               text={'</body>'}
+               isPrimaryTag={false}
+               style={{
+                 position: 'absolute',
+                 left:'5%',
+                //  right: 'clamp(25rem, calc(30rem + (100vw - 340px) ), 35rem)',
+                 top: '3rem',
+               }}
+             />
             <Header>
-              <DecoTagSmart
-                text={'<h1>'}
-                isPrimaryTag={true}
-                className='special'
-                style={{ ...decoStyle('left', '2rem') }}
-                data-tag="h1-open"
-              />
-              <span style={{ display: 'flex', flexWrap: 'nowrap', alignItems: 'center' }}>
+            <DecoTagSmart
+                 text={'<h1>'}
+                 isPrimaryTag={true}
+                 className='special'
+                 style={{
+                   position: 'absolute',
+                   left:'0',
+                  //  left: 'clamp(0rem, calc(-10rem + (100vw - 320px) * 0.01), -15rem)',
+                   top: '0',
+                 }}
+               />
+              <span
+                style={{
+                  display: 'flex',
+                  flexWrap: 'nowrap',
+                  alignItems: 'center',
+                }}
+              >
                 <TheW theme={theme}>W</TheW>
                 <SplitText
                   lang='en'
                   initialDict={initialDict}
                   text='eb_'
                   baseIndex={0}
-                  style={{ fontSize: `${theme.size.fontHuge}` }}
+                  style={{ fontSize: `${theme.size.fontHuge}`, fontWeight:'500' }}
                   animateIndex={animateIndex}
                   animateFont={animateFont}
                   theme={theme}
                 />
-              </span>
-              <span style={{ display: 'flex', flexWrap: 'nowrap', alignItems: 'center' }}>
                 <TheW theme={theme}>W</TheW>
                 <SplitText
                   lang='en'
                   initialDict={initialDict}
                   text='itch'
                   baseIndex={3}
-                  style={{ fontSize: `${theme.size.fontHuge}` }}
+                  style={{ fontSize: `${theme.size.fontHuge}`, fontWeight:'500'}}
                   animateIndex={animateIndex}
                   animateFont={animateFont}
                   theme={theme}
                 />
               </span>
               <DecoTagSmart
-                text={'</h1>'}
-                isPrimaryTag={false}
-                style={{ ...decoStyle('right', '1rem') }}
-                data-tag="h1-close"
-              />
+                 text={'</h1>'}
+                 isPrimaryTag={false}
+                 style={{
+                   position: 'absolute',
+                   right:'1%',
+                  //  right:
+                  //    'clamp(0rem, calc(-8rem + (100vw - 320px) * 0.05), 1rem)',
+                   bottom: 'clamp(-2rem, -1rem, 2rem)',
+                 }}
+               />
+            </Header>
               <TextWrapper lang={lang}>
                 <Paragraph theme={theme}>{t.subtitle}</Paragraph>
               </TextWrapper>
-            </Header>
-          </HeaderContainer>
 
           <Btn>
-            <DecoTagSmart
-              text={'<button>'}
-              style={{ marginBottom: '1rem' }}
-              isPrimaryTag={false}
-              data-tag="button-open"
-            />
+          <DecoTagSmart
+               text={'<button>'}
+               isPrimaryTag={false}
+             />
             <MagicButton
               frontText={t.buttonFront}
               backText={t.buttonBack}
               href={`/${lang}/projects`}
             />
-            <DecoTagSmart
-              text={'</button>'}
-              style={{ marginTop: '1.5rem' }}
-              isPrimaryTag={false}
-              data-tag="button-close"
-            />
+               <DecoTagSmart
+               text={'</button>'}
+               isPrimaryTag={false}
+             />
           </Btn>
         </MainPageContainer>
       </AnimatedBackground>
-    </div>
   );
 }
 

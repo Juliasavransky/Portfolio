@@ -26,7 +26,7 @@ type ProjectsProps = {
 function Projects({ lang, initialDict }: ProjectsProps) {
   const { t } = useTranslation('projects', initialDict);
   const projects = projectsList;
-  const { animateIndex, animateFont } = useSplitTextAnimation([t.title]);
+  const { animateIndex, animateFont } = useSplitTextAnimation([t.title], lang);
   const theme = useCustomTheme();
 
   return (

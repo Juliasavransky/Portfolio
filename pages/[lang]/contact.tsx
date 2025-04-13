@@ -25,7 +25,7 @@ type Props = {
 function Contact({ lang, initialDict }: Props) {
   const { t } = useTranslation('contact', initialDict);
   const theme = useCustomTheme();
-  const { animateIndex, animateFont } = useSplitTextAnimation([t.title]);
+  const { animateIndex, animateFont } = useSplitTextAnimation([t.title], lang);
   return (
     <div>
       <ContactMainPageContainer>

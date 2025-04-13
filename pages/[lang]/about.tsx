@@ -25,7 +25,7 @@ type SkillsProps = {
 function About({ lang, initialDict }: SkillsProps) {
   const theme = useCustomTheme();
   const { t } = useTranslation('about', initialDict);
-  const { animateIndex, animateFont } = useSplitTextAnimation([t.title]);
+  const { animateIndex, animateFont } = useSplitTextAnimation([t.title], lang);
 
   return (
     <Row>

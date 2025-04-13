@@ -84,6 +84,6 @@ export const Arrow = styled.div`
   animation: ${bounce} 1s infinite ease-in-out;
 `;
 export const BouncingArrow = () => {
-  return <Arrow>⭭</Arrow>; 
+  return <Arrow>&#11117;</Arrow>; 
 };
 

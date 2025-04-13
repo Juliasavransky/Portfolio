@@ -8,7 +8,7 @@ export const MainPageContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-evenly;
   width: 90vw;
   position: absolute;
   left: clamp(2rem, 15vw, 12rem);
@@ -54,6 +54,7 @@ export const Header = styled.div`
   justify-content: center;
   flex-wrap: wrap;
   text-align: center;
+  position:relative;
 
   @media (max-width: 500px) {
     font-size: 2rem;
@@ -72,9 +73,9 @@ export const Paragraph = styled.p`
   text-align: center;
   letter-spacing: clamp(1px, 0.3vw, 2px);
   word-spacing: 0.1rem;
-
+  line-height: 1.4;
+  text-wrap:balance;
 `;
-
 
 export const TheW = styled.span`
   font-size: ${({ theme }) => theme.size.fontHuge};
@@ -83,9 +84,7 @@ export const TheW = styled.span`
   color: ${({ theme }) => theme.colors.purple};
   padding-right: 0.8vw;
   font-weight: 900;
-  
 `;
-
 
 export const DecoTagWrapper = styled(DecoTagSmart)`
   @media (max-width: 768px) {
