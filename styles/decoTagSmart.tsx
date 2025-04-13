@@ -1,26 +1,23 @@
-import React, { CSSProperties, useState, useEffect } from 'react';
-import { laBelle } from '../styles/fonts/font';
-import styled from '@emotion/styled';
-import animationsList from './animationList';
+// ✨ Refactored DecoTagSmart with animation trigger on click instead of hover
+
+import { CSSProperties, ReactNode, useEffect, useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
+import styled from '@emotion/styled';
+import { laBelle } from '../styles/fonts/font';
+import animationsList from './animationList';
 import { TooltipBubble, TooltipWrapper } from '../components/toolTip';
 
 type AnimationType = keyof typeof animationsList;
 
-const getRandomAnimation = (): AnimationType => {
-  const keys = Object.keys(animationsList) as AnimationType[];
-  return keys[Math.floor(Math.random() * keys.length)];
-};
-
-type DecoTagSmartProps = {
+interface DecoTagSmartProps {
   text?: string;
   style?: CSSProperties;
   className?: string;
   isPrimaryTag: boolean;
-  children?: React.ReactNode;
-};
+  children?: ReactNode;
+}
 
-const Tag = styled.span<{ isPrimaryTag?: boolean }>`
+const Tag = styled.span`
   font-size: clamp(1.2rem, 1.5vw, 1.7rem);
   margin: 0 0.5rem;
   line-height: 1;
@@ -36,52 +33,45 @@ const Tag = styled.span<{ isPrimaryTag?: boolean }>`
   }
 `;
 
-const DecoTagSmart = ({ text, style, className, isPrimaryTag, children }: DecoTagSmartProps) => {
-  const [animation, setAnimation] = useState<AnimationType>(getRandomAnimation());
-  const [showTooltip, setShowTooltip] = useState(false);
+const DecoTagSmart = ({ text, style, className = '', isPrimaryTag, children }: DecoTagSmartProps) => {
   const [interacted, setInteracted] = useState(false);
+  const [showTooltip, setShowTooltip] = useState(false);
+  const [animationKey, setAnimationKey] = useState(0);
+
+  const animation = useMemo(() => {
+    return animationsList[
+      Object.keys(animationsList)[Math.floor(Math.random() * Object.keys(animationsList).length)] as AnimationType
+    ];
+  }, [animationKey]);
 
   useEffect(() => {
-    if (!isPrimaryTag) return;
-
-    const hasSeen = localStorage.getItem('hasSeenDecoTooltip') === 'true';
-    if (hasSeen || interacted) return;
-
-    const timer = setTimeout(() => {
-      setShowTooltip(true);
-    }, 3000);
-
+    if (!isPrimaryTag || interacted || localStorage.getItem('hasSeenDecoTooltip') === 'true') return;
+    const timer = setTimeout(() => setShowTooltip(true), 3000);
     return () => clearTimeout(timer);
   }, [isPrimaryTag, interacted]);
 
-  const handleInteraction = () => {
+  const handleClick = () => {
     setInteracted(true);
     setShowTooltip(false);
     localStorage.setItem('hasSeenDecoTooltip', 'true');
-    setAnimation(getRandomAnimation());
+    setAnimationKey(prev => prev + 1); // force re-animation
   };
 
   return (
     <motion.div
-      variants={animationsList[animation]}
+      key={animationKey}
+      variants={animation}
       initial="hidden"
       animate="visible"
-      whileHover="visible"
-      onClick={handleInteraction}
-      onHoverStart={handleInteraction}
+      onClick={handleClick}
       transition={{ duration: 0.6, ease: 'easeInOut' }}
     >
-      <Tag
-        style={{ color: '#7b7b7d', ...style }}
-        className={`${laBelle.className} ${className}`}
-      >
+      <Tag style={style} className={`${laBelle.className} ${className}`}>
         {text}
         {showTooltip && isPrimaryTag && (
           <TooltipWrapper>
             {children}
-            <TooltipBubble className={showTooltip && !interacted ? 'show' : ''}>
-              👆 נסי לגעת בנו ✨
-            </TooltipBubble>
+            <TooltipBubble className="show">👆 נסי ללחוץ אלינו ✨</TooltipBubble>
           </TooltipWrapper>
         )}
       </Tag>
