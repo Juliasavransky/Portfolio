@@ -26,112 +26,105 @@ type Props = {
 export default function Home({ lang, initialDict }: Props) {
   const { t } = useTranslation('home', initialDict);
   const theme = useCustomTheme();
-  const { animateIndex, animateFont } = useSplitTextAnimation(['eb_', 'itch'], lang);
+  const { animateIndex, animateFont } = useSplitTextAnimation(
+    ['eb_', 'itch'],
+    lang
+  );
 
   return (
-      <AnimatedBackground>
-        <MainPageContainer>
-          <DecoTagWrapper
-               text={'</html>'}
-               isPrimaryTag={false}
-               style={{
-                 position: 'absolute',
-                 left:'0',
-                //  right: 'clamp(35rem, calc(30rem + (100vw - 340px) ), 45rem)',
-                 top: '0',
-               }}
-             />
-                 <DecoTagWrapper
-               text={'</body>'}
-               isPrimaryTag={false}
-               style={{
-                 position: 'absolute',
-                 left:'5%',
-                //  right: 'clamp(25rem, calc(30rem + (100vw - 340px) ), 35rem)',
-                 top: '3rem',
-               }}
-             />
-            <Header>
-            <DecoTagSmart
-                 text={'<h1>'}
-                 isPrimaryTag={true}
-                 className='special'
-                 style={{
-                   position: 'absolute',
-                   left:'0',
-                  //  left: 'clamp(0rem, calc(-10rem + (100vw - 320px) * 0.01), -15rem)',
-                   top: '0',
-                 }}
-               />
-              <span
-                style={{
-                  display: 'flex',
-                  flexWrap: 'nowrap',
-                  alignItems: 'center',
-                }}
-              >
-                <TheW theme={theme}>W</TheW>
-                <SplitText
-                  lang='en'
-                  initialDict={initialDict}
-                  text='eb_'
-                  baseIndex={0}
-                  style={{ fontSize: `${theme.size.fontHuge}`, fontWeight:'500' }}
-                  animateIndex={animateIndex}
-                  animateFont={animateFont}
-                  theme={theme}
-                />
-                <TheW theme={theme}>W</TheW>
-                <SplitText
-                  lang='en'
-                  initialDict={initialDict}
-                  text='itch'
-                  baseIndex={3}
-                  style={{ fontSize: `${theme.size.fontHuge}`, fontWeight:'500'}}
-                  animateIndex={animateIndex}
-                  animateFont={animateFont}
-                  theme={theme}
-                />
-              </span>
-              <DecoTagSmart
-                 text={'</h1>'}
-                 isPrimaryTag={false}
-                 style={{
-                   position: 'absolute',
-                   right:'1%',
-                  //  right:
-                  //    'clamp(0rem, calc(-8rem + (100vw - 320px) * 0.05), 1rem)',
-                   bottom: 'clamp(-2rem, -1rem, 2rem)',
-                 }}
-               />
-            </Header>
-              <TextWrapper lang={lang}>
-                <Paragraph theme={theme}>{t.subtitle}</Paragraph>
-              </TextWrapper>
-
-          <Btn>
+    <AnimatedBackground>
+      <MainPageContainer>
+        <DecoTagWrapper
+          text={'</html>'}
+          isPrimaryTag={false}
+          style={{
+            position: 'absolute',
+            left: '0',
+            //  right: 'clamp(35rem, calc(30rem + (100vw - 340px) ), 45rem)',
+            top: '0',
+          }}
+        />
+        <DecoTagWrapper
+          text={'</body>'}
+          isPrimaryTag={false}
+          style={{
+            position: 'absolute',
+            left: '5%',
+            //  right: 'clamp(25rem, calc(30rem + (100vw - 340px) ), 35rem)',
+            top: '3rem',
+          }}
+        />
+        <Header>
           <DecoTagSmart
-               text={'<button>'}
-               isPrimaryTag={false}
-             />
-            <MagicButton
-              frontText={t.buttonFront}
-              backText={t.buttonBack}
-              href={`/${lang}/projects`}
-            />
-               <DecoTagSmart
-               text={'</button>'}
-               isPrimaryTag={false}
-             />
-          </Btn>
-        </MainPageContainer>
-      </AnimatedBackground>
+            text={'<h1>'}
+            isPrimaryTag={true}
+            className='special'
+            style={{
+              position: 'absolute',
+              left: '0',
+              //  left: 'clamp(0rem, calc(-10rem + (100vw - 320px) * 0.01), -15rem)',
+              top: '0',
+            }}
+          />
+
+          <TheW theme={theme}>W</TheW>
+          <SplitText
+            lang='en'
+            initialDict={initialDict}
+            text='eb_'
+            baseIndex={0}
+            style={{ fontSize: `${theme.size.fontHuge}`, fontWeight: '500' }}
+            animateIndex={animateIndex}
+            animateFont={animateFont}
+            theme={theme}
+          />
+        </Header>
+        <Header>
+          <TheW theme={theme}>W</TheW>
+          <SplitText
+            lang='en'
+            initialDict={initialDict}
+            text='itch'
+            baseIndex={3}
+            style={{ fontSize: `${theme.size.fontHuge}`, fontWeight: '500' }}
+            animateIndex={animateIndex}
+            animateFont={animateFont}
+            theme={theme}
+          />
+          <DecoTagSmart
+            text={'</h1>'}
+            isPrimaryTag={false}
+            style={{
+              position: 'absolute',
+              right: '-6rem',
+              //  right:
+              //    'clamp(0rem, calc(-8rem + (100vw - 320px) * 0.05), 1rem)',
+              bottom: '2rem',
+            }}
+          />
+        </Header>
+        <TextWrapper lang={lang}>
+          <Paragraph theme={theme}>{t.subtitle}</Paragraph>
+        </TextWrapper>
+
+        <Btn>
+          <DecoTagSmart text={'<button>'} isPrimaryTag={false} />
+          <MagicButton
+            frontText={t.buttonFront}
+            backText={t.buttonBack}
+            href={`/${lang}/projects`}
+          />
+          <DecoTagSmart text={'</button>'} isPrimaryTag={false} />
+        </Btn>
+      </MainPageContainer>
+    </AnimatedBackground>
   );
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const langParam = context.params?.lang;
-  const lang: Lang = langParam === 'he' || langParam === 'en' ? langParam : 'he';
+  const lang: Lang =
+    langParam === 'he' || langParam === 'en' ? langParam : 'he';
   const initialDict = await getDictionary('home', lang);
 
   return {
