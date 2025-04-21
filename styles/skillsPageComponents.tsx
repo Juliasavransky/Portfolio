@@ -3,13 +3,12 @@ import { keyframes } from '@emotion/react';
 
 export const Row = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
+  flex-wrap: wrap;
   position: absolute;
   left: clamp(2rem, 15vw, 12rem);
-  flex-wrap: wrap;
   text-align: center;
-
   @media (max-width: 1220px) {
     left: 0;
     width: 100vw;
@@ -23,22 +22,22 @@ export const Row = styled.div`
   }
 `;
 
-export const Column = styled.div`
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  justify-content: center;
-  width: 38vw;
-  align-items: center;
+// export const Column = styled.div`
+//   display: flex;
+//   flex: 1;
+//   flex-direction: row;
+//   justify-content: center;
+//   width: 38vw;
+//   align-items: center;
 
-  @media (max-width: 768px) {
-    width: 100vw;
-    min-width: 100vw;
-  }
-`;
+//   @media (max-width: 768px) {
+//     width: 100vw;
+//     min-width: 100vw;
+//   }
+// `;
 export const SkillsHeaderContainer = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   font-weight: 600;
   font-size: clamp(2.5rem, 4vw, 5rem);

@@ -18,6 +18,7 @@ export const Nav = styled.nav`
   flex: 0 0 clamp(5%, 10%, 15%);
   position: relative;
   z-index: 1000;
+  text-align: center;
 
   @media (max-width: 1220px) {
     position: sticky;

@@ -6,7 +6,7 @@ import {
   BouncingArrow,
 } from '@/styles/skillsPageComponents';
 import DecoTagSmart from '@/styles/decoTagSmart';
-import {  Paragraph } from '@/styles/layoutComponents';
+import { Header, Paragraph } from '@/styles/layoutComponents';
 import SplitText from '@/utils/splitText';
 import React from 'react';
 import { useSplitTextAnimation } from '../../hooks/useSplitTextAnimation';
@@ -30,40 +30,42 @@ function About({ lang, initialDict }: SkillsProps) {
   return (
     <Row>
       <SkillsHeaderContainer>
-          <DecoTagSmart
-            text={'<h2> '}
-            isPrimaryTag={false}
+        <Header>
+        <DecoTagSmart
+          text={'<h2> '}
+          isPrimaryTag={false}
+          style={{
+            position: 'absolute',
+            top: '0',
+            left: '-4rem',
+          }}
+        />
+        <TextWrapper lang={lang}>
+          <SplitText
             style={{
-              position: 'absolute',
-              top: '0',
-              left: '0',
+              fontSize: `${theme.size.fontH2}`,
             }}
+            lang={lang}
+            initialDict={initialDict}
+            theme={theme}
+            text={t.title}
+            baseIndex={0}
+            animateIndex={animateIndex}
+            animateFont={animateFont}
           />
-          <TextWrapper lang={lang}>
-            <SplitText
-              style={{
-                fontSize: `${theme.size.fontH2}`,
-              }}
-              lang={lang}
-              initialDict={initialDict}
-              theme={theme}
-              text={t.title}
-              baseIndex={0}
-              animateIndex={animateIndex}
-              animateFont={animateFont}
-            />
-          </TextWrapper>
-          <DecoTagSmart
-            text={' </h2>'}
-            isPrimaryTag={true}
-            style={{
-              position: 'absolute',
-              right: '0',
-              bottom: '-1.5rem',
-            }}
-          />
-      </SkillsHeaderContainer>
-      <ProfileImg />
+        </TextWrapper>
+        <DecoTagSmart
+          text={' </h2>'}
+          isPrimaryTag={true}
+          style={{
+            position: 'absolute',
+            right: '0',
+            top: '6rem',
+          }}
+        />
+          <ProfileImg />
+        </Header>
+        </SkillsHeaderContainer>
       <SkillsParagraphContainer>
         <Paragraph theme={theme}>
           <DecoTagSmart
