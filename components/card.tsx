@@ -80,7 +80,7 @@ const ProjectCardDetails = styled.div`
   position: absolute;
   top: 70%;
   margin-left: 2rem;
-  transform: translateY(20%);
+  transform: translateY(100%);
   opacity: 0;
   transition: all 0.5s ease-in-out;
   backface-visibility: hidden;

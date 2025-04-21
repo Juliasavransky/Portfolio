@@ -33,7 +33,7 @@ const SparkleTrail: React.FC<SparkleTrailProps> = ({ children }) => {
     };
 
     const handleMouseMove = (e: MouseEvent) => {
-      updateSparkles(e.clientX, e.clientY);
+      updateSparkles(e.pageX, e.pageY);
     };
 
     const handleTouchMove = (e: TouchEvent) => {

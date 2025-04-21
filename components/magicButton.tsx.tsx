@@ -34,7 +34,7 @@ const BtnMain = styled.div`
   height: 5rem;
   perspective: 1000px;
   justify-content: center;
-
+text-align: center;
 `;
 
 const Face = styled.div`
@@ -85,7 +85,7 @@ export const MagicButton = ({
     setClicked(true);
     await controls.start({
       rotateX: -90,
-      transition: { duration: 0.5, ease: 'easeInOut' },
+      transition: { duration: 0.4, ease: 'easeInOut' },
     });
     router.push(href);
   };

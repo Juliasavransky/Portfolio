@@ -7,6 +7,8 @@ import {
   SmallTitle,
   CardWrapper,
 } from '@/styles/projectsPageComponents';
+import {  MotionMainWrapper} from '../../styles/layoutComponents';
+import { useSmoothReady } from '@/hooks/useSmoothReady';
 import SplitText from '@/utils/splitText';
 import DecoTagSmart from '@/styles/decoTagSmart';
 import projectsList from '../../utils/projectList.json';
@@ -28,9 +30,17 @@ function Projects({ lang, initialDict }: ProjectsProps) {
   const projects = projectsList;
   const { animateIndex, animateFont } = useSplitTextAnimation([t.title], lang);
   const theme = useCustomTheme();
+    const { isFullyReady } = useSmoothReady({ delay: 300 });
+  
 
   return (
-    <div>
+        <MotionMainWrapper
+          isReady={isFullyReady}
+          initial={{ opacity: 0, y: 20 }}
+          animate={isFullyReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.6, ease: 'easeOut' }}
+        >
+
       <ProjectsContainer>
         <ProjectsHeaderContainer>
           <ProjectsHeader>
@@ -42,7 +52,7 @@ function Projects({ lang, initialDict }: ProjectsProps) {
                 left: 'clamp(-0.5rem, calc(-10rem + (100vw - 320px) * 0.015), -7rem)',
                 top: '0',
               }}
-            />
+              />
             <TextWrapper lang={lang}>
               <SplitText
                 lang={lang}
@@ -50,13 +60,12 @@ function Projects({ lang, initialDict }: ProjectsProps) {
                 theme={theme}
                 text={t.title}
                 baseIndex={0}
-                animateIndex={animateIndex}
-                animateFont={animateFont}
+                animateIndex={isFullyReady ? animateIndex ?? null : null}
+                animateFont={isFullyReady ? animateFont ?? null : null}
                 style={{
                   fontSize: `${theme.size.fontH2}`,
-                  // fontFamily: 'Roboto, sans-serif',
                 }}
-              />
+                />
             </TextWrapper>
             <DecoTagSmart
               text={'</h2>'}
@@ -66,7 +75,7 @@ function Projects({ lang, initialDict }: ProjectsProps) {
                 left: 'clamp(1rem, calc(-10rem + (100vw - 320px) * 0.015), -7rem)',
                 top: '0',
               }}
-            />
+              />
           </ProjectsHeader>
           <SmallTitleContainer>
             <DecoTagSmart text={'<p>'} isPrimaryTag={false} />
@@ -91,7 +100,7 @@ function Projects({ lang, initialDict }: ProjectsProps) {
           })}
         </CardWrapper>
       </ProjectsContainer>
-    </div>
+      </MotionMainWrapper>
   );
 }
 

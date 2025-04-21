@@ -6,7 +6,7 @@ import {
   ContactHeaderContainer,
   ContactParagraphContainer,
 } from '@/styles/contactListComponents';
-import { Paragraph, DecoTagWrapper } from '@/styles/layoutComponents';
+import { Paragraph, MotionMainWrapper } from '@/styles/layoutComponents';
 import SplitText from '@/utils/splitText';
 import ContactForm from '@/components/contactForm';
 import { useSplitTextAnimation } from '../../hooks/useSplitTextAnimation';
@@ -16,7 +16,7 @@ import { getDictionary, Lang } from '../../hooks/getDictionary';
 import { useTranslation } from '../../hooks/useTranslation';
 import { useCustomTheme } from '../../hooks/useTheme';
 import TextWrapper from '../../components/TextWrapper';
-
+import { useSmoothReady } from '@/hooks/useSmoothReady';
 type Props = {
   lang: Lang;
   initialDict: Record<string, string>;
@@ -25,9 +25,14 @@ type Props = {
 function Contact({ lang, initialDict }: Props) {
   const { t } = useTranslation('contact', initialDict);
   const theme = useCustomTheme();
+  const { isFullyReady } = useSmoothReady({ delay: 300 });
   const { animateIndex, animateFont } = useSplitTextAnimation([t.title], lang);
   return (
-    <div>
+    <MotionMainWrapper      
+     isReady={isFullyReady}
+    initial={{ opacity: 0, y: 20 }}
+    animate={isFullyReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+    transition={{ duration: 0.6, ease: 'easeOut' }}>
       <ContactMainPageContainer>
         <IconsContactWrapper>
           <SocialLinks />
@@ -39,22 +44,20 @@ function Contact({ lang, initialDict }: Props) {
             style={{
               position: 'absolute',
               left: '-3rem',
-              // 'clamp(6rem, calc(7rem + (100vw + 320px) * 0.015), 8rem)',
               top: '-1rem',
             }}
           />
           <TextWrapper lang={lang}>
             <SplitText
-                 lang={lang}
-                 initialDict={initialDict}
+              lang={lang}
+              initialDict={initialDict}
               theme={theme}
               text={t.title}
               baseIndex={0}
-              animateIndex={animateIndex}
-              animateFont={animateFont}
+              animateIndex={isFullyReady ? animateIndex : null}
+              animateFont={isFullyReady ? animateFont : null}
               style={{
                 fontSize: `${theme.size.fontH2}`,
-                // fontFamily: 'Roboto, sans-serif',
               }}
             />
           </TextWrapper>
@@ -64,8 +67,7 @@ function Contact({ lang, initialDict }: Props) {
             isPrimaryTag={false}
             style={{
               position: 'absolute',
-              right:'-5rem',
-              //  'clamp(6rem, calc(7rem + (100vw + 320px) * 0.015), 8rem)',
+              right: '-5rem',
               bottom: '-1rem',
             }}
           />
@@ -78,7 +80,6 @@ function Contact({ lang, initialDict }: Props) {
             style={{
               position: 'absolute',
               left: '-1rem',
-              // 'clamp(1.5rem, calc(-10rem + (100vw - 320px) * 0.015), -7rem)',
               top: '0',
             }}
           />
@@ -90,7 +91,6 @@ function Contact({ lang, initialDict }: Props) {
             style={{
               position: 'absolute',
               right: '0',
-              // 'clamp(-1.5rem, calc(-10rem + (100vw - 320px) * 0.015), -7rem)',
               bottom: '-1rem',
             }}
           />
@@ -98,28 +98,8 @@ function Contact({ lang, initialDict }: Props) {
 
         <ContactForm />
 
-        {/* <DecoTagWrapper
-          text={'</body>'}
-          isPrimaryTag={false}
-          style={{
-            position: 'absolute',
-            right: '5rem',
-            // 'clamp(26rem, calc(30rem + (100vw - 340px) ), 35rem)',
-            bottom: '5rem',
-          }}
-        />
-        <DecoTagWrapper
-          text={'</html>'}
-          isPrimaryTag={false}
-          style={{
-            position: 'absolute',
-            right: '3rem',
-            // 'clamp(30rem, calc(35rem + (100vw - 340px) ), 40rem)',
-            bottom: '3rem',
-          }}
-        /> */}
       </ContactMainPageContainer>
-    </div>
+    </MotionMainWrapper>
   );
 }
 

@@ -1,7 +1,19 @@
 import styled from '@emotion/styled';
 import DecoTagSmart from './decoTagSmart';
+import {motion} from 'framer-motion';
 
-// אין צורך להוסיף Theme ידנית - Emotion מזהה את זה אוטומטית אם יש styled.d.ts
+ export const MotionMainWrapper = motion(styled('div')<{ isReady: boolean }>`
+  &.not-ready * {
+    transition: none !important;
+    animation: none !important;
+    opacity: 0;
+  }
+
+  &.ready * {
+    opacity: 1;
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+`);
 
 export const MainPageContainer = styled.div`
   display: flex;
