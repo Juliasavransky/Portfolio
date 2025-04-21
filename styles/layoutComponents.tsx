@@ -4,8 +4,8 @@ import DecoTagSmart from './decoTagSmart';
 // אין צורך להוסיף Theme ידנית - Emotion מזהה את זה אוטומטית אם יש styled.d.ts
 
 export const MainPageContainer = styled.div`
-  height: 90vh;
   display: flex;
+  height: 90vh;
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
@@ -49,12 +49,13 @@ export const HeaderContainer = styled.div`
 `;
 
 export const Header = styled.div`
-  align-items: center;
   display: flex;
+  align-items: center;
   justify-content: center;
   flex-wrap: wrap;
   text-align: center;
   position: relative;
+
   @media (max-width: 500px) {
     font-size: 2rem;
     padding: 0 2rem;
@@ -74,6 +75,7 @@ export const Paragraph = styled.p`
   word-spacing: 0.1rem;
   line-height: 1.4;
   text-wrap: balance;
+  position: relative;
 `;
 
 export const TheW = styled.span`

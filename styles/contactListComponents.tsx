@@ -34,11 +34,13 @@ export const ContactHeaderContainer = styled.div`
   font-size: clamp(3rem, 3.8vw, 6rem);
   align-items: center;
   flex-direction: column;
+  position: relative;
 `;
 
 export const ContactParagraphContainer = styled.div`
-  width: clamp(55vw, 75vw, 90vw);
+  /* width: clamp(55vw, 75vw, 90vw); */
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
 `;

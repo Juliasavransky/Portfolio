@@ -37,9 +37,10 @@ function Contact({ lang, initialDict }: Props) {
             text={'<h2>'}
             isPrimaryTag={false}
             style={{
-              position: 'relative',
-              right: 'clamp(6rem, calc(7rem + (100vw + 320px) * 0.015), 8rem)',
-              top: '0',
+              position: 'absolute',
+              left: '-3rem',
+              // 'clamp(6rem, calc(7rem + (100vw + 320px) * 0.015), 8rem)',
+              top: '-1rem',
             }}
           />
           <TextWrapper lang={lang}>
@@ -62,9 +63,10 @@ function Contact({ lang, initialDict }: Props) {
             text={'</h2>'}
             isPrimaryTag={false}
             style={{
-              position: 'relative',
-              left: 'clamp(6rem, calc(7rem + (100vw + 320px) * 0.015), 8rem)',
-              top: '0',
+              position: 'absolute',
+              right:'-5rem',
+              //  'clamp(6rem, calc(7rem + (100vw + 320px) * 0.015), 8rem)',
+              bottom: '-1rem',
             }}
           />
         </ContactHeaderContainer>
@@ -74,8 +76,9 @@ function Contact({ lang, initialDict }: Props) {
             text={'<p>'}
             isPrimaryTag={false}
             style={{
-              position: 'relative',
-              left: 'clamp(1.5rem, calc(-10rem + (100vw - 320px) * 0.015), -7rem)',
+              position: 'absolute',
+              left: '-1rem',
+              // 'clamp(1.5rem, calc(-10rem + (100vw - 320px) * 0.015), -7rem)',
               top: '0',
             }}
           />
@@ -85,33 +88,36 @@ function Contact({ lang, initialDict }: Props) {
             text={'</p>'}
             isPrimaryTag={false}
             style={{
-              position: 'relative',
-              left: 'clamp(-1.5rem, calc(-10rem + (100vw - 320px) * 0.015), -7rem)',
-              bottom: '-3rem',
+              position: 'absolute',
+              right: '0',
+              // 'clamp(-1.5rem, calc(-10rem + (100vw - 320px) * 0.015), -7rem)',
+              bottom: '-1rem',
             }}
           />
         </ContactParagraphContainer>
 
         <ContactForm />
 
-        <DecoTagWrapper
+        {/* <DecoTagWrapper
           text={'</body>'}
           isPrimaryTag={false}
           style={{
-            position: 'relative',
-            left: 'clamp(26rem, calc(30rem + (100vw - 340px) ), 35rem)',
-            top: '2rem',
+            position: 'absolute',
+            right: '5rem',
+            // 'clamp(26rem, calc(30rem + (100vw - 340px) ), 35rem)',
+            bottom: '5rem',
           }}
         />
         <DecoTagWrapper
           text={'</html>'}
           isPrimaryTag={false}
           style={{
-            position: 'relative',
-            left: 'clamp(30rem, calc(35rem + (100vw - 340px) ), 40rem)',
-            top: '4rem',
+            position: 'absolute',
+            right: '3rem',
+            // 'clamp(30rem, calc(35rem + (100vw - 340px) ), 40rem)',
+            bottom: '3rem',
           }}
-        />
+        /> */}
       </ContactMainPageContainer>
     </div>
   );

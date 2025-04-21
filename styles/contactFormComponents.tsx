@@ -5,6 +5,7 @@ export const Form = styled.form`
   width: clamp(300px, 50%, 600px);
   flex-direction: column;
   margin-top: 3rem;
+  position: relative;
 `;
 
 export const FormGroup = styled.div`

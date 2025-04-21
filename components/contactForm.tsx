@@ -1,6 +1,7 @@
 import React, { FormEvent, useState } from 'react';
 import DecoTagSmart from '@/styles/decoTagSmart';
 import { useTranslation } from '@/hooks/useTranslation';
+import { DecoTagWrapper } from '@/styles/layoutComponents';
 import { useTheme } from '@emotion/react';
 import {
   Form,
@@ -9,7 +10,6 @@ import {
   TextArea,
   ContactBtn,
 } from '@/styles/contactFormComponents';
-
 
 const ContactForm: React.FC = () => {
   const { t } = useTranslation('contact');
@@ -58,9 +58,18 @@ const ContactForm: React.FC = () => {
   return (
     <>
       <Form onSubmit={handleSubmit}>
-        <DecoTagSmart text={'<form>'} isPrimaryTag={true} />
+        <DecoTagSmart
+          style={{
+            position: 'absolute',
+            top: '-2rem',
+            left: '0',
+          }}
+          text={'<form>'}
+          isPrimaryTag={true}
+        />
         <FormGroup>
-          <Input lang={lang}
+          <Input
+            lang={lang}
             type='text'
             name='name'
             placeholder={t.name}
@@ -70,7 +79,8 @@ const ContactForm: React.FC = () => {
             theme={theme}
             style={{ width: '50%' }}
           />
-          <Input lang={lang}
+          <Input
+            lang={lang}
             type='email'
             name='email'
             placeholder={t.email}
@@ -82,7 +92,8 @@ const ContactForm: React.FC = () => {
           />
         </FormGroup>
 
-        <Input lang={lang}
+        <Input
+          lang={lang}
           type='text'
           name='subject'
           placeholder={t.subject}
@@ -91,7 +102,8 @@ const ContactForm: React.FC = () => {
           onChange={handleChange}
           theme={theme}
         />
-        <TextArea lang={lang}
+        <TextArea
+          lang={lang}
           name='message'
           placeholder={t.message}
           required
@@ -106,9 +118,36 @@ const ContactForm: React.FC = () => {
         >
           {loading ? t.sending : t.send}
         </ContactBtn>
-        <DecoTagSmart text={'</form>'} isPrimaryTag={false} />
+        <DecoTagSmart
+          text={'</form>'}
+          isPrimaryTag={false}
+          style={{
+            position: 'absolute',
+            bottom: '-2.5rem',
+            right: '0',
+          }}
+        />
+      <DecoTagWrapper
+        text={'</body>'}
+        isPrimaryTag={false}
+        style={{
+          position: 'absolute',
+          right: '-5rem',
+          // 'clamp(26rem, calc(30rem + (100vw - 340px) ), 35rem)',
+          bottom: '-5rem',
+        }}
+      />
+      <DecoTagWrapper
+        text={'</html>'}
+        isPrimaryTag={false}
+        style={{
+          position: 'absolute',
+          right: '-8rem',
+          // 'clamp(30rem, calc(35rem + (100vw - 340px) ), 40rem)',
+          bottom: '-8rem',
+        }}
+      />
       </Form>
-
       {showPopup && (
         <div className='popup'>
           <p>{t.sent}</p>

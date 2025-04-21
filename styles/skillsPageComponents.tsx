@@ -3,13 +3,10 @@ import { keyframes } from '@emotion/react';
 
 export const Row = styled.div`
   display: flex;
-  flex-direction: row;
   justify-content: center;
   align-items: center;
   position: absolute;
-  left: clamp(2rem, 22vw, 24rem);
-  width: clamp(80%, 80%, 100%);
-  margin: auto;
+  left: clamp(2rem, 15vw, 12rem);
   flex-wrap: wrap;
   text-align: center;
 
@@ -47,6 +44,7 @@ export const SkillsHeaderContainer = styled.div`
   font-size: clamp(2.5rem, 4vw, 5rem);
   text-align: center;
   line-height: 1.2;
+  position: relative;
 
   @media (max-width: 768px) {
     width: 100vw;
@@ -80,7 +78,7 @@ export const bounce = keyframes`
   }
 `;
 export const Arrow = styled.div`
-  font-size: ${({ theme }) => theme.size.fontBig};
+  font-size: ${({ theme }) => (parseFloat(theme.size.fontBig) * 1.5) + 'px'};
   animation: ${bounce} 1s infinite ease-in-out;
 `;
 export const BouncingArrow = () => {
