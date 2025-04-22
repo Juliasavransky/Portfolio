@@ -28,7 +28,6 @@ export const MainPageContainer = styled.div`
   @media (max-width: 1220px) {
     left: 0;
     width: 100vw;
-    border:solid red 1px;
   }
   @media (max-width: 428px) {
     left: 0;
@@ -72,10 +71,8 @@ export const Header = styled.div`
   flex-wrap: wrap;
   text-align: center;
   position: relative;
-  /* border: 1px solid red; */
 
   @media (max-width: 400px) {
-    border:1px solid green;
     font-size:clamp(2rem, 4vw, 5rem) !important;
   }
 `;
