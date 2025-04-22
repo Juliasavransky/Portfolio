@@ -21,13 +21,13 @@ const MenuButtonContainer = styled.div`
 `;
 
 const MenuButton = styled.button`
-  top: 1rem;
-  right: 1.5rem;
+  /* top: 1rem;
+  right: 1.5rem; */
   z-index: 999;
   cursor: pointer;
   border: none;
   background: none;
-  position: absolute;
+  /* position: absolute; */
 
   .bar {
     width: 25px;
