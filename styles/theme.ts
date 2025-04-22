@@ -54,7 +54,7 @@ const theme: Theme = {
     },
   },
   size: {
-    fontHuge: 'clamp(9rem, 14vw, 16rem)',
+    fontHuge: 'clamp(7rem, 14vw, 16rem)',
     fontH2: 'clamp(2.7rem, 5.4vw, 7.2rem)',
     fontBig: 'clamp(1.8rem, 3.2vw, 2.7rem)',
     fontReg: 'clamp(1.6rem, 2vw, 2rem)',

@@ -52,8 +52,8 @@ const MenuOverlay = styled.div<{ isOpen: boolean }>`
   position: fixed;
   top: 0;
   right: ${({ isOpen }) => (isOpen ? '0' : '-100%')};
-  width: 100vw;
-  height: 100vh;
+  width: 90vw;
+  height: 90vh;
   background-color: ${({ theme }) => theme.colors.yellow};
   color: ${({ theme }) => theme.colors.white};
   display: flex;
