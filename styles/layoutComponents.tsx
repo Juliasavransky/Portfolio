@@ -1,8 +1,8 @@
 import styled from '@emotion/styled';
 import DecoTagSmart from './decoTagSmart';
-import {motion} from 'framer-motion';
+import { motion } from 'framer-motion';
 
- export const MotionMainWrapper = motion(styled('div')<{ isReady: boolean }>`
+export const MotionMainWrapper = motion(styled('div')<{ isReady: boolean }>`
   &.not-ready * {
     transition: none !important;
     animation: none !important;
@@ -26,6 +26,11 @@ export const MainPageContainer = styled.div`
   left: clamp(2rem, 15vw, 12rem);
 
   @media (max-width: 1220px) {
+    left: 0;
+    width: 100vw;
+    border:solid red 1px;
+  }
+  @media (max-width: 428px) {
     left: 0;
     width: 100vw;
   }
@@ -67,10 +72,11 @@ export const Header = styled.div`
   flex-wrap: wrap;
   text-align: center;
   position: relative;
+  /* border: 1px solid red; */
 
-  @media (max-width: 500px) {
-    font-size: 2rem;
-    padding: 0 2rem;
+  @media (max-width: 400px) {
+    border:1px solid green;
+    font-size:clamp(2rem, 4vw, 5rem) !important;
   }
 `;
 

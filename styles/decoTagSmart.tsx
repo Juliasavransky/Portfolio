@@ -20,7 +20,6 @@ const Tag = styled.span`
   font-size: clamp(1.2rem, 1.5vw, 1.7rem);
   color: #7b7b7d;
   cursor: grab;
-/* background:red; */
 display:content;
   @media (max-width: 768px) {
     font-size: clamp(1.5rem, 4vw, 3rem);

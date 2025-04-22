@@ -19,6 +19,7 @@ import { getDictionary, Lang } from '../../hooks/getDictionary';
 import { useTranslation } from '../../hooks/useTranslation';
 import TextWrapper from '../../components/TextWrapper';
 import { useCustomTheme } from '../../hooks/useTheme';
+import {DecoTagWrapper} from '../../styles/layoutComponents';
 
 type ProjectsProps = {
   lang: Lang;
@@ -41,16 +42,16 @@ function Projects({ lang, initialDict }: ProjectsProps) {
           transition={{ duration: 0.6, ease: 'easeOut' }}
         >
 
-      <ProjectsContainer>
-        <ProjectsHeaderContainer>
-          <ProjectsHeader>
-            <DecoTagSmart
+      <ProjectsContainer >
+        <ProjectsHeaderContainer >
+          <ProjectsHeader >
+            <DecoTagWrapper
               text={'<h2>'}
               isPrimaryTag={false}
               style={{
-                position: 'relative',
-                left: 'clamp(-0.5rem, calc(-10rem + (100vw - 320px) * 0.015), -7rem)',
+                position: 'absolute',
                 top: '0',
+                left: '0',
               }}
               />
             <TextWrapper lang={lang}>
@@ -63,17 +64,17 @@ function Projects({ lang, initialDict }: ProjectsProps) {
                 animateIndex={isFullyReady ? animateIndex ?? null : null}
                 animateFont={isFullyReady ? animateFont ?? null : null}
                 style={{
-                  fontSize: `${theme.size.fontH2}`,
+                  fontSize: `${theme.size.fontH2}`, 
                 }}
                 />
             </TextWrapper>
-            <DecoTagSmart
+            <DecoTagWrapper
               text={'</h2>'}
               isPrimaryTag={true}
               style={{
-                position: 'relative',
-                left: 'clamp(1rem, calc(-10rem + (100vw - 320px) * 0.015), -7rem)',
-                top: '0',
+                position: 'absolute',
+                right: '0',
+                bottom: '0',
               }}
               />
           </ProjectsHeader>

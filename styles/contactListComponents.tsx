@@ -12,7 +12,6 @@ export const ContactMainPageContainer = styled.div`
 
   @media (max-width: 1220px) {
     left: 0;
-    bottom: 0;
     height: 92%;
     width: 100vw;
   }

@@ -10,8 +10,14 @@ export const ProjectsContainer = styled.div`
   left: clamp(2rem, 15vw, 12rem);
   width: clamp(80vw, 90vw, 100vw);
   align-items: center;
-
+  
   @media (max-width: 1220px) {
+    left: 0;
+    width: 100vw;
+    flex-wrap: wrap;
+    text-align: center ;
+  }
+  @media (max-width: 428px) {
     left: 0;
     width: 100vw;
     flex-wrap: wrap;
@@ -26,8 +32,8 @@ export const ProjectsHeaderContainer = styled.div`
   width: 100%;
   text-align: center;
 
-  @media (max-width: 1220px) {
-    margin-top: 4rem;
+  @media (max-width: 428px) {
+    text-align: center;
   }
 `;
 export const ProjectsHeader = styled.div`
@@ -40,11 +46,13 @@ export const ProjectsHeader = styled.div`
   flex-wrap: nowrap;
   align-items: center;
   text-align: center;
-
+  position: relative;
+  
   @media (max-width: 428px) {
     font-size: 2.5rem;
     flex-direction: column;
     flex-wrap: wrap;
+    line-height: 0.7;
   }
 `;
 export const SmallTitleContainer = styled.div`

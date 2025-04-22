@@ -22,19 +22,6 @@ export const Row = styled.div`
   }
 `;
 
-// export const Column = styled.div`
-//   display: flex;
-//   flex: 1;
-//   flex-direction: row;
-//   justify-content: center;
-//   width: 38vw;
-//   align-items: center;
-
-//   @media (max-width: 768px) {
-//     width: 100vw;
-//     min-width: 100vw;
-//   }
-// `;
 export const SkillsHeaderContainer = styled.div`
   display: flex;
   flex-direction: column;

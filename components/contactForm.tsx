@@ -133,7 +133,6 @@ const ContactForm: React.FC = () => {
         style={{
           position: 'absolute',
           right: '-5rem',
-          // 'clamp(26rem, calc(30rem + (100vw - 340px) ), 35rem)',
           bottom: '-5rem',
         }}
       />
@@ -143,7 +142,6 @@ const ContactForm: React.FC = () => {
         style={{
           position: 'absolute',
           right: '-8rem',
-          // 'clamp(30rem, calc(35rem + (100vw - 340px) ), 40rem)',
           bottom: '-8rem',
         }}
       />
