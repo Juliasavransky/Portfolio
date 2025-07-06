@@ -1,5 +1,5 @@
-const nodemailer = require('nodemailer');
 import type { NextApiRequest, NextApiResponse } from 'next';
+import nodemailer from 'nodemailer';
 
 type ResponseData = {
   message: string;
@@ -29,10 +29,11 @@ export default async function handler(
     });
 
     await transporter.sendMail({
-      from: `"${name}" <${email}>`,
+      from: process.env.EMAIL_USERNAME,
       to: 'savranskyj@gmail.com',
       subject: subject,
       text: message,
+      replyTo: email,
       html: `
         <h2>Hi, this is ${name}</h2>
         <p><strong>My Email:</strong> ${email}</p>
