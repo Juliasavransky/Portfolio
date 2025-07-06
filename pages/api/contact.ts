@@ -1,7 +1,5 @@
-import sgMail from '@sendgrid/mail';
+const nodemailer = require('nodemailer');
 import type { NextApiRequest, NextApiResponse } from 'next';
-
-sgMail.setApiKey(process.env.SENDGRID_API_KEY!);
 
 type ResponseData = {
   message: string;
@@ -21,25 +19,31 @@ export default async function handler(
     return res.status(400).json({ message: 'Missing required fields' });
   }
 
-  const msg = {
-    to: 'savranskyj@gmail.com',
-    from: 'savranskyj@gmail.com', // כתובת מאומתת ב-SendGrid
-    replyTo: req.body.email, // כך שהנמען יוכל להשיב לשולח המקורי
-    subject: req.body.subject,
-    text: req.body.message,
-    html: `
-    <h2>Hi, this is ${req.body.name}</h2>
-    <p><strong>My Email:</strong> ${req.body.email}</p>
-    <p><strong>Subject:</strong> ${req.body.subject}</p>
-    <p><strong>Message:</strong></p>
-    <p>${req.body.message}</p>
-  `,
-  };
-
   try {
-    await sgMail.send(msg);
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: process.env.EMAIL_USERNAME,
+        pass: process.env.EMAIL_PASSWORD,
+      },
+    });
+
+    await transporter.sendMail({
+      from: `"${name}" <${email}>`,
+      to: 'savranskyj@gmail.com',
+      subject: subject,
+      text: message,
+      html: `
+        <h2>Hi, this is ${name}</h2>
+        <p><strong>My Email:</strong> ${email}</p>
+        <p><strong>Subject:</strong> ${subject}</p>
+        <p><strong>Message:</strong></p>
+        <p>${message}</p>
+      `,
+    });
+
     return res.status(200).json({ message: 'Email sent successfully!' });
-  } catch (error: any) {
+  } catch (error) {
     console.error('Error sending email:', error);
     return res.status(500).json({ message: 'Failed to send email.' });
   }
