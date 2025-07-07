@@ -10,6 +10,7 @@ import {
   TextArea,
   ContactBtn,
 } from '@/styles/contactFormComponents';
+import MailErrorPopup from './MailErrorPopup'; 
 
 const ContactForm: React.FC = () => {
   const { t } = useTranslation('contact');
@@ -25,6 +26,7 @@ const ContactForm: React.FC = () => {
 
   const [loading, setLoading] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
+  const [errorPopup, setErrorPopup] = useState(false);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -49,6 +51,11 @@ const ContactForm: React.FC = () => {
       setFormData({ name: '', email: '', subject: '', message: '' });
     } catch (error) {
       console.error('Error sending form:', error);
+      setErrorPopup(true); // הצג את הפופאפ
+      setTimeout(() => {
+        setShowPopup(false);
+        setErrorPopup(false);
+      }, 12000);
     } finally {
       setLoading(false);
       setTimeout(() => setShowPopup(false), 3000);
@@ -127,24 +134,24 @@ const ContactForm: React.FC = () => {
             right: '0',
           }}
         />
-      <DecoTagWrapper
-        text={'</body>'}
-        isPrimaryTag={false}
-        style={{
-          position: 'absolute',
-          right: '-5rem',
-          bottom: '-5rem',
-        }}
-      />
-      <DecoTagWrapper
-        text={'</html>'}
-        isPrimaryTag={false}
-        style={{
-          position: 'absolute',
-          right: '-8rem',
-          bottom: '-8rem',
-        }}
-      />
+        <DecoTagWrapper
+          text={'</body>'}
+          isPrimaryTag={false}
+          style={{
+            position: 'absolute',
+            right: '-5rem',
+            bottom: '-5rem',
+          }}
+        />
+        <DecoTagWrapper
+          text={'</html>'}
+          isPrimaryTag={false}
+          style={{
+            position: 'absolute',
+            right: '-8rem',
+            bottom: '-8rem',
+          }}
+        />
       </Form>
       {showPopup && (
         <div className='popup'>
@@ -186,6 +193,11 @@ const ContactForm: React.FC = () => {
           }
         }
       `}</style>
+
+      {errorPopup && (
+        <MailErrorPopup onClose={() => setErrorPopup(false)} />
+      )}
+
     </>
   );
 };
