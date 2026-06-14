@@ -1,5 +1,65 @@
 [
   {
+    "pageLink": "https://mati-mor-event.vercel.app/",
+    "img": "/images/matiMorEvent.jpg",
+    "projectName": {
+      "en": "Mati Mor – Life Journey Event",
+      "he": "מתי מור – מסע חיי"
+    },
+    "summary": {
+      "en": "✨ A one-time lecture by numerologist Mati Mor — a personal journey through numbers, meaning, and life. An intimate evening that stays with you.",
+      "he": "✨ הרצאה חד-פעמית של הנומרולוגית מתי מור – מסע אישי דרך מספרים, משמעות וחיים. ערב אינטימי שנשאר איתך."
+    }
+  },
+  {
+    "pageLink": "https://havaya-gems.com",
+    "img": "/images/havayaGems.jpg",
+    "projectName": {
+      "en": "Havaya Gems",
+      "he": "הוויה ג'מס"
+    },
+    "summary": {
+      "en": "🔮 A spiritual center and shop offering crystals, Judaica, natural wellness products, and more. Two treatment spaces for workshops and personal sessions.",
+      "he": "🔮 מרכז רוחני וחנות המציעים קריסטלים, יודאיקה, מוצרי טיפוח טבעיים ועוד. שני חללי טיפול לסדנאות ולטיפול פרטני."
+    }
+  },
+  {
+    "pageLink": "https://grace-couture.vercel.app/",
+    "img": "/images/graceCouture.jpg",
+    "projectName": {
+      "en": "Grace Couture",
+      "he": "גרייס קוטייור"
+    },
+    "summary": {
+      "en": "🪡 A Parisian atelier specializing in alterations, evening gowns, and statement bags — with a distinct African-Oriental fashion sensibility.",
+      "he": "🪡 מתפרה פריזאית המתמחה בתיקונים, שמלות ערב ותיקים עם סגנון אפריקאי-אוריינטלי ייחודי."
+    }
+  },
+  {
+    "pageLink": "https://mate-workshop.vercel.app/",
+    "img": "/images/matiMorWorkshop.jpg",
+    "projectName": {
+      "en": "Mati Mor – Numerology Workshops",
+      "he": "מתי מור – סדנאות נומרולוגיה"
+    },
+    "summary": {
+      "en": "🔢 Discover the language of numbers. Mati Mor's numerology workshops offer practical tools for self-understanding and personal growth.",
+      "he": "🔢 גלו את שפת המספרים. סדנאות הנומרולוגיה של מתי מור מציעות כלים מעשיים להכרה עצמית וצמיחה אישית."
+    }
+  },
+  {
+    "pageLink": "https://inclusive-voices.vercel.app/",
+    "img": "/images/inclusiveVoices.jpg",
+    "projectName": {
+      "en": "Inclusive Voices",
+      "he": "קולות כוללניים"
+    },
+    "summary": {
+      "en": "🌿 Workshops for teachers of children on the autism spectrum — created by parents, powered by ALUT. Practical, human, and deeply needed.",
+      "he": "🌿 סדנאות למורים המלמדים ילדים על הספקטרום האוטיסטי – מבית הורים, בשיתוף אלו\"ט. מעשי, אנושי, ונחוץ."
+    }
+  },
+  {
     "pageLink": "https://juliasavransky.github.io/Pokemon-cards-memory-game/",
     "img": "/images/pokemon2.jpg",
     "projectName": {
@@ -7,7 +67,7 @@
       "he": "משחק זיכרון פוקימון"
     },
     "summary": {
-      "en": "🔥 The ultimate memory challenge for true Pokémon lovers! 🔥 Classic gameplay meets a wild twist — every card is a surprise from a 560-character Pokémon pool. 🚀 As levels grow, so does the challenge. No two rounds are alike. Colorful, addictive, and brain-boosting fun for all ages.\n✨ Gotta match ’em all — how far will your memory take you?",
+      "en": "🔥 The ultimate memory challenge for true Pokémon lovers! 🔥 Classic gameplay meets a wild twist — every card is a surprise from a 560-character Pokémon pool. 🚀 As levels grow, so does the challenge. No two rounds are alike. Colorful, addictive, and brain-boosting fun for all ages.\n✨ Gotta match 'em all — how far will your memory take you?",
       "he": "🔥 משחק הזיכרון האולטימטיבי למאסטרי פוקימון! 🔥 טוויסט מרענן לקלאסיקה – 560 דמויות רנדומליות, שלבים בלי סוף, ואתגר שכל הזמן משתנה.\n🌟 גרפיקה צבעונית, קצב ממכר, וכיף שמתאים לכולם. כמה רחוק תגיעו?"
     }
   },
@@ -72,4 +132,3 @@
     }
   }
 ]
-    
