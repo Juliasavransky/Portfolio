@@ -1,8 +1,8 @@
 const home = {
   title: '',
   subtitle:
-    'I build one-of-a-kind websites that feel like magic. I craft sites with soul, code with flair, and design brands that leave a lasting impression.',
-  buttonFront: 'Click & Discover My Superpowers',
+    'Creative entrepreneurs: a website that brings clients — without having to explain yourself every time. Design + development + automations — all in one place. You bring the vibe, I build the rest.',
+  buttonFront: 'See what I can build for you',
   buttonBack: 'Design. Code. Wonder',
 };
 
