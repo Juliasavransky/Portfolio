@@ -20,7 +20,44 @@ import { useTranslation } from '../../hooks/useTranslation';
 import TextWrapper from '../../components/TextWrapper';
 import { useCustomTheme } from '../../hooks/useTheme';
 import {DecoTagWrapper} from '../../styles/layoutComponents';
-
+// Hebrew Projects
+export const metadata = {
+  title: "פורטפוליו — אתרים לעסקים יצירתיים ורוחניים | Web Witch",
+  description: "עבודות של Web Witch: אתרים לנומרולוגית, חנות רוחנית, מתפרה פריזאית, סדנאות, ועוד. כל אתר מותאם אישית לוויב של הלקוחה.",
+  openGraph: {
+    title: "פורטפוליו | Web Witch",
+    description: "ראי מה אפשר לבנות לך — עבודות אמיתיות לעסקים יצירתיים ורוחניים בישראל.",
+    url: "https://webwitch.click/he/projects",
+    locale: "he_IL",
+  },
+  alternates: {
+    canonical: "https://webwitch.click/he/projects",
+    languages: {
+      "he": "https://webwitch.click/he/projects",
+      "en": "https://webwitch.click/en/projects",
+      "x-default": "https://webwitch.click/he/projects",
+    },
+  },
+};
+// English Projects
+export const metadata = {
+  title: "Portfolio — Websites for Creative & Spiritual Businesses | Web Witch",
+  description: "Web Witch portfolio: websites for a numerologist, spiritual shop, Parisian atelier, workshops, and more. Every site custom-built to match the client's vibe.",
+  openGraph: {
+    title: "Portfolio | Web Witch",
+    description: "See what we can build for you — real work for real creative businesses.",
+    url: "https://webwitch.click/en/projects",
+    locale: "en_IL",
+  },
+  alternates: {
+    canonical: "https://webwitch.click/en/projects",
+    languages: {
+      "he": "https://webwitch.click/he/projects",
+      "en": "https://webwitch.click/en/projects",
+      "x-default": "https://webwitch.click/he/projects",
+    },
+  },
+};
 type ProjectsProps = {
   lang: Lang;
   initialDict: Record<string, string>;
