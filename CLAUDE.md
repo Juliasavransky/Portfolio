@@ -348,14 +348,10 @@ Replace `[page]` in the hreflang links with the actual page name (home / about /
 
 ### 🟡 FRONTEND — Ask Julia first
 
-#### F1. Hero Section copy update
+#### F1. ✅ RESOLVED — Hero Section copy update
 **What:** The subtitle and body text on the homepage currently describe Julia ("בונה אתרים מותאמים אישית שמהגישים אחרת. מעוצבת, מפתחת, מקודדת...").
 **Why:** Copy should speak to the visitor, not describe Julia.
-**Proposed change:**
-- Subtitle: "יזמיות יצירתיות: אתר שמביא לקוחות — בלי שתצטרכי להסביר את עצמך."
-- Body: "עיצוב + פיתוח + אוטומציות — הכל ביחד, תחת גג אחד. את מביאה את הוויב, אני בונה את השאר."
-- CTA button: "תראי מה אפשר לבנות לך"
-→ **Ask before changing.**
+**Update 2026-07-02:** The copy had already been updated to match the proposed direction (CTA button was already an exact match) — only punctuation needed polish in `i18n/home/he.ts` (missing spacing/dashes between sentences). Fixed.
 
 #### F2. ✅ RESOLVED — English homepage has Hebrew content
 **What:** The English version of the homepage currently shows Hebrew text in the hero section.
