@@ -21,7 +21,44 @@ type Props = {
   lang: Lang;
   initialDict: Record<string, string>;
 };
-
+// English Contact
+export const metadata = {
+  title: "Contact — Let's Build Something Together | Web Witch",
+  description: "Interested in a website that actually feels like you? Reach out — I take 2-3 projects per month to give each client full attention.",
+  openGraph: {
+    title: "Contact | Web Witch",
+    description: "Want to find out if we're the right fit? Send a message — I respond within 24 hours.",
+    url: "https://webwitch.click/en/contact",
+    locale: "en_IL",
+  },
+  alternates: {
+    canonical: "https://webwitch.click/en/contact",
+    languages: {
+      "he": "https://webwitch.click/he/contact",
+      "en": "https://webwitch.click/en/contact",
+      "x-default": "https://webwitch.click/he/contact",
+    },
+  },
+};
+// Hebrew Contact
+export const metadata = {
+  title: "צור קשר — בואי נבנה משהו ביחד | Web Witch",
+  description: "מעוניינת באתר שמייצג אותך לאמיתי? דברי איתי — אני לוקחת 2-3 פרויקטים בחודש כדי לתת לכל לקוחה תשומת לב מלאה.",
+  openGraph: {
+    title: "צור קשר | Web Witch",
+    description: "רוצה לדעת אם אנחנו מתאימות? שלחי לי הודעה — אתגובה תוך 24 שעות.",
+    url: "https://webwitch.click/he/contact",
+    locale: "he_IL",
+  },
+  alternates: {
+    canonical: "https://webwitch.click/he/contact",
+    languages: {
+      "he": "https://webwitch.click/he/contact",
+      "en": "https://webwitch.click/en/contact",
+      "x-default": "https://webwitch.click/he/contact",
+    },
+  },
+};
 function Contact({ lang, initialDict }: Props) {
   const { t } = useTranslation('contact', initialDict);
   const theme = useCustomTheme();
