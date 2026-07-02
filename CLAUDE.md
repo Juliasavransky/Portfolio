@@ -23,9 +23,11 @@ Format for asking:
 
 ## SEO Issues to Fix (found in audit — 2026-07-02)
 
+**Status as of 2026-07-02: items #1, #2, #5, #6 are done. #3 and #4 are deferred — Julia asked not to add the pricing section to the site yet. See "Additional fixes" section at the bottom for work done beyond this original audit.**
+
 ### 🔴 CRITICAL — Auto-fix
 
-#### 1. Create `/public/robots.txt`
+#### 1. ✅ DONE — Create `/public/robots.txt`
 File does not exist. `/robots.txt` currently redirects to `/he/home`.
 
 ```
@@ -59,7 +61,7 @@ Disallow: /
 Sitemap: https://webwitch.click/sitemap.xml
 ```
 
-#### 2. Create `/public/sitemap.xml`
+#### 2. ✅ DONE — Create `/public/sitemap.xml`
 File does not exist. `/sitemap.xml` currently redirects to `/he/home`.
 Must include all 8 pages (4 pages × 2 languages) with hreflang alternates.
 
@@ -151,16 +153,17 @@ Must include all 8 pages (4 pages × 2 languages) with hreflang alternates.
 </urlset>
 ```
 
-#### 3. Create `/public/llms.txt`
+#### 3. ⏸️ DEFERRED — Create `/public/llms.txt`
 Does not exist. Helps ChatGPT, Claude, Perplexity understand and cite the site.
-See full content in `llms.txt` (provided separately).
+**On hold: Julia doesn't want the pricing/packages content added to the site yet — revisit when she's ready to finalize pricing.**
 
-#### 4. Create `/public/pricing.md`
+#### 4. ⏸️ DEFERRED — Create `/public/pricing.md`
 Does not exist. Helps AI agents read pricing without JS rendering.
-See full content in `pricing.md` (provided separately).
+**Same hold as #3 — depends on finalized pricing content.**
 
-#### 5. Add Schema Markup to `_app.tsx` or `_document.tsx`
+#### 5. ✅ DONE — Add Schema Markup to `_app.tsx` or `_document.tsx`
 No structured data detected. Add as `<script type="application/ld+json">` in the document `<Head>`.
+**Implemented in `components/Seo.tsx`, rendered globally via `_app.tsx`.**
 
 ```json
 {
@@ -219,8 +222,9 @@ No structured data detected. Add as `<script type="application/ld+json">` in the
 }
 ```
 
-#### 6. Fix `<Head>` meta tags in all page files
+#### 6. ✅ DONE — Fix `<Head>` meta tags in all page files
 **Problem:** This is a Pages Router project. `export const metadata` does NOT work here — it's App Router only. Any `export const metadata` blocks added to page files must be removed and replaced with `<Head>` from `next/head`.
+**Implemented as a shared `components/PageSeo.tsx` component (takes `lang`, `title`, `description`, `path`) rather than inlining the `<Head>` block per page — same tags, less duplication. All 4 pages now use it; no `export const metadata` remains anywhere in `pages/[lang]/`.**
 
 **Pattern to use in every page file:**
 
@@ -357,6 +361,7 @@ Replace `[page]` in the hreflang links with the actual page name (home / about /
 **What:** The English version of the homepage currently shows Hebrew text in the hero section.
 **Why:** The lang-based content switch may not be working correctly, or the translation keys are missing.
 → **Ask before changing.** Needs investigation into the translation file.
+**Update 2026-07-02:** Investigated — pulled the live server-rendered HTML for `/en/home` directly and it returns correct English text (`i18n/home/en.ts` and `he.ts` are properly separated, `getServerSideProps` loads the right dictionary). Could not reproduce the bug from the server side. **Still needs Julia to confirm in her own browser** (private/incognito window, to rule out cache) before this is marked resolved — she has not yet confirmed.
 
 ---
 
@@ -372,9 +377,24 @@ Replace `[page]` in the hreflang links with the actual page name (home / about /
 ## File Locations (SEO assets)
 
 All static SEO files go in `/public/`:
-- `/public/robots.txt`
-- `/public/sitemap.xml`
-- `/public/llms.txt`
-- `/public/pricing.md`
+- `/public/robots.txt` ✅
+- `/public/sitemap.xml` ✅
+- `/public/llms.txt` ⏸️ deferred (see #3 above)
+- `/public/pricing.md` ⏸️ deferred (see #4 above)
 
-Schema JSON-LD goes in `_document.tsx` or `_app.tsx` inside `<Head>`.
+Schema JSON-LD goes in `_document.tsx` or `_app.tsx` inside `<Head>`. (Implemented in `components/Seo.tsx`, rendered via `_app.tsx`.)
+
+---
+
+## Additional fixes (beyond the original 2026-07-02 audit)
+
+Found and fixed while doing this SEO/quality work — not part of the original list above, kept here for the record:
+
+- **Build-breaking bug:** all 4 `pages/[lang]/*.tsx` files had `export const metadata` declared twice (once per language) — a duplicate block-scoped variable, which crashed the Next.js build outright. Fixed as part of #6.
+- **Root URL 404:** `https://webwitch.click/` (no `/he` or `/en`) had no matching route and returned HTTP 404. Added `pages/index.tsx` with a permanent redirect to `/he/home`. This was blocking Google Search Console's site-verification crawler.
+- **GA4 + Google Search Console** wired up as env-var-gated (`NEXT_PUBLIC_GA_ID`, `NEXT_PUBLIC_GSC_VERIFICATION`, set in `.env.local` + Vercel). Both are live and verified.
+- **Image alt text:** project card images had a generic `alt="project"` for all 11 projects; now use each project's actual name.
+- **Core Web Vitals:** every project card image had `priority` set, forcing all 11 to eagerly preload at once (hurts LCP). Removed — only above-the-fold images should use `priority`.
+- **Font bloat:** removed the `Solitreo` Google Font from the title letter-cycling animation — Next.js couldn't generate fallback metrics for it (build warning), risking layout shift (CLS) on font swap. The other 14 fonts in the rotation were kept since Julia considers the effect core to the brand.
+- Installed `sharp` for faster production image optimization on Vercel (was missing, Vercel build warned about it).
+- **Bug sweep across the whole codebase** (contact form, error popup, animations, API) — see git log `9c830fc` for the full list: contact form was hardcoded to Hebrew/RTL regardless of page language; the mail-failure popup was hardcoded Hebrew-only, could be dismissed by clicking inside it, and linked to a WhatsApp number missing a digit; the letter-shimmer animation on About/Contact/Projects landed on the wrong character; the API route was vulnerable to HTML injection into the notification email via unescaped user input.
