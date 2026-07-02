@@ -83,7 +83,7 @@ const ContactForm: React.FC = () => {
             value={formData.name}
             onChange={handleChange}
             theme={theme}
-            style={{ width: '50%' }}
+            style={{ flex: 1, minWidth: 0 }}
           />
           <Input
             lang={lang}
@@ -94,7 +94,7 @@ const ContactForm: React.FC = () => {
             value={formData.email}
             onChange={handleChange}
             theme={theme}
-            style={{ width: '50%' }}
+            style={{ flex: 1, minWidth: 0 }}
           />
         </FormGroup>
 
@@ -199,6 +199,7 @@ const ContactForm: React.FC = () => {
           title={t.errorTitle}
           subtitle={t.errorSubtitle}
           whatsappButtonText={t.errorWhatsappButton}
+          closeLabel={t.errorClose}
         />
       )}
 

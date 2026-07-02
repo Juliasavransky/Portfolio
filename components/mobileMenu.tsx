@@ -27,6 +27,8 @@ const MenuButton = styled.button`
   cursor: pointer;
   border: none;
   background: none;
+  padding: 10px;
+  margin: -10px;
   /* position: absolute; */
 
   .bar {
@@ -96,6 +98,8 @@ const MobileMenu: React.FC<MenuProps> = ({ lang, initialDict }) => {
         <MenuButton
           className={isOpen ? 'open' : ''}
           onClick={() => setIsOpen(!isOpen)}
+          aria-label={lang === 'he' ? 'תפריט' : 'Menu'}
+          aria-expanded={isOpen}
         >
           <div className='bar'></div>
           <div className='bar'></div>

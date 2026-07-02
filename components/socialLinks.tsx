@@ -26,8 +26,8 @@ const Icons = styled.div`
 
 const IconD = styled.div`
   position: relative;
-  height: clamp(2rem, 2.5rem, 3rem);
-  width: clamp(2rem, 2.5rem, 3rem);
+  height: clamp(2.75rem, 8vw, 3rem);
+  width: clamp(2.75rem, 8vw, 3rem);
   filter: invert(49%) sepia(1%) saturate(1741%) hue-rotate(201deg)
     brightness(98%) contrast(87%);
   cursor: pointer;

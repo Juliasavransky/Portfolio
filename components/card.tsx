@@ -105,7 +105,7 @@ const DetailsTitle = styled.h2`
     left: -0.5rem;
     right: -0.5rem;
     height: 0.75rem;
-    background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/664131/underline.svg');
+    background-image: url('/images/underline.svg');
     background-repeat: no-repeat;
     background-size: cover;
   }

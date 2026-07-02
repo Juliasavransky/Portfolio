@@ -14,6 +14,7 @@ const contact = {
   errorTitle: "My server is swamped with requests 🤯",
   errorSubtitle: "Please reach out on WhatsApp and I'll get back to you soon ✨",
   errorWhatsappButton: "Send a message",
+  errorClose: "Close",
 };
 
 export default contact;

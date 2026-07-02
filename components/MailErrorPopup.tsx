@@ -1,6 +1,7 @@
 // components/ErrorPopup.tsx
 import styled from '@emotion/styled';
 import { motion } from 'framer-motion';
+import { useEffect } from 'react';
 
 const Overlay = styled.div`
   position: fixed;
@@ -16,11 +17,35 @@ const Overlay = styled.div`
 `;
 
 const Popup = styled(motion.div)`
+  position: relative;
   background: #181818;
   padding: 4rem;
   border-radius: 2rem;
   text-align: center;
   max-width: 600px;
+`;
+
+const CloseButton = styled.button`
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 2.75rem;
+  height: 2.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+  color: white;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  border-radius: 50%;
+
+  &:hover,
+  &:focus-visible {
+    background: rgba(255, 255, 255, 0.15);
+  }
 `;
 
 const Button = styled.a`
@@ -46,6 +71,7 @@ type Props = {
   title: string;
   subtitle: string;
   whatsappButtonText: string;
+  closeLabel: string;
 };
 
 export default function ErrorPopup({
@@ -53,7 +79,16 @@ export default function ErrorPopup({
   title,
   subtitle,
   whatsappButtonText,
+  closeLabel,
 }: Props) {
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose();
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [onClose]);
+
   return (
     <Overlay onClick={onClose}>
       <Popup
@@ -61,7 +96,13 @@ export default function ErrorPopup({
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: 20 }}
+        role='dialog'
+        aria-modal='true'
+        aria-label={title}
       >
+        <CloseButton onClick={onClose} aria-label={closeLabel}>
+          ×
+        </CloseButton>
         <h1>{title}</h1>
         <h3>{subtitle}</h3>
         <Button

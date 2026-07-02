@@ -13,6 +13,7 @@ const contact = {
       errorTitle: 'השרת שלי עמוס בפניות 🤯',
       errorSubtitle: 'בבקשה צרו קשר בוואטסאפ ונחזור בהקדם ✨',
       errorWhatsappButton: 'לשליחת הודעה',
+      errorClose: 'סגור',
   };
   
   export default contact;

@@ -12,7 +12,7 @@ export const TooltipBubble = styled.div`
   top: -120%; /* מעל האלמנט */
   left: 50%;
   transform: translateX(-50%) translateY(10px);
-  background: #7b7b7d;
+  background: #1d1d1d;
   color: #ffcc00;
   padding: 8px 16px;
   border-radius: 9px;

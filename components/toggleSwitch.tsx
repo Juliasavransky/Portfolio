@@ -14,7 +14,10 @@ const ToggleWrapper = styled.label`
     top: 0;
     left: 0;
   }
-  @media (max-width: 768px) {
+  @media (max-width: 480px) {
+    /* Invisible padding widens the tap target to 44px+ without resizing the visible switch */
+    padding: 8px;
+    margin: -8px;
   }
 `;
 

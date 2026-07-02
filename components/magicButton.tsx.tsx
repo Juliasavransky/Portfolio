@@ -109,6 +109,7 @@ export const MagicButton = ({
   return (
     <BtnMain>
       <motion.a
+        href={href}
         style={{
           position: 'relative',
           transformStyle: 'preserve-3d',
@@ -119,7 +120,10 @@ export const MagicButton = ({
         animate={controls}
         onHoverStart={handleHover}
         onHoverEnd={handleHoverEnd}
-        onClick={handleClick}
+        onClick={(e) => {
+          e.preventDefault();
+          handleClick();
+        }}
       >
         <Front theme={theme}>{frontText}</Front>
         <Back theme={theme}>{backText}</Back>
