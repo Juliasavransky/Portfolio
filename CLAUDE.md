@@ -357,11 +357,10 @@ Replace `[page]` in the hreflang links with the actual page name (home / about /
 - CTA button: "תראי מה אפשר לבנות לך"
 → **Ask before changing.**
 
-#### F2. English homepage has Hebrew content
+#### F2. ✅ RESOLVED — English homepage has Hebrew content
 **What:** The English version of the homepage currently shows Hebrew text in the hero section.
 **Why:** The lang-based content switch may not be working correctly, or the translation keys are missing.
-→ **Ask before changing.** Needs investigation into the translation file.
-**Update 2026-07-02:** Investigated — pulled the live server-rendered HTML for `/en/home` directly and it returns correct English text (`i18n/home/en.ts` and `he.ts` are properly separated, `getServerSideProps` loads the right dictionary). Could not reproduce the bug from the server side. **Still needs Julia to confirm in her own browser** (private/incognito window, to rule out cache) before this is marked resolved — she has not yet confirmed.
+**Update 2026-07-02:** Investigated — pulled the live server-rendered HTML for `/en/home` directly and it returns correct English text (`i18n/home/en.ts` and `he.ts` are properly separated, `getServerSideProps` loads the right dictionary). Julia confirmed in her own browser that the homepage is correct in both languages. No fix was needed — likely stale from an earlier state or a caching artifact at the time of the original audit.
 
 ---
 
