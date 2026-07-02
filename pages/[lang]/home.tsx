@@ -19,6 +19,49 @@ import { useCustomTheme } from '../../hooks/useTheme';
 import TextWrapper from '../../components/TextWrapper';
 import DecoTagSmart from '@/styles/decoTagSmart';
 
+// English Home
+export const metadata = {
+  title: "Custom Web Design for Creative Businesses in Israel | Web Witch",
+  description: "Custom websites for creative and spiritual entrepreneurs in Israel. Design + development + automations — all in one place. Starting at ₪4,500.",
+  keywords: ["web design Israel", "website for creative business", "custom web development", "spiritual business website", "web designer Israel", "Web Witch"],
+  openGraph: {
+    title: "Web Witch | A Website That Actually Feels Like You",
+    description: "Creative entrepreneurs: a website that brings clients — without having to explain yourself every time. Design + development + automations.",
+    url: "https://webwitch.click/en/home",
+    locale: "en_IL",
+    type: "website",
+  },
+  alternates: {
+    canonical: "https://webwitch.click/en/home",
+    languages: {
+      "he": "https://webwitch.click/he/home",
+      "en": "https://webwitch.click/en/home",
+      "x-default": "https://webwitch.click/he/home",
+    },
+  },
+};
+
+// Hebrew Home
+export const metadata = {
+  title: "עיצוב ופיתוח אתרים לעסקים יצירתיים | Web Witch",
+  description: "בונה אתרים מותאמים אישית לעסקים יצירתיים ורוחניים בישראל. עיצוב + פיתוח + אוטומציות — ביחד, תחת גג אחד. החל מ-₪4,500.",
+  keywords: ["עיצוב אתרים", "בניית אתרים לעסקים קטנים", "אתר לעסק יצירתי", "מפתחת אתרים ישראל", "אתר לעסק רוחני", "Web Witch"],
+  openGraph: {
+    title: "Web Witch | אתר שמייצג אותך לאמיתי",
+    description: "יזמיות יצירתיות: אתר שמביא לקוחות — בלי שתצטרכי להסביר את עצמך. עיצוב + פיתוח + אוטומציות.",
+    url: "https://webwitch.click/he/home",
+    locale: "he_IL",
+    type: "website",
+  },
+  alternates: {
+    canonical: "https://webwitch.click/he/home",
+    languages: {
+      "he": "https://webwitch.click/he/home",
+      "en": "https://webwitch.click/en/home",
+      "x-default": "https://webwitch.click/he/home",
+    },
+  },
+};
 type Props = {
   lang: Lang;
   initialDict: Record<string, string>;
