@@ -19,6 +19,27 @@ export default async function handler(
     return res.status(400).json({ message: 'Missing required fields' });
   }
 
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (typeof email !== 'string' || !emailPattern.test(email)) {
+    return res.status(400).json({ message: 'Invalid email address' });
+  }
+
+  const escapeHtml = (value: string) =>
+    value.replace(/[&<>"']/g, (char) => {
+      switch (char) {
+        case '&':
+          return '&amp;';
+        case '<':
+          return '&lt;';
+        case '>':
+          return '&gt;';
+        case '"':
+          return '&quot;';
+        default:
+          return '&#39;';
+      }
+    });
+
   try {
     const transporter = nodemailer.createTransport({
       service: 'gmail',
@@ -35,11 +56,11 @@ export default async function handler(
       text: message,
       replyTo: email,
       html: `
-        <h2>Hi, this is ${name}</h2>
-        <p><strong>My Email:</strong> ${email}</p>
-        <p><strong>Subject:</strong> ${subject}</p>
+        <h2>Hi, this is ${escapeHtml(name)}</h2>
+        <p><strong>My Email:</strong> ${escapeHtml(email)}</p>
+        <p><strong>Subject:</strong> ${escapeHtml(subject)}</p>
         <p><strong>Message:</strong></p>
-        <p>${message}</p>
+        <p>${escapeHtml(message)}</p>
       `,
     });
 

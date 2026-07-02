@@ -1,7 +1,6 @@
 // components/ErrorPopup.tsx
 import styled from '@emotion/styled';
 import { motion } from 'framer-motion';
-import { useState } from 'react';
 
 const Overlay = styled.div`
   position: fixed;
@@ -44,23 +43,29 @@ const Button = styled.a`
 
 type Props = {
   onClose: () => void;
+  title: string;
+  subtitle: string;
+  whatsappButtonText: string;
 };
 
-export default function ErrorPopup({ onClose }: Props) {
-  const [errorPopup, setErrorPopup] = useState(false);
-
+export default function ErrorPopup({
+  onClose,
+  title,
+  subtitle,
+  whatsappButtonText,
+}: Props) {
   return (
     <Overlay onClick={onClose}>
       <Popup
-        onClick={(e) => setErrorPopup(true)}
+        onClick={(e) => e.stopPropagation()}
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: 20 }}
       >
-        <h1>השרת שלי עמוס בפניות 🤯</h1>
-        <h3>בבקשה צרו קשר בוואטסאפ ונחזור בהקדם ✨</h3>
+        <h1>{title}</h1>
+        <h3>{subtitle}</h3>
         <Button
-          href='https://wa.me/97254772571' 
+          href='https://wa.me/972544772571'
           target='_blank'
           rel='noopener noreferrer'
         >
@@ -72,7 +77,7 @@ export default function ErrorPopup({ onClose }: Props) {
               d='M23.294 19.175c-0.394-0.2-2.344-1.156-2.706-1.288s-0.625-0.2-0.894 0.2c-0.262 0.394-1.025 1.288-1.256 1.556-0.231 0.262-0.462 0.3-0.856 0.1s-1.675-0.619-3.188-1.969c-1.175-1.050-1.975-2.35-2.206-2.744s-0.025-0.613 0.175-0.806c0.181-0.175 0.394-0.463 0.594-0.694s0.262-0.394 0.394-0.662c0.131-0.262 0.069-0.494-0.031-0.694s-0.894-2.15-1.219-2.944c-0.319-0.775-0.65-0.669-0.894-0.681-0.231-0.012-0.494-0.012-0.756-0.012s-0.694 0.1-1.056 0.494c-0.363 0.394-1.387 1.356-1.387 3.306s1.419 3.831 1.619 4.1c0.2 0.262 2.794 4.269 6.769 5.981 0.944 0.406 1.681 0.65 2.256 0.837 0.95 0.3 1.813 0.256 2.494 0.156 0.762-0.113 2.344-0.956 2.675-1.881s0.331-1.719 0.231-1.881c-0.094-0.175-0.356-0.275-0.756-0.475z'
             />
           </svg>
-          לשליחת הודעה
+          {whatsappButtonText}
         </Button>
       </Popup>
     </Overlay>

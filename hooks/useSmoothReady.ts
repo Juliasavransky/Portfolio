@@ -7,7 +7,8 @@ import { useRouter } from 'next/router';
  * בודק גם שהעמוד נטען (delay + DOM + פונטים) וגם שהשפה התייצבה
  */
 export function useSmoothReady({ delay = 300, checkFonts = true, checkDomReady = true } = {}) {
-  const { locale } = useRouter();
+  const { query } = useRouter();
+  const lang = query.lang;
   const [isPageReady, setIsPageReady] = useState(false);
   const [isFontReady, setIsFontReady] = useState(false);
   const [isDomReady, setIsDomReady] = useState(false);
@@ -49,7 +50,7 @@ export function useSmoothReady({ delay = 300, checkFonts = true, checkDomReady =
       setIsLangSwitchDone(true);
     }, delay);
     return () => clearTimeout(langTimer);
-  }, [locale, delay]);
+  }, [lang, delay]);
 
   // מחשבים מוכן סופי
   const isFullyReady = isPageReady && isFontReady && isDomReady && isLangSwitchDone;

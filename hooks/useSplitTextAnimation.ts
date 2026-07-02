@@ -26,8 +26,10 @@ export function useSplitTextAnimation(texts: string[], lang: Lang) {
 
     texts.forEach((text) => {
       text.split('').forEach((char) => {
-        if (char !== '_') queue.push(index);
-        index++;
+        if (char !== '_') {
+          queue.push(index);
+          index++;
+        }
       });
     });
 

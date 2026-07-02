@@ -60,14 +60,7 @@ const Switch = styled.div<{ checked: boolean; isRTL?: boolean }>`
   height: 100%;
   display: flex;
   align-items: center;
-  justify-content: ${({ checked, isRTL }) =>
-    checked
-      ? isRTL
-        ? 'flex-end'
-        : 'flex-end'
-      : isRTL
-      ? 'flex-start'
-      : 'flex-start'};
+  justify-content: ${({ checked }) => (checked ? 'flex-end' : 'flex-start')};
   transition: justify-content 0.3s ease;
 
   &::after {

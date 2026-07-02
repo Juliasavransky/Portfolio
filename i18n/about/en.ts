@@ -16,9 +16,6 @@ const about = {
   part4:
     'If you`re a small business owner or a designer looking for a developer',
 
-  highlight4: ' who truly gets it – let`s talk',
-  part5: 'Your brand deserves more than just another template',
-
   textCloud:"Tools I Code With"
 
 };

@@ -13,9 +13,8 @@ import {
 import MailErrorPopup from './MailErrorPopup'; 
 
 const ContactForm: React.FC = () => {
-  const { t } = useTranslation('contact');
+  const { t, lang } = useTranslation('contact');
   const theme = useTheme();
-  const lang = 'he'; // Define the lang variable
 
   const [formData, setFormData] = useState({
     name: '',
@@ -195,7 +194,12 @@ const ContactForm: React.FC = () => {
       `}</style>
 
       {errorPopup && (
-        <MailErrorPopup onClose={() => setErrorPopup(false)} />
+        <MailErrorPopup
+          onClose={() => setErrorPopup(false)}
+          title={t.errorTitle}
+          subtitle={t.errorSubtitle}
+          whatsappButtonText={t.errorWhatsappButton}
+        />
       )}
 
     </>

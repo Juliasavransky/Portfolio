@@ -10,6 +10,9 @@ const contact = {
       send: 'בוא׊ נצא לדרך',
       sending: 'שול׬...',
       sent: '💌 נרשמה תגובה ביקום... תכף חוזרת אליך✨🧙‍♀️',
+      errorTitle: 'השרת שלי עמוס בפניות 🤯',
+      errorSubtitle: 'בבקשה צרו קשר בוואטסאפ ונחזור בהקדם ✨',
+      errorWhatsappButton: 'לשליחת הודעה',
   };
   
   export default contact;

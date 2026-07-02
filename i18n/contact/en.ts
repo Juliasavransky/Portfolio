@@ -11,6 +11,9 @@ const contact = {
   send: "Let’s Make Magic",
   sending: "Sending...",
   sent: "💌 Message sent to the universe... I’ll be in touch soon ✨🧙‍♀️",
+  errorTitle: "My server is swamped with requests 🤯",
+  errorSubtitle: "Please reach out on WhatsApp and I'll get back to you soon ✨",
+  errorWhatsappButton: "Send a message",
 };
 
 export default contact;
