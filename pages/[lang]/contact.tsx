@@ -17,55 +17,35 @@ import { useTranslation } from '../../hooks/useTranslation';
 import { useCustomTheme } from '../../hooks/useTheme';
 import TextWrapper from '../../components/TextWrapper';
 import { useSmoothReady } from '@/hooks/useSmoothReady';
+import PageSeo from '@/components/PageSeo';
+
 type Props = {
   lang: Lang;
   initialDict: Record<string, string>;
 };
-// English Contact
-export const metadata = {
-  title: "Contact — Let's Build Something Together | Web Witch",
-  description: "Interested in a website that actually feels like you? Reach out — I take 2-3 projects per month to give each client full attention.",
-  openGraph: {
-    title: "Contact | Web Witch",
-    description: "Want to find out if we're the right fit? Send a message — I respond within 24 hours.",
-    url: "https://webwitch.click/en/contact",
-    locale: "en_IL",
+
+const pageMeta = {
+  en: {
+    title: "Contact — Let's Build Something Together | Web Witch",
+    description:
+      'Interested in a website that actually feels like you? Reach out — I take 2-3 projects per month to give each client full attention.',
   },
-  alternates: {
-    canonical: "https://webwitch.click/en/contact",
-    languages: {
-      "he": "https://webwitch.click/he/contact",
-      "en": "https://webwitch.click/en/contact",
-      "x-default": "https://webwitch.click/he/contact",
-    },
+  he: {
+    title: 'צור קשר — בואי נבנה משהו ביחד | Web Witch',
+    description:
+      'מעוניינת באתר שמייצג אותך לאמיתי? דברי איתי — אני לוקחת 2-3 פרויקטים בחודש כדי לתת לכל לקוחה תשומת לב מלאה.',
   },
 };
-// Hebrew Contact
-export const metadata = {
-  title: "צור קשר — בואי נבנה משהו ביחד | Web Witch",
-  description: "מעוניינת באתר שמייצג אותך לאמיתי? דברי איתי — אני לוקחת 2-3 פרויקטים בחודש כדי לתת לכל לקוחה תשומת לב מלאה.",
-  openGraph: {
-    title: "צור קשר | Web Witch",
-    description: "רוצה לדעת אם אנחנו מתאימות? שלחי לי הודעה — אתגובה תוך 24 שעות.",
-    url: "https://webwitch.click/he/contact",
-    locale: "he_IL",
-  },
-  alternates: {
-    canonical: "https://webwitch.click/he/contact",
-    languages: {
-      "he": "https://webwitch.click/he/contact",
-      "en": "https://webwitch.click/en/contact",
-      "x-default": "https://webwitch.click/he/contact",
-    },
-  },
-};
+
 function Contact({ lang, initialDict }: Props) {
   const { t } = useTranslation('contact', initialDict);
   const theme = useCustomTheme();
   const { isFullyReady } = useSmoothReady({ delay: 300 });
   const { animateIndex, animateFont } = useSplitTextAnimation([t.title], lang);
   return (
-    <MotionMainWrapper      
+    <>
+      <PageSeo lang={lang} path="/contact" {...pageMeta[lang]} />
+      <MotionMainWrapper
      isReady={isFullyReady}
     initial={{ opacity: 0, y: 20 }}
     animate={isFullyReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
@@ -136,7 +116,8 @@ function Contact({ lang, initialDict }: Props) {
         <ContactForm />
 
       </ContactMainPageContainer>
-    </MotionMainWrapper>
+      </MotionMainWrapper>
+    </>
   );
 }
 

@@ -6,6 +6,7 @@ import Reset from '../styles/reset';
 import Layout from '@/components/layout';
 import dynamic from 'next/dynamic';
 import Seo from '@/components/Seo';
+import GoogleAnalytics from '@/components/GoogleAnalytics';
 import type { AppProps } from 'next/app';
 import '../styles/fonts/fonts.css';
 import { roboto } from '../styles/fonts/font';
@@ -45,6 +46,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <ThemeProvider theme={fullTheme}>
         <Reset />
         <Seo />
+        <GoogleAnalytics />
         <SparkleTrail>
           <Layout>
             <div

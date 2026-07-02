@@ -17,42 +17,18 @@ import { useTranslation } from '../../hooks/useTranslation';
 import { useCustomTheme } from '../../hooks/useTheme';
 import TextWrapper from '../../components/TextWrapper';
 import { useSmoothReady } from '@/hooks/useSmoothReady';
-// English About
-export const metadata = {
-  title: "About Julia — Web Designer & Developer for Creative Businesses | Web Witch",
-  description: "I'm Julia Savransky-Perl — a designer turned developer. I build websites for creative and spiritual businesses that know their vibe and just need someone to build it right.",
-  openGraph: {
-    title: "About Julia | Web Witch",
-    description: "The developer who won't make you explain your vibe twice. Design + code + automations, all in one.",
-    url: "https://webwitch.click/en/about",
-    locale: "en_IL",
+import PageSeo from '@/components/PageSeo';
+
+const pageMeta = {
+  en: {
+    title: 'About Julia — Web Designer & Developer for Creative Businesses | Web Witch',
+    description:
+      "I'm Julia Savransky-Perl — a designer turned developer. I build websites for creative and spiritual businesses that know their vibe and just need someone to build it right.",
   },
-  alternates: {
-    canonical: "https://webwitch.click/en/about",
-    languages: {
-      "he": "https://webwitch.click/he/about",
-      "en": "https://webwitch.click/en/about",
-      "x-default": "https://webwitch.click/he/about",
-    },
-  },
-};
-// Hebrew About
-export const metadata = {
-  title: "על יוליה — מפתחת אתרים לעסקים יצירתיים | Web Witch",
-  description: "אני יוליה סברנסקי-פרל — מעצבת שהפכה למפתחת. בונה אתרים לעסקים יצירתיים ורוחניים שיודעים מה הוויב שלהם, ורק צריכים מישהי שתבנה אותו נכון.",
-  openGraph: {
-    title: "על יוליה | Web Witch",
-    description: "המפתחת שלא תצטרכי להסביר לה את הוויב שוב ושוב. עיצוב + קוד + אוטומציות ביחד.",
-    url: "https://webwitch.click/he/about",
-    locale: "he_IL",
-  },
-  alternates: {
-    canonical: "https://webwitch.click/he/about",
-    languages: {
-      "he": "https://webwitch.click/he/about",
-      "en": "https://webwitch.click/en/about",
-      "x-default": "https://webwitch.click/he/about",
-    },
+  he: {
+    title: 'על יוליה — מפתחת אתרים לעסקים יצירתיים | Web Witch',
+    description:
+      'אני יוליה סברנסקי-פרל — מעצבת שהפכה למפתחת. בונה אתרים לעסקים יצירתיים ורוחניים שיודעים מה הוויב שלהם, ורק צריכים מישהי שתבנה אותו נכון.',
   },
 };
 
@@ -68,6 +44,8 @@ function About({ lang, initialDict }: SkillsProps) {
   const { animateIndex, animateFont } = useSplitTextAnimation([t.title], lang);
 
   return (
+    <>
+      <PageSeo lang={lang} path="/about" {...pageMeta[lang]} />
       <MotionMainWrapper
         isReady={isFullyReady}
         initial={{ opacity: 0, y: 20 }}
@@ -150,7 +128,8 @@ function About({ lang, initialDict }: SkillsProps) {
           <TextCloud />
         </Paragraph>
       </Row>
-    </MotionMainWrapper>
+      </MotionMainWrapper>
+    </>
   );
 }
 
