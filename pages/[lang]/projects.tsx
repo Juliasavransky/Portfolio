@@ -106,8 +106,8 @@ function Projects({ lang, initialDict }: ProjectsProps) {
             return (
               <div key={project.pageLink}>
                 <Card
-                  projectName={project.projectName[lang]}
-                  summary={project.summary[lang]}
+                  projectName={project.projectName?.[lang]}
+                  summary={project.summary?.[lang]}
                   pageLink={project.pageLink}
                   img={project.img}
                   lang={lang}

@@ -17,7 +17,7 @@ interface SplitTextProps {
 }
 
 function SplitText({
-  text,
+  text = '',
   style,
   baseIndex,
   animateIndex,

@@ -1,5 +1,5 @@
-// @ts-nocheck
 import React, { useEffect, useState } from "react";
+// @ts-ignore — "TagCloud" package ships no type declarations
 import TagCloud from "TagCloud";
 
 const TextCloud = () => {
@@ -30,6 +30,7 @@ const TextCloud = () => {
       direction: 135,
     };
 
+    // @ts-ignore — untyped package, first arg accepts a selector string at runtime
     const tagCloud = TagCloud(container, text, options);
 
     return () => {

@@ -25,7 +25,7 @@ export function useSplitTextAnimation(texts: string[], lang: Lang) {
     const queue: number[] = [];
 
     texts.forEach((text) => {
-      text.split('').forEach((char) => {
+      (text || '').split('').forEach((char) => {
         if (char !== '_') {
           queue.push(index);
           index++;
