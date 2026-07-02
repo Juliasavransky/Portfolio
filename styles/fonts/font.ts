@@ -7,9 +7,8 @@ import {
   Roboto,
   La_Belle_Aurore,
 
-  
+
   Amatic_SC,
-  Solitreo,
   Rubik_Glitch,
   Rubik_Wet_Paint,
   Noto_Rashi_Hebrew,
@@ -40,12 +39,6 @@ export const rubikGlitch = Rubik_Glitch({
   weight: [ '400' ],
   display: 'swap',
 });
-export const solitreo = Solitreo({
-  subsets: ['hebrew'],
-  weight: [ '400' ],
-  display: 'swap',
-});
-
 export const amatic = Amatic_SC({
   subsets: ['hebrew'],
   weight: [ '400', '700' ],
@@ -107,7 +100,6 @@ export const hebrewFontClasses = [
   notoRashiHebrew.className,
   rubikWetPaint.className,
   rubikGlitch.className,
-  solitreo.className,
   amatic.className,
 ];
 

@@ -160,10 +160,9 @@ function Card({ projectName, pageLink, summary, img, lang }: CardProps) {
         <ProjectCardIMage className='project-card__image'>
           <ResponsiveImage
             src={img}
-            alt='project'
+            alt={projectName || 'Web Witch project'}
             width={400} // כל גודל אפשרי ששומר על יחס 16:9
             height={225} // גובה מחושב לפי 16:9
-            priority
           />
         </ProjectCardIMage>
 

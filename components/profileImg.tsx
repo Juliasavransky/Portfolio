@@ -59,7 +59,7 @@ function ProfileImg() {
     <Container>
       <StyledImage
         src={myProfile}
-        alt='Profile Background'
+        alt='Julia Savransky-Perl, web designer and developer at Web Witch'
         fill
         priority
         sizes='(max-width: 768px) 90vw, 40rem'
