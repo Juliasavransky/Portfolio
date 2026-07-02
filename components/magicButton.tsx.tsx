@@ -43,7 +43,7 @@ const Face = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 5px;
+  border-radius: 3px;
   font-size: clamp(1.5rem, 3.5vw, 2rem);
   font-weight: 100;
   backface-visibility: hidden;

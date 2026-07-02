@@ -15,7 +15,7 @@ export const TooltipBubble = styled.div`
   background: #1d1d1d;
   color: #ffcc00;
   padding: 8px 16px;
-  border-radius: 9px;
+  border-radius: 1rem;
   font-size: clamp(1.2rem, 1.5vw, 1.7rem);
   opacity: 0;
   transition: opacity 0.3s ease, transform 0.3s ease;

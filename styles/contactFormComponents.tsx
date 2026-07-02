@@ -19,6 +19,7 @@ export const Input = styled.input<{ lang: 'he' | 'en' }>`
   font-size: ${({ theme }) => theme.size.fontSmall};
   color: ${({ theme }) => theme.colors.white};
   padding: clamp(0.75rem, 1vw, 1rem) clamp(1rem, 1.5vw, 1.5rem);
+  border-radius: 3px;
   background-color: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.2);
   transition: box-shadow 0.3s;
@@ -49,7 +50,7 @@ export const TextArea = styled.textarea<{ lang: 'he' | 'en' }>`
   font-size: ${({ theme }) => theme.size.fontSmall};
   color: ${({ theme }) => theme.colors.white};
   padding: clamp(1rem, 1.5vw, 1.5rem) clamp(1.5rem, 2vw, 2rem);
-  border-radius: 2px;
+  border-radius: 3px;
   background-color: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.2);
   box-shadow: 0 1rem 2rem transparent;
@@ -75,6 +76,7 @@ export const TextArea = styled.textarea<{ lang: 'he' | 'en' }>`
 export const ContactBtn = styled.button`
   margin-top: 1vh;
   padding: clamp(1rem, 1.5vw, 1.5rem);
+  border-radius: 3px;
   border: none;
   background-color: rgba(123, 123, 125, 0.5);
   color: ${({ theme }) => theme.colors.white};
@@ -84,4 +86,9 @@ export const ContactBtn = styled.button`
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: rgba(75, 17, 111, 0.7);
+  }
 `;

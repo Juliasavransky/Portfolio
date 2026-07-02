@@ -1,6 +1,7 @@
 import { CSSProperties, ReactNode, useEffect, useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
 import styled from '@emotion/styled';
+import { useTheme } from '@emotion/react';
 import { laBelle } from '../styles/fonts/font';
 import animationsList from './animationList';
 import { TooltipBubble, TooltipWrapper } from '../components/toolTip';
@@ -18,7 +19,7 @@ interface DecoTagSmartProps {
 
 const Tag = styled.span`
   font-size: clamp(1.2rem, 1.5vw, 1.7rem);
-  color: #7b7b7d;
+  color: ${({ theme }) => theme.colors.greyLight2};
   cursor: grab;
 display:content;
   @media (max-width: 768px) {
@@ -37,6 +38,7 @@ const DecoTagSmart = ({
   isPrimaryTag,
   children,
 }: DecoTagSmartProps) => {
+  const theme = useTheme();
   const [interacted, setInteracted] = useState(false);
   const [showTooltip, setShowTooltip] = useState(false);
   const [animationKey, setAnimationKey] = useState(0);
@@ -83,7 +85,9 @@ const DecoTagSmart = ({
           <TooltipWrapper>
             {children}
             <TooltipBubble className='show'>
-              👆 נסי ללחוץ אלינו ✨
+              {theme.lang === 'he'
+                ? '👆 נסי ללחוץ אלינו ✨'
+                : '👆 try clicking us ✨'}
             </TooltipBubble>
           </TooltipWrapper>
         )}

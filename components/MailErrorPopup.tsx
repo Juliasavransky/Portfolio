@@ -20,7 +20,7 @@ const Popup = styled(motion.div)`
   position: relative;
   background: #181818;
   padding: 4rem;
-  border-radius: 2rem;
+  border-radius: 1rem;
   text-align: center;
   max-width: 600px;
 `;

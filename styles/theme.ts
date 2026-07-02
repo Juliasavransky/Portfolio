@@ -59,7 +59,7 @@ const theme: Theme = {
     fontBig: 'clamp(1.8rem, 3.2vw, 2.7rem)',
     fontReg: 'clamp(1.6rem, 2vw, 2rem)',
     fontSmall: 'clamp(1.3rem, 1.5vw, 1.5rem)',
-    fontTiny: 'clamp(0.9rem, 1.5vw, .9rem)',
+    fontTiny: 'clamp(0.8rem, 1.2vw, 0.9rem)',
   },
 };
 
