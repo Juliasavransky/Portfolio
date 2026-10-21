@@ -45,7 +45,7 @@ const TextCloud = () => {
         style={{
           color: "#ffcc00",
           fontSize: "clamp(1rem, 1.6vw, 1.6rem)",
-          letterSpacing: "2px",
+          letterSpacing: "0.125rem",
         }}
         className="tagcloud"
       >

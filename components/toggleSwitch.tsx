@@ -10,7 +10,6 @@ const ToggleWrapper = styled.label`
   top: 2rem;
   left: 2rem;
   @media (max-width: 1220px) {
-    height: calc(100 -(68px / 2 + 4px));
     top: 0;
     left: 0;
   }
@@ -23,10 +22,10 @@ const ToggleWrapper = styled.label`
 
 const SwitchWrap = styled.div<{ isRTL?: boolean }>`
   position: relative;
-  padding: 4px;
-  width: 67px;
-  height: calc(67px / 2 + 4px);
-  border-radius: calc((67px / 2 + 4px) / 2);
+  padding: 0.25rem;
+  width: clamp(3.25rem, 6vw, 4.1875rem);
+  height: clamp(1.875rem, 3vw, 2.34375rem);
+  border-radius: 50%;
   display: flex;
   align-items: center;
   background-size: cover;
@@ -37,18 +36,6 @@ const SwitchWrap = styled.div<{ isRTL?: boolean }>`
     isRTL
       ? `url("/images/israel-flag.svg")`
       : `url("/images/united-states.svg")`};
-
-  @media (max-width: 768px) {
-    width: 58px;
-    height: calc(58px / 2 + 4px);
-    border-radius: calc((58px / 2 + 4px) / 2);
-  }
-
-  @media (max-width: 480px) {
-    width: 52px;
-    height: calc(52px / 2 + 4px);
-    border-radius: calc((52px / 2 + 4px) / 2);
-  }
 `;
 
 const HiddenCheckbox = styled.input`
@@ -68,28 +55,16 @@ const Switch = styled.div<{ checked: boolean; isRTL?: boolean }>`
 
   &::after {
     content: '${({ isRTL }) => (isRTL ? 'עב' : 'EN')}';
-    font-size: 1rem;
+    font-size: clamp(0.7rem, 1.5vw, 1rem);
     font-weight: bold;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 30px;
-    height: 30px;
+    width: clamp(1.25rem, 3vw, 1.875rem);
+    height: clamp(1.25rem, 3vw, 1.875rem);
     background: ${({ checked }) => (checked ? '#0b0ee6' : '#e6120b')};
     border-radius: 50%;
     transition: background 0.3s ease;
-
-    @media (max-width: 768px) {
-      width: 22px;
-      height: 22px;
-      font-size: 0.75rem;
-    }
-
-    @media (max-width: 480px) {
-      width: 20px;
-      height: 20px;
-      font-size: 0.7rem;
-    }
   }
 `;
 

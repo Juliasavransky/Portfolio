@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 export const ContactMainPageContainer = styled.div`
-  height: 100vh;
+  height: clamp(35rem, 100vh, 62.5rem);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -29,7 +29,7 @@ export const IconsContactWrapper = styled.div`
 export const ContactHeaderContainer = styled.div`
   display: flex;
   font-weight: 600;
-  letter-spacing: clamp(2px, 0.5vw, 4px);
+  letter-spacing: clamp(0.125rem, 0.5vw, 0.25rem);
   font-size: clamp(3rem, 3.8vw, 6rem);
   align-items: center;
   flex-direction: column;

@@ -20,7 +20,7 @@ export const Btn = styled.div`
   @media (max-width: 1220px) {
     flex-direction: column;
     width: 70vw;
-    height: 22vh;
+    height: clamp(10rem, 22vh, 16rem);
   }
 
   @media (max-width: 768px) {

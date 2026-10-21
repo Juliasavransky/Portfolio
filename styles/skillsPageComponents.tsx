@@ -64,7 +64,7 @@ export const bounce = keyframes`
   }
 `;
 export const Arrow = styled.div`
-  font-size: ${({ theme }) => (parseFloat(theme.size.fontBig) * 1.5) + 'px'};
+  font-size: clamp(2.7rem, 4.8vw, 4.05rem);
   animation: ${bounce} 1s infinite ease-in-out;
 `;
 export const BouncingArrow = () => {

@@ -161,20 +161,20 @@ const ContactForm: React.FC = () => {
       <style jsx>{`
         .popup {
           position: fixed;
-          top: 20px;
+          top: 1.25rem;
           left: 50%;
           transform: translateX(-50%);
           background: #ffcc00;
           color: #4b116f;
-          padding: 15px 25px;
-          border-radius: 10px;
-          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+          padding: 0.9375rem 1.5625rem;
+          border-radius: 0.625rem;
+          box-shadow: 0 0.25rem 0.375rem rgba(0, 0, 0, 0.1);
           animation: fadeIn 0.5s ease-in-out, fadeOut 0.5s ease-in-out 2.5s;
         }
         @keyframes fadeIn {
           from {
             opacity: 0;
-            transform: translate(-50%, -20px);
+            transform: translate(-50%, -1.25rem);
           }
           to {
             opacity: 1;
@@ -188,7 +188,7 @@ const ContactForm: React.FC = () => {
           }
           to {
             opacity: 0;
-            transform: translate(-50%, -20px);
+            transform: translate(-50%, -1.25rem);
           }
         }
       `}</style>

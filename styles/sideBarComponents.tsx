@@ -64,7 +64,7 @@ export const NavItem = styled.li<NavItemProps>`
   font-size: ${({ theme }) => theme.size.fontSmall};
   position: relative;
   padding: clamp(1rem, 1.5vw, 2rem) clamp(1rem, 1.5vw, 2rem);
-  letter-spacing: clamp(2px, 0.4vw, 8px);
+  letter-spacing: clamp(0.125rem, 0.4vw, 0.5rem);
   cursor: pointer;
   border-bottom: 1px solid ${({ theme }) => theme.colors.greyLight1};
   width: clamp(8vw, 10vw, 15vw);

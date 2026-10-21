@@ -22,7 +22,7 @@ const Popup = styled(motion.div)`
   padding: 4rem;
   border-radius: 1rem;
   text-align: center;
-  max-width: 600px;
+  max-width: 37.5rem;
 `;
 
 const CloseButton = styled.button`

@@ -17,7 +17,7 @@ export const MotionMainWrapper = motion(styled('div')<{ isReady: boolean }>`
 
 export const MainPageContainer = styled.div`
   display: flex;
-  height: 90vh;
+  height: clamp(32rem, 90vh, 56rem);
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
@@ -26,10 +26,10 @@ export const MainPageContainer = styled.div`
   left: clamp(2rem, 15vw, 12rem);
 
   @media (max-width: 1220px) {
-    left: 0;
-    width: 100vw;
+    left: clamp(1rem, 5vw, 3rem);
+    width: 96vw;
   }
-  @media (max-width: 428px) {
+  @media (max-width: 768px) {
     left: 0;
     width: 100vw;
   }
@@ -44,7 +44,7 @@ export const HeaderContainer = styled.div`
   text-align: center;
   line-height: 1.2;
   max-width: 90%;
-  letter-spacing: clamp(1px, 0.3vw, 3px);
+  letter-spacing: clamp(0.0625rem, 0.3vw, 0.1875rem);
 
   @media (max-width: 768px) {
     width: 95vw;
@@ -86,7 +86,7 @@ export const Paragraph = styled.p`
   font-weight: 400;
   margin: 1rem auto;
   text-align: center;
-  letter-spacing: clamp(1px, 0.3vw, 2px);
+  letter-spacing: clamp(0.0625rem, 0.3vw, 0.125rem);
   word-spacing: 0.1rem;
   line-height: 1.4;
   text-wrap: balance;

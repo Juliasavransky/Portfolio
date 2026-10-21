@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 
 export const Form = styled.form`
   display: flex;
-  width: clamp(300px, 50%, 600px);
+  width: clamp(18.75rem, 50%, 37.5rem);
   flex-direction: column;
   margin-top: 3rem;
   position: relative;

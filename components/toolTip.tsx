@@ -11,10 +11,10 @@ export const TooltipBubble = styled.div`
   position: absolute;
   top: -120%; /* מעל האלמנט */
   left: 50%;
-  transform: translateX(-50%) translateY(10px);
+  transform: translateX(-50%) translateY(0.625rem);
   background: #1d1d1d;
   color: #ffcc00;
-  padding: 8px 16px;
+  padding: 0.5rem 1rem;
   border-radius: 1rem;
   font-size: clamp(1.2rem, 1.5vw, 1.7rem);
   opacity: 0;
@@ -24,7 +24,7 @@ export const TooltipBubble = styled.div`
 
   &::after {
     position: absolute;
-    bottom: -20px;
+    bottom: -1.25rem;
     left: 30%;
     transform: translateX(-50%);
   }
@@ -32,16 +32,16 @@ export const TooltipBubble = styled.div`
   &.show {
     opacity: 1;
     pointer-events: auto;
-    transform: translateX(-50%) translateY(0px);
+    transform: translateX(-50%) translateY(0);
     animation: float 1s ease-in-out infinite alternate;
   }
 
   @keyframes float {
     0% {
-      transform: translateX(-50%) translateY(8px);
+      transform: translateX(-50%) translateY(0.5rem);
     }
     100% {
-      transform: translateX(-50%) translateY(-2px);
+      transform: translateX(-50%) translateY(-0.125rem);
     }
   }
 `;

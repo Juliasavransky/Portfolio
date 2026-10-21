@@ -59,8 +59,8 @@ const ProjectCardItem = styled.div`
   border-radius: 3px;
   overflow: hidden;
   display: flex;
-  flex: 1 0 calc(40% - 20px);
-  min-width: calc(33.33% - 20px);
+  flex: 1 0 calc(40% - 1.25rem);
+  min-width: calc(33.33% - 1.25rem);
   ${({ theme }) => `
     border: 2px solid rgba(${hexToRgb(theme.colors.greyLight1)}, 0.3);
   `}
@@ -139,7 +139,7 @@ const DetailsLink = styled.div`
 
 const ResponsiveImage = styled(Image)`
   width: 100%;
-  height: clamp(180px, 75vw, 390px);
+  height: clamp(11.25rem, 75vw, 24.375rem);
   aspect-ratio: 5/6;
   object-fit: cover;
 `;
