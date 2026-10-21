@@ -26,7 +26,7 @@ const Card = styled.article`
     }
   }
 
-  h3 {
+  h2 {
     font-size: 1.25rem;
     line-height: 1.3;
   }
@@ -77,7 +77,7 @@ export default function ProjectCard({ project, priority }: Props) {
           priority={priority}
         />
       )}
-      <h3>
+      <h2>
         <a
           href={project.url}
           target='_blank'
@@ -87,7 +87,7 @@ export default function ProjectCard({ project, priority }: Props) {
           {name}
           <span className='sr-only'> {t.common.newTab}</span>
         </a>
-      </h3>
+      </h2>
       <p>{project.summary[lang]}</p>
       <Visit aria-hidden='true'>
         {t.projects.visit} <span className='flip-rtl'>↗</span>

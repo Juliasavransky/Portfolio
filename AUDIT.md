@@ -642,7 +642,28 @@ All items were approved for fixing. Status per finding: ✅ done · ◐ partly d
 
 **Verification after the fixes:** `tsc` 0 errors · `eslint .` 0 problems · `npm test` (contact validation) passes · `next build` passes, with all 10 language pages pre-rendered (SSG) and a static 404 · `npm audit --omit=dev`: 0 vulnerabilities (5 high remain in the *dev-only* lint chain `eslint-config-next` → `braces`, no upstream fix yet) · Playwright on 9 routes × 3 widths: `lang`/`dir` correct, one `h1` per page, no horizontal overflow, no unlabeled fields, no console or hydration errors, full content with JS disabled, static under reduced motion.
 
-LIGHTHOUSE_AFTER
+**Lighthouse after the fixes** (same machine and settings as section 2; before → after):
+
+| Route | Device | Perf | A11y | Best Pr. | SEO | LCP | CLS |
+|---|---|---:|---:|---:|---:|---:|---:|
+| /he/home | mobile | 71 → **97** | 85 → **100** | 100 | 100 | 8.2 s → **2.4 s** | 0 → **0** |
+| /he/home | desktop | 93 → **100** | 84 → **100** | 100 | 100 | 1.8 s → **0.5 s** | 0.026 → **0** |
+| /en/home | mobile | 73 → **97** | 85 → **100** | 100 | 100 | 7.5 s → **2.4 s** | 0.007 → **0** |
+| /en/home | desktop | 94 → **100** | 84 → **100** | 100 | 100 | 1.6 s → **0.5 s** | 0.032 → **0** |
+| /he/about | mobile | 72 → **96** | 86 → **100** | 100 | 100 | 8.2 s → **2.6 s** | 0.079 → **0** |
+| /he/about | desktop | 91 → **100** | 81 → **100** | 100 | 100 | 1.8 s → **0.5 s** | 0.094 → **0** |
+| /en/about | mobile | 73 → **97** | 86 → **100** | 100 | 100 | 7.8 s → **2.5 s** | 0.079 → **0** |
+| /en/about | desktop | 92 → **100** | 81 → **100** | 100 | 100 | 1.7 s → **0.5 s** | 0.085 → **0** |
+| /he/projects | mobile | 64 → **95** | 86 → **100** | 100 | 100 | 8.5 s → **2.9 s** | 0.079 → **0** |
+| /he/projects | desktop | 93 → **100** | 81 → **100** | 100 | 100 | 1.8 s → **0.6 s** | 0.027 → **0** |
+| /en/projects | mobile | 71 → **94** | 86 → **100** | 100 | 100 | 8.3 s → **2.9 s** | 0.079 → **0** |
+| /en/projects | desktop | 93 → **100** | 81 → **100** | 100 | 100 | 1.8 s → **0.6 s** | 0.028 → **0** |
+| /he/contact | mobile | 63 → **95** | 85 → **100** | 100 | 100 | 8.1 s → **2.9 s** | 0.233 → **0** |
+| /he/contact | desktop | 93 → **100** | 81 → **100** | 100 | 100 | 1.8 s → **0.6 s** | 0.027 → **0** |
+| /en/contact | mobile | 65 → **96** | 85 → **100** | 100 | 100 | 7.7 s → **2.6 s** | 0.198 → **0** |
+| /en/contact | desktop | 93 → **100** | 81 → **100** | 100 | 100 | 1.7 s → **0.6 s** | 0.028 → **0** |
+
+Mobile LCP is now 2.4–2.9 s (target 2.5 s; was 7.5–8.5 s). The remaining Lighthouse notes are framework-level ("unused/legacy JavaScript" from the Next.js runtime, render-blocking CSS).
 
 | ID | Status | What changed |
 |----|--------|--------------|
