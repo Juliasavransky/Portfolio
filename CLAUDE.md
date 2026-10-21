@@ -3,7 +3,9 @@
 ## Project Overview
 
 Next.js website (Pages Router) for Web Witch — a boutique web studio run by Julia Savransky-Perl.
-Bilingual: Hebrew (`/he/*`) and English (`/en/*`). Lang is a URL param handled via `getServerSideProps`.
+Bilingual: Hebrew (`/he/*`) and English (`/en/*`). Lang is a URL param; pages are static (`getStaticPaths`/`getStaticProps` from `lib/i18n.ts`).
+
+**2026-10-21:** the site was reworked from the full audit in `AUDIT.md` (all items approved by Julia). See the "Fix status" section at the end of `AUDIT.md`. Some notes below describe the pre-rework code and are kept for history.
 
 ## Behavior Rules
 
@@ -362,11 +364,12 @@ Replace `[page]` in the hreflang links with the actual page name (home / about /
 
 ## Project Notes
 
-- **Router:** Pages Router (not App Router). All metadata must use `next/head`, not `export const metadata`.
-- **i18n:** Language comes from URL param `[lang]` — always `he` or `en`. Default is `he`.
-- **Styling:** Styled-components with custom theme (`useCustomTheme`).
-- **Animations:** Framer Motion + custom `SplitText` component.
-- **Translations:** `getDictionary(page, lang)` fetches from JSON dict files.
+- **Router:** Pages Router on Next.js 16 (not App Router). All metadata must use `next/head`, not `export const metadata`. Lint is `npm run lint` (ESLint CLI; `next lint` no longer exists).
+- **i18n:** Language comes from URL param `[lang]` — always `he` or `en`. Default is `he`. `<html lang dir>` is set in `pages/_document.tsx`. Components read the language with `useLang()` / copy with `useT()` from `lib/i18n.ts`.
+- **Styling:** Emotion `styled`, with design tokens as CSS variables in `styles/global.ts`. Use logical properties (`margin-inline`, `inset-inline-start`) so RTL works. No letter-spacing on Hebrew.
+- **Animations:** Minimal by design. The only signature motion is the logo letter-shuffle on hover (`components/Logo.tsx`). Everything respects `prefers-reduced-motion`.
+- **Translations:** `i18n/he.ts` and `i18n/en.ts` (en typed from he). Standard Unicode only: no private gender glyphs in copy.
+- **Pricing:** still not published anywhere (meta, JSON-LD, llms.txt) per Julia's decision.
 - **Deployment:** Vercel (auto-deploy on push to main).
 
 ## File Locations (SEO assets)
@@ -374,10 +377,10 @@ Replace `[page]` in the hreflang links with the actual page name (home / about /
 All static SEO files go in `/public/`:
 - `/public/robots.txt` ✅
 - `/public/sitemap.xml` ✅
-- `/public/llms.txt` ⏸️ deferred (see #3 above)
+- `/public/llms.txt` ✅ (no pricing)
 - `/public/pricing.md` ⏸️ deferred (see #4 above)
 
-Schema JSON-LD goes in `_document.tsx` or `_app.tsx` inside `<Head>`. (Implemented in `components/Seo.tsx`, rendered via `_app.tsx`.)
+Site-wide JSON-LD: `components/SiteSchema.tsx`. Per-page meta + WebPage/Breadcrumb JSON-LD: `components/PageSeo.tsx`.
 
 ---
 

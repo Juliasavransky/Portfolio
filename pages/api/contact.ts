@@ -1,72 +1,58 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import nodemailer from 'nodemailer';
+import { isBot, validateContact } from '@/lib/contact';
 
-type ResponseData = {
-  message: string;
-};
+const WINDOW_MS = 10 * 60 * 1000;
+const MAX_PER_WINDOW = 5;
+// ponytail: per-instance memory, resets on cold start and isn't shared across
+// serverless instances. Move to Vercel Firewall / Upstash if spam gets through.
+const hits = new Map<string, number[]>();
 
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse<ResponseData>
-) {
+function rateLimited(ip: string) {
+  const now = Date.now();
+  const recent = (hits.get(ip) ?? []).filter((t) => now - t < WINDOW_MS);
+  recent.push(now);
+  hits.set(ip, recent);
+  return recent.length > MAX_PER_WINDOW;
+}
+
+const escapeHtml = (value: string) =>
+  value.replace(/[&<>"']/g, (c) => `&#${c.charCodeAt(0)};`);
+
+export default async function handler(req: NextApiRequest, res: NextApiResponse<{ message: string }>) {
   if (req.method !== 'POST') {
+    res.setHeader('Allow', 'POST');
     return res.status(405).json({ message: 'Method Not Allowed' });
   }
 
-  const { name, email, subject, message } = req.body;
+  // Pretend success so bots don't learn about the trap.
+  if (isBot(req.body)) return res.status(200).json({ message: 'ok' });
 
-  if (!name || !email || !subject || !message) {
-    return res.status(400).json({ message: 'Missing required fields' });
-  }
+  const ip = String(req.headers['x-forwarded-for'] ?? req.socket.remoteAddress ?? '').split(',')[0].trim();
+  if (rateLimited(ip)) return res.status(429).json({ message: 'Too many requests' });
 
-  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (typeof email !== 'string' || !emailPattern.test(email)) {
-    return res.status(400).json({ message: 'Invalid email address' });
-  }
-
-  const escapeHtml = (value: string) =>
-    value.replace(/[&<>"']/g, (char) => {
-      switch (char) {
-        case '&':
-          return '&amp;';
-        case '<':
-          return '&lt;';
-        case '>':
-          return '&gt;';
-        case '"':
-          return '&quot;';
-        default:
-          return '&#39;';
-      }
-    });
+  const input = validateContact(req.body);
+  if (!input) return res.status(400).json({ message: 'Invalid input' });
+  const { name, email, message } = input;
 
   try {
     const transporter = nodemailer.createTransport({
       service: 'gmail',
-      auth: {
-        user: process.env.EMAIL_USERNAME,
-        pass: process.env.EMAIL_PASSWORD,
-      },
+      auth: { user: process.env.EMAIL_USERNAME, pass: process.env.EMAIL_PASSWORD },
     });
 
     await transporter.sendMail({
       from: process.env.EMAIL_USERNAME,
       to: 'savranskyj@gmail.com',
-      subject: subject,
-      text: message,
       replyTo: email,
-      html: `
-        <h2>Hi, this is ${escapeHtml(name)}</h2>
-        <p><strong>My Email:</strong> ${escapeHtml(email)}</p>
-        <p><strong>Subject:</strong> ${escapeHtml(subject)}</p>
-        <p><strong>Message:</strong></p>
-        <p>${escapeHtml(message)}</p>
-      `,
+      subject: `Web Witch: new message from ${name}`,
+      text: `${name} <${email}>\n\n${message}`,
+      html: `<p><strong>${escapeHtml(name)}</strong> &lt;${escapeHtml(email)}&gt;</p><p style="white-space:pre-wrap">${escapeHtml(message)}</p>`,
     });
 
-    return res.status(200).json({ message: 'Email sent successfully!' });
+    return res.status(200).json({ message: 'ok' });
   } catch (error) {
     console.error('Error sending email:', error);
-    return res.status(500).json({ message: 'Failed to send email.' });
+    return res.status(500).json({ message: 'Failed to send email' });
   }
 }

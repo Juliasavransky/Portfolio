@@ -1,139 +1,102 @@
-import React from 'react';
-import {
-  ProjectsContainer,
-  ProjectsHeaderContainer,
-  ProjectsHeader,
-  SmallTitleContainer,
-  SmallTitle,
-  CardWrapper,
-} from '@/styles/projectsPageComponents';
-import {  MotionMainWrapper} from '../../styles/layoutComponents';
-import { useSmoothReady } from '@/hooks/useSmoothReady';
-import SplitText from '@/utils/splitText';
-import DecoTagSmart from '@/styles/decoTagSmart';
-import projectsList from '../../utils/projectList.json';
-import Card from '../../components/card';
-import { useSplitTextAnimation } from '../../hooks/useSplitTextAnimation';
-import { GetServerSideProps } from 'next';
-import { getDictionary, Lang } from '../../hooks/getDictionary';
-import { useTranslation } from '../../hooks/useTranslation';
-import TextWrapper from '../../components/TextWrapper';
-import { useCustomTheme } from '../../hooks/useTheme';
-import {DecoTagWrapper} from '../../styles/layoutComponents';
+import styled from '@emotion/styled';
 import PageSeo from '@/components/PageSeo';
+import ProjectCard from '@/components/ProjectCard';
+import { clientProjects, experiments } from '@/data/projects';
+import { langStaticPaths, langStaticProps, useLang, useT } from '@/lib/i18n';
+import { track } from '@/lib/gtag';
+import { Container, H1, H2, Lead, Section } from '@/styles/ui';
 
-const pageMeta = {
-  he: {
-    title: 'פורטפוליו — אתרים לעסקים יצירתיים ורוחניים | Web Witch',
-    description:
-      'עבודות של Web Witch: אתרים לנומרולוגית, חנות רוחנית, מתפרה פריזאית, סדנאות, ועוד. כל אתר מותאם אישית לוויב של הלקוחה.',
-  },
-  en: {
-    title: 'Portfolio — Websites for Creative & Spiritual Businesses | Web Witch',
-    description:
-      "Web Witch portfolio: websites for a numerologist, spiritual shop, Parisian atelier, workshops, and more. Every site custom-built to match the client's vibe.",
-  },
-};
+export const getStaticPaths = langStaticPaths;
+export const getStaticProps = langStaticProps;
 
-type ProjectsProps = {
-  lang: Lang;
-  initialDict: Record<string, string>;
-};
+const Grid = styled.ul`
+  display: grid;
+  gap: 3rem 2rem;
+  margin-block-start: 3rem;
 
-function Projects({ lang, initialDict }: ProjectsProps) {
-  const { t } = useTranslation('projects', initialDict);
-  const projects = projectsList;
-  const { animateIndex, animateFont } = useSplitTextAnimation([t.title], lang);
-  const theme = useCustomTheme();
-    const { isFullyReady } = useSmoothReady({ delay: 300 });
-  
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+`;
+
+const List = styled.ul`
+  display: grid;
+  gap: 1rem;
+  margin-block-start: 1.5rem;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  a {
+    font-weight: 700;
+    text-underline-offset: 3px;
+  }
+
+  p {
+    color: var(--text-muted);
+  }
+`;
+
+export default function Projects() {
+  const lang = useLang();
+  const t = useT();
+
+  const itemList = {
+    '@type': 'ItemList',
+    name: t.projects.h1,
+    itemListElement: clientProjects.map((p, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      item: {
+        '@type': 'CreativeWork',
+        name: p.name[lang],
+        description: p.summary[lang],
+        url: p.url,
+        image: `https://webwitch.click${p.img}`,
+        creator: { '@id': 'https://webwitch.click/#julia' },
+      },
+    })),
+  };
 
   return (
     <>
-      <PageSeo lang={lang} path="/projects" {...pageMeta[lang]} />
-        <MotionMainWrapper
-          isReady={isFullyReady}
-          initial={{ opacity: 0, y: 20 }}
-          animate={isFullyReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.6, ease: 'easeOut' }}
-        >
-
-      <ProjectsContainer >
-        <ProjectsHeaderContainer >
-          <ProjectsHeader >
-            <DecoTagWrapper
-              text={'<h2>'}
-              isPrimaryTag={false}
-              style={{
-                position: 'absolute',
-                top: '0',
-                left: '0',
-              }}
-              />
-            <TextWrapper lang={lang}>
-              <SplitText
-                lang={lang}
-                initialDict={initialDict}
-                theme={theme}
-                text={t.title}
-                baseIndex={0}
-                animateIndex={isFullyReady ? animateIndex ?? null : null}
-                animateFont={isFullyReady ? animateFont ?? null : null}
-                style={{
-                  fontSize: `${theme.size.fontH2}`, 
-                }}
-                />
-            </TextWrapper>
-            <DecoTagWrapper
-              text={'</h2>'}
-              isPrimaryTag={true}
-              style={{
-                position: 'absolute',
-                right: '0',
-                bottom: '0',
-              }}
-              />
-          </ProjectsHeader>
-          <SmallTitleContainer>
-            <DecoTagSmart text={'<p>'} isPrimaryTag={false} />
-            <SmallTitle>{t.subtitle}</SmallTitle>
-            <DecoTagSmart text={'</p>'} isPrimaryTag={false} />
-          </SmallTitleContainer>
-        </ProjectsHeaderContainer>
-
-        <CardWrapper>
-          {projects.map((project) => {
-            return (
-              <div key={project.pageLink}>
-                <Card
-                  projectName={project.projectName?.[lang]}
-                  summary={project.summary?.[lang]}
-                  pageLink={project.pageLink}
-                  img={project.img}
-                  lang={lang}
-                />
-              </div>
-            );
-          })}
-        </CardWrapper>
-      </ProjectsContainer>
-      </MotionMainWrapper>
+      <PageSeo page='projects' schema={[itemList]} />
+      <Section>
+        <Container>
+          <H1>{t.projects.h1}</H1>
+          <Lead>{t.projects.lead}</Lead>
+          <Grid role='list'>
+            {clientProjects.map((project, i) => (
+              <li key={project.url}>
+                <ProjectCard project={project} priority={i < 2} />
+              </li>
+            ))}
+          </Grid>
+        </Container>
+      </Section>
+      <Section aria-labelledby='experiments'>
+        <Container>
+          <H2 id='experiments'>{t.projects.experimentsTitle}</H2>
+          <Lead>{t.projects.experimentsLead}</Lead>
+          <List role='list'>
+            {experiments.map((p) => (
+              <li key={p.url}>
+                <a
+                  href={p.url}
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  onClick={() => track('outbound_project_click', { project: p.name.en })}
+                >
+                  {p.name[lang]}
+                  <span className='sr-only'> {t.common.newTab}</span>
+                </a>
+                <p>{p.summary[lang]}</p>
+              </li>
+            ))}
+          </List>
+        </Container>
+      </Section>
     </>
   );
 }
-
-export default Projects;
-
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const langParam = context.params?.lang;
-  const lang: Lang =
-    langParam === 'he' || langParam === 'en' ? langParam : 'he';
-  const initialDict = await getDictionary('projects', lang);
-
-  return {
-    props: {
-      lang,
-      initialDict,
-    },
-  };
-};

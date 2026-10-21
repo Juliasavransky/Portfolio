@@ -1,27 +1,9 @@
 User-agent: *
 Allow: /
+Disallow: /pdf/
 
-User-agent: GPTBot
-Allow: /
-
-User-agent: ChatGPT-User
-Allow: /
-
-User-agent: PerplexityBot
-Allow: /
-
-User-agent: ClaudeBot
-Allow: /
-
-User-agent: anthropic-ai
-Allow: /
-
-User-agent: Google-Extended
-Allow: /
-
-User-agent: Bingbot
-Allow: /
-
+# Training-only crawler. Search and answer engines (Googlebot, Bingbot, GPTBot,
+# ChatGPT-User, PerplexityBot, ClaudeBot, Google-Extended) fall under * above.
 User-agent: CCBot
 Disallow: /
 

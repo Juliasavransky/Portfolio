@@ -1,38 +1,23 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Web Witch — webwitch.click
 
-## Getting Started
-
-First, run the development server:
+Portfolio and studio site of Julia Savransky-Perl. Next.js 16 (Pages Router), React 19, Emotion. Bilingual: Hebrew (`/he/*`, RTL, default) and English (`/en/*`).
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+npm run dev     # local dev server
+npm run build   # static build (all pages are pre-rendered per language)
+npm run lint    # ESLint (flat config)
+npm test        # contact-form validation check
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Structure
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+- `pages/[lang]/*` — one file per page; `getStaticPaths`/`getStaticProps` come from `lib/i18n.ts` (any language other than `he`/`en` is a 404).
+- `i18n/he.ts`, `i18n/en.ts` — all copy. `en` is typed from `he`, so a missing key fails the build.
+- `data/projects.ts` — client projects and experiments.
+- `components/` — layout, nav, footer, SEO (`PageSeo`, `SiteSchema`), form.
+- `styles/global.ts` — design tokens (CSS variables), reset, RTL helpers, reduced motion. `styles/ui.ts` — shared primitives.
+- `pages/api/contact.ts` — contact form → Gmail SMTP (`EMAIL_USERNAME`, `EMAIL_PASSWORD`).
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+## Environment
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+`NEXT_PUBLIC_GA_ID`, `NEXT_PUBLIC_GSC_VERIFICATION`, `EMAIL_USERNAME`, `EMAIL_PASSWORD`.

@@ -1,0 +1,25 @@
+# Web Witch
+
+> Web Witch is the web design and development studio of Julia Savransky-Perl, an industrial designer turned web developer based in Israel. She designs and builds custom websites, in Hebrew (RTL) and English, for small and creative businesses, and connects them to simple automations.
+
+- Services: web design, web development, website automations (forms and workflows)
+- Audience: small and creative businesses and independent professionals in Israel
+- Languages: Hebrew and English
+- Tools: Next.js, React, TypeScript, WordPress (Gutenberg, headless), Figma
+- Contact: WhatsApp +972-54-477-2571, or the contact form
+
+## Pages
+
+- [Home (Hebrew)](https://webwitch.click/he/home): what Web Witch builds and how a project works
+- [Home (English)](https://webwitch.click/en/home)
+- [About Julia](https://webwitch.click/en/about): background and tools
+- [Selected work](https://webwitch.click/en/projects): client websites and experiments
+- [Contact](https://webwitch.click/en/contact): WhatsApp and contact form
+
+## Client work
+
+- [Mati Mor: Life Journey Event](https://mati-mor-event.vercel.app/): landing page for a numerology evening
+- [Havaya Gems](https://havaya-gems.com): website for a spiritual shop
+- [Grace Couture](https://grace-couture.vercel.app/): design-led site for a couture atelier
+- [Mati Mor: Numerology Workshops](https://mate-workshop.vercel.app/): workshop sales page
+- [Inclusive Voices](https://inclusive-voices.vercel.app/): education project site for teachers

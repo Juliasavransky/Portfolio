@@ -1,150 +1,94 @@
-import TextCloud from '@/components/textCloud';
-import {
-  Row,
-  SkillsHeaderContainer,
-  SkillsParagraphContainer,
-  BouncingArrow,
-} from '@/styles/skillsPageComponents';
-import DecoTagSmart from '@/styles/decoTagSmart';
-import { Header, Paragraph , MotionMainWrapper } from '@/styles/layoutComponents';
-import SplitText from '@/utils/splitText';
-import React from 'react';
-import { useSplitTextAnimation } from '../../hooks/useSplitTextAnimation';
-import ProfileImg from '../../components/profileImg';
-import { GetServerSideProps } from 'next';
-import { getDictionary, Lang } from '../../hooks/getDictionary';
-import { useTranslation } from '../../hooks/useTranslation';
-import { useCustomTheme } from '../../hooks/useTheme';
-import TextWrapper from '../../components/TextWrapper';
-import { useSmoothReady } from '@/hooks/useSmoothReady';
+import styled from '@emotion/styled';
+import Image from 'next/image';
 import PageSeo from '@/components/PageSeo';
+import myProfile from '@/public/images/myProfile.jpg';
+import { langStaticPaths, langStaticProps, useLang, useT } from '@/lib/i18n';
+import { Actions, Container, H1, H2, LinkButton, Section } from '@/styles/ui';
 
-const pageMeta = {
-  en: {
-    title: 'About Julia — Web Designer & Developer for Creative Businesses | Web Witch',
-    description:
-      "I'm Julia Savransky-Perl — a designer turned developer. I build websites for creative and spiritual businesses that know their vibe and just need someone to build it right.",
-  },
-  he: {
-    title: 'על יוליה — מפתחת אתרים לעסקים יצירתיים | Web Witch',
-    description:
-      'אני יוליה סברנסקי-פרל — מעצבת שהפכה למפתחת. בונה אתרים לעסקים יצירתיים ורוחניים שיודעים מה הוויב שלהם, ורק צריכים מישהי שתבנה אותו נכון.',
-  },
-};
+export const getStaticPaths = langStaticPaths;
+export const getStaticProps = langStaticProps;
 
-type SkillsProps = {
-  lang: Lang;
-  initialDict: Record<string, string>;
-};
+const TOOLS = [
+  'HTML', 'CSS', 'JavaScript', 'TypeScript', 'React', 'Next.js', 'Node.js', 'Redux',
+  'SCSS', 'Material UI', 'WordPress', 'Gutenberg', 'Headless CMS', 'Figma', 'Zeplin', 'Git', 'UX/UI',
+];
 
-function About({ lang, initialDict }: SkillsProps) {
-  const { isFullyReady } = useSmoothReady({ delay: 300 });
-  const theme = useCustomTheme();
-  const { t } = useTranslation('about', initialDict);
-  const { animateIndex, animateFont } = useSplitTextAnimation([t.title], lang);
+const Intro = styled.div`
+  display: grid;
+  gap: 2.5rem;
+  align-items: start;
 
+  @media (min-width: 768px) {
+    grid-template-columns: minmax(0, 1fr) 16rem;
+  }
+
+  img {
+    width: 100%;
+    max-width: 16rem;
+    border-radius: var(--radius);
+    border: 1px solid var(--divider);
+  }
+`;
+
+const Prose = styled.div`
+  max-width: 38em;
+
+  p {
+    margin-block-start: 1.25rem;
+    font-size: 1.125rem;
+  }
+`;
+
+const Tools = styled.ul`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.625rem;
+  direction: ltr;
+
+  html[lang='he'] & {
+    justify-content: flex-end;
+  }
+
+  li {
+    padding: 0.375rem 0.875rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    font-size: 0.9375rem;
+  }
+`;
+
+export default function About() {
+  const lang = useLang();
+  const t = useT().about;
   return (
     <>
-      <PageSeo lang={lang} path="/about" {...pageMeta[lang]} />
-      <MotionMainWrapper
-        isReady={isFullyReady}
-        initial={{ opacity: 0, y: 20 }}
-        animate={isFullyReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-        transition={{ duration: 0.6, ease: 'easeOut' }}
-      >
-      <Row>
-        <SkillsHeaderContainer>
-          <Header>
-            <DecoTagSmart
-              text={'<h2> '}
-              isPrimaryTag={false}
-              style={{
-                position: 'absolute',
-                top: '0',
-                left: '-4rem',
-              }}
-            />
-            <TextWrapper lang={lang}>
-              <SplitText
-                style={{
-                  fontSize: `${theme.size.fontH2}`,
-                }}
-                lang={lang}
-                initialDict={initialDict}
-                theme={theme}
-                text={t.title}
-                baseIndex={0}
-                animateIndex={isFullyReady ? animateIndex : null}
-                animateFont={isFullyReady ? animateFont : null}
-              />
-            </TextWrapper>
-            <DecoTagSmart
-              text={' </h2>'}
-              isPrimaryTag={true}
-              style={{
-                position: 'absolute',
-                right: '0',
-                top: '4rem',
-              }}
-            />
-            <ProfileImg />
-          </Header>
-        </SkillsHeaderContainer>
-        <SkillsParagraphContainer>
-          <Paragraph theme={theme} style={{width:'70%'}}>
-            <DecoTagSmart
-              text={'<p>'}
-              isPrimaryTag={false}
-              style={{
-                position: 'absolute',
-                top: '0',
-                left: '-2rem',
-              }}
-            />
-            {t.part1} <span style={{ color: '#ffcc00' }}>{t.highlight1}</span>{' '}
-            {t.part2} <span style={{ color: '#ffcc00' }}>{t.highlight2}</span>{' '}
-            {t.part3} <span style={{ color: '#ffcc00' }}>{t.highlight3}</span>{' '}
-            {t.part4}
-            <DecoTagSmart
-              text={'</p>'}
-              isPrimaryTag={false}
-              style={{
-                position: 'absolute',
-                bottom: '0',
-                right: '0',
-              }}
-            />
-          </Paragraph>
-        </SkillsParagraphContainer>
-        <Paragraph
-          theme={theme}
-          style={{
-            fontSize: `calc(${theme.size.fontBig}*1.7)`,
-            marginTop: 'clamp(1rem, 2vw, 2rem)',
-          }}
-        >
-          {t.textCloud}
-          <BouncingArrow />
-          <TextCloud />
-        </Paragraph>
-      </Row>
-      </MotionMainWrapper>
+      <PageSeo page='about' />
+      <Section>
+        <Container>
+          <Intro>
+            <Prose>
+              <H1>{t.h1}</H1>
+              {t.paragraphs.map((p) => (
+                <p key={p}>{p}</p>
+              ))}
+              <Actions>
+                <LinkButton href={`/${lang}/contact`}>{t.cta}</LinkButton>
+              </Actions>
+            </Prose>
+            <Image src={myProfile} alt={t.photoAlt} sizes='16rem' priority />
+          </Intro>
+        </Container>
+      </Section>
+      <Section aria-labelledby='tools'>
+        <Container>
+          <H2 id='tools'>{t.toolsTitle}</H2>
+          <Tools role='list'>
+            {TOOLS.map((tool) => (
+              <li key={tool}>{tool}</li>
+            ))}
+          </Tools>
+        </Container>
+      </Section>
     </>
   );
 }
-
-export default About;
-
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const langParam = context.params?.lang;
-  const lang: Lang =
-    langParam === 'he' || langParam === 'en' ? langParam : 'he';
-  const initialDict = await getDictionary('about', lang);
-
-  return {
-    props: {
-      lang,
-      initialDict,
-    },
-  };
-};

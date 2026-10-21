@@ -80,7 +80,7 @@ Saved outside the project, in the audit scratchpad (`…/scratchpad/shots/*.png`
 
 ### Audit side effects (read this)
 
-- `npm ci` deleted most of `node_modules` before it failed. I restored it with `npm install`. **`npm install` rewrote `Portfolio/package-lock.json` (modified 2026-10-21 11:21).** That breaks the read-only rule. The folder isn't a git repo, so I can't show a diff. The previous version should be recoverable from OneDrive's version history (right-click the file → Version history). Installed versions match `package.json` ranges and lint, typecheck and build all pass.
+- `npm ci` deleted most of `node_modules` before it failed. I restored it with `npm install`, which touched `Portfolio/package-lock.json`. **Correction (added later):** `Portfolio/` *is* a git repo (my original check ran from the parent folder). `git diff` shows the lockfile content is identical to the last commit, so nothing actually changed.
 - `next build` regenerated `.next/` (a build artifact, gitignored).
 - `AUDIT.md` (this file) was created.
 - Lighthouse, Playwright, screenshots and HTML dumps live only in the session scratchpad, not in the project.
@@ -313,7 +313,7 @@ Saved outside the project, in the audit scratchpad (`…/scratchpad/shots/*.png`
 
 #### CODE-14 — Secrets check
 - **Severity:** none (pass) · **Source:** /security-review checklist
-- **Evidence:** `.env.local` holds only `NEXT_PUBLIC_GA_ID` and `NEXT_PUBLIC_GSC_VERIFICATION` (public by design) and is gitignored. No API keys, SMTP passwords or tokens appear in source. The recipient email and WhatsApp number are hard-coded and public on purpose. Note that the project isn't under git at all, so there's no history, no rollback, and `CLAUDE.md`'s reference to commit `9c830fc` points to a repo that isn't in this folder. **Needs verification:** whether the deployed code lives in a separate repo.
+- **Evidence:** `.env.local` holds only `NEXT_PUBLIC_GA_ID` and `NEXT_PUBLIC_GSC_VERIFICATION` (public by design) and is gitignored. No API keys, SMTP passwords or tokens appear in source. The recipient email and WhatsApp number are hard-coded and public on purpose. (An earlier version of this item said the project wasn't under git. That was wrong, see DEP-04.)
 
 ### 3.4 Design / UX
 
@@ -537,10 +537,8 @@ Same root as DES-10 and SEO-10. Each client project needs: the client and their 
   - `engines.node: 24.x` with Next 13.1 is untested territory (**Needs verification** on Vercel).
 - **Fix:** Move the build-time packages to `devDependencies`, remove the unused ones, and run `npm audit fix` for the transitive issues.
 
-#### DEP-04 — Not under version control
-- **Severity:** Medium · **Effort:** S · **Source:** /review
-- **Evidence:** `Portfolio/` has no `.git`, and the parent folder has a stray `package-lock.json` (empty). Changes can't be reviewed or rolled back, and `/code-review` / `/security-review` (diff-based) can't run.
-- **Fix:** `git init` (or clone the deployed repo, if it exists elsewhere) before starting fixes.
+#### DEP-04 — ~~Not under version control~~ (withdrawn)
+- **Correction:** this finding was wrong. `Portfolio/` is a git repo (remote `github.com/Juliasavransky/Portfolio`). My check ran from the parent folder `my site/`, which isn't a repo. The only real leftover is a stray, empty `package-lock.json` in the parent folder.
 
 ---
 
@@ -593,8 +591,8 @@ Rule applied: **minimalist, with purposeful animation**, for an audience of Isra
 | landing-page-copy | `anthropic-skills:landing-page-copy` | Run (pricing parts deferred, Conflict 14) |
 | analytics | `anthropic-skills:analytics` | Run |
 | karpathy-guidelines | `anthropic-skills:karpathy-guidelines` | Run |
-| /review | no built-in `/review`. Closest: `code-review` (diff-based) and `agent-skills:review` | **Couldn't run as designed:** the project isn't a git repo, so there's no diff. Its five-axis checklist (correctness, readability, architecture, security, performance) was applied manually to the full codebase. |
-| /security-review | `security-review` (diff-based) | **Couldn't run as designed** (no git). Checklist applied manually: secrets, input validation, injection, rate limiting, dependencies (CODE-10, CODE-14, DEP-01/02). |
+| /review | no built-in `/review`. Closest: `code-review` (diff-based) and `agent-skills:review` | Applied manually: the diff-based reviewers review *changes*, and this was an audit of the whole existing codebase with no pending diff. Its five-axis checklist (correctness, readability, architecture, security, performance) was applied to every file. |
+| /security-review | `security-review` (diff-based) | Same reason. Checklist applied manually: secrets, input validation, injection, rate limiting, dependencies (CODE-10, CODE-14, DEP-01/02). |
 | "…" | — | Your skill list contained a literal "…" (truncated), so only the names that appear in your prompt were matched. |
 
 **Relevant extra skills that are installed but weren't run** (they overlap heavily with skills that were): `agent-skills:webperf` / `web-performance-auditor` (covered by Lighthouse + PERF), `improve-animations`, `find-animation-opportunities`, `animate`, `apple-design` (covered by emil-design-eng + DES-01/02), `agent-skills:frontend-ui-engineering`, `agent-skills:security-and-hardening` (checklist only, under CODE-10), `ponytail:ponytail-audit` (dead code covered in CODE-06), `anthropic-skills:directory-submissions` (useful for local SEO follow-up, SEO-11), `anthropic-skills:marketing-psychology`, `anthropic-skills:content-strategy`, `anthropic-skills:brand`.
@@ -606,7 +604,7 @@ Rule applied: **minimalist, with purposeful animation**, for an audience of Isra
 ## 6. Proposed fix order
 
 ### Phase 0 — Safety net (before any change)
-1. `git init` (or clone the deployed repo) and commit the current state (DEP-04). Restore `package-lock.json` from OneDrive history if you want the exact original.
+1. Work on a branch, not on the branch Vercel deploys from.
 
 ### Phase 1 — Quick wins (about 1 day, mostly S effort; biggest SEO gain)
 1. **SEO-01**: un-wrap `SparkleTrail` and SSR `SideBar`. Verify with `curl` that title, description, canonical, OG and text are in the HTML.
@@ -635,3 +633,66 @@ Rule applied: **minimalist, with purposeful animation**, for an audience of Isra
 1. **SEO-10 + CRO-03 + CRO-04 + DES-10**: services section, 5 client case-study pages with testimonials, Experiments list.
 2. **SEO-07 + SEO-11**: full JSON-LD graph, NAP, Google Business Profile, Israeli directories.
 3. **DEP-01**: Next.js 14 → 15.5.24+/16 upgrade on a preview deploy, then re-run Lighthouse and Rich Results Test, and submit the sitemap in Search Console.
+
+---
+
+## 7. Fix status (2026-10-21, branch `audit-fixes`)
+
+All items were approved for fixing. Status per finding: ✅ done · ◐ partly done (what's left needs your input or content) · — not done (with reason).
+
+**Verification after the fixes:** `tsc` 0 errors · `eslint .` 0 problems · `npm test` (contact validation) passes · `next build` passes, with all 10 language pages pre-rendered (SSG) and a static 404 · `npm audit --omit=dev`: 0 vulnerabilities (5 high remain in the *dev-only* lint chain `eslint-config-next` → `braces`, no upstream fix yet) · Playwright on 9 routes × 3 widths: `lang`/`dir` correct, one `h1` per page, no horizontal overflow, no unlabeled fields, no console or hydration errors, full content with JS disabled, static under reduced motion.
+
+LIGHTHOUSE_AFTER
+
+| ID | Status | What changed |
+|----|--------|--------------|
+| SEO-01 | ✅ | `SparkleTrail` and the client-only wrappers are gone. Raw HTML now contains title, description, canonical, hreflang, OG, JSON-LD, nav, `h1` and all text. |
+| SEO-02 | ✅ | `pages/_document.tsx` sets `<html lang dir>` from the route. |
+| SEO-03 | ✅ | One real `h1` per page with the page's intent. The logo is a separate element (visually hidden text + `aria-hidden` letters). |
+| SEO-04 | ✅ | `getStaticPaths` with `fallback:false`: `/fr/home`, `/anything` → 404. `/`, `/he`, `/en` → 308 via `next.config.js`. `/llms.txt` → 200. |
+| SEO-05 | ✅ | All U+05C9/05CA/05CC characters removed. UI labels use gender-neutral nouns ("צרו קשר", "שליחה", "שיחה בוואטסאפ"). The body copy keeps your feminine voice. |
+| SEO-06 | ✅ | Prices removed from meta descriptions and JSON-LD, per the deferral recorded in CLAUDE.md. |
+| SEO-07 | ◐ | New graph: Organization (square logo), Person (Julia), WebSite, ProfessionalService (phone, languages), per-page WebPage + BreadcrumbList, ItemList of CreativeWork on Projects. **Missing:** city or service area, which I don't know. |
+| SEO-08 | ✅ | All pages SSG. bf-cache no longer blocked by `no-store`. |
+| SEO-09 | ✅ | `og-he.jpg` / `og-en.jpg` at 1200×630 (43–52 KB) with width, height, alt and `og:locale:alternate`. |
+| SEO-10 | ◐ | Home now has services, process, a client list and a closing CTA. **Not done:** case-study pages and FAQ. They need real facts (problem, result, quotes, timelines) and I didn't want to invent them. |
+| SEO-11 | ◐ | Footer NAP with WhatsApp and phone, plus the phone in JSON-LD. **Needs you:** city or service area, and a Google Business Profile. |
+| SEO-12 | ✅ | `public/llms.txt` added (no pricing). |
+| SEO-13 | ✅ | Keywords and `language` meta removed. Titles shortened and gendered wording fixed. Sitemap `lastmod` updated (still a static file: update it when content changes). |
+| SEO-14 | ◐ | CV kept, but `/pdf/` is disallowed in robots.txt. Delete or link it if you prefer. |
+| PERF-01 | ✅ | Content visible from the first paint, no opacity gate. |
+| PERF-02 | ✅ | 2 preloaded fonts (Alef WOFF2 + Roboto) instead of 14. The 3 logo display fonts load on hover only. |
+| PERF-03/04/06 | ✅ | Particle canvas, per-second SplitText measuring and the sparkle trail are removed. |
+| PERF-05 | ✅ | Copy comes from static dictionaries, with no client re-fetch. |
+| PERF-07 | ✅ | Real image ratio (1518×721), `sizes`, priority on the first 2 cards only. |
+| PERF-08 | ✅ | Contact layout is in normal flow, with no late-inserted tooltip. See CLS in the table above. |
+| CODE-01 | ✅ | Webpack/SVGR config removed. Turbopack build. |
+| CODE-02/04 | ✅ | One language source: the page's `lang` prop → `LangContext` (`useLang`/`useT`). |
+| CODE-03 | ✅ | Shared `langStaticPaths`/`langStaticProps`. Shared UI primitives in `styles/ui.ts`. |
+| CODE-05 | ✅ | One `<nav>` with one list, responsive with CSS. No duplicate IDs or social links. |
+| CODE-06/07/08 | ✅ | Dead code, unused assets, duplicate theme typings and odd filenames removed. Components renamed to PascalCase. |
+| CODE-09 | ✅ | No render-time randomness. No hydration warnings in the browser runs. |
+| CODE-10 | ✅ | Type and length validation (`lib/contact.ts` + test), honeypot, per-IP rate limit (per-instance, marked in code), nodemailer 10. |
+| CODE-11 | ✅ | Error dialog (native `<dialog>`) stays open until closed, honest error copy, live-region success message, native validation. |
+| CODE-12 | ✅ | MagicButton replaced with real links and a 160 ms press feedback. |
+| CODE-13 | ✅ | `en` dictionary typed from `he`, so missing keys fail the build. Unused props removed. |
+| DES-01/02 | ✅ | One signature motion (logo letter-shuffle on hover, layout-stable). Everything else is feedback only. Global `prefers-reduced-motion` handling. |
+| DES-03/04 | ✅ | Grid shell, `max-width` container, footer. No absolute page containers. |
+| DES-05 | ✅ | Global `dir`, logical properties, no letter-spacing on Hebrew, mirrored arrows, start-aligned body copy, line-height 1.7 for Hebrew. |
+| DES-06/07 | ✅ | Tooltip and the `</html>`-style code tags removed. |
+| DES-08 | ◐ | Typography now runs on 2 text fonts plus a type scale in `styles/ui.ts`. **Kept Roboto** for English: replacing it is a brand decision (Conflict 2). |
+| DES-09 | ✅ | CSS-variable tokens in `styles/global.ts`. Purple kept as the logo colour; borders use `#a06cd5` (4.5:1). |
+| DES-10 | ✅ | 5 client projects first, with visible summaries. 6 experiments in a compact list. |
+| DES-11 | ✅ | Photo shown immediately, without the mask. Note: the source photo is only 408×428, so it's displayed at ≤16rem. Upload a larger one if you want it bigger. |
+| DES-12 | ✅ | Hover (pointer devices only), `:active`, `:disabled` and `:focus-visible` states. |
+| DES-13 | ✅ | Emoji removed from UI and project copy. |
+| DES-14 | ✅ | Static bilingual `404.tsx` using the site layout. |
+| A11Y-01…12 | ✅ | `lang`/`dir`, visible labels with autocomplete, readable headings, language switch as real `hreflang` links, focusable cards, menu with Escape and focus handling (hidden when closed), valid lists, contrast fixes (dark text on WhatsApp green), decorative text removed, text selectable again, native dialog. Skip link added. |
+| CRO-01 | ✅ | WhatsApp is the primary hero CTA, with WhatsApp/phone in the footer on every page and "Contact" in the nav. Email isn't shown as text, to keep the Gmail address off scrapers. The form covers email. |
+| CRO-02 | ✅ | `h1` says what, for whom and where. 18–20 word lead. |
+| CRO-03 | ◐ | Client list and process added. **No testimonials:** they need real, attributed quotes from your clients. |
+| CRO-04 | — | Case studies need your content (see SEO-10). |
+| CRO-05 | ✅ | 3 labeled fields (subject removed), clear CTA, WhatsApp alternative next to the form. No "reply within X hours" promise, since I don't know your real response time. |
+| CRO-06 | ✅ | Unfinished English sentence completed, backtick apostrophes fixed, literal translations rewritten, hover-swapped CTA labels gone, plain headings ("Selected work", "About Julia"). |
+| CRO-07 | ◐ | GA4 events: `generate_lead`, `contact_click` (whatsapp/phone + location), `outbound_project_click`, `language_switch`. Manual page views removed (GA4 Enhanced Measurement handles SPA navigation: **confirm "page changes based on browser history events" is on** in GA). Privacy page added in both languages. **No consent banner:** whether you need one is a legal question I can't answer. Mark `generate_lead` as a key event in GA. |
+| DEP-01/02/03 | ✅ | Next 16.4.2, React 19.3, nodemailer 10.1, ESLint 9 flat config, TypeScript 5.9. Removed: framer-motion, TagCloud, @next/font, @svgr/webpack, @emotion/css, gh-pages, @types/gsap. Dev tooling moved to `devDependencies`. |
