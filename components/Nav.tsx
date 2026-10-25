@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useRef, useState } from 'react';
@@ -40,17 +41,18 @@ const Inner = styled.nav`
 `;
 
 const Brand = styled(Link)`
-  font-weight: 900;
-  font-size: 1.25rem;
-  text-decoration: none;
-  direction: ltr;
+  display: block;
+  width: 8.5rem;
 
-  span {
-    color: var(--accent);
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
   }
 
   @media (min-width: 1024px) {
-    text-align: center;
+    width: 11rem;
+    margin-inline: auto;
   }
 `;
 
@@ -161,7 +163,7 @@ export default function Nav() {
     <Bar>
       <Inner aria-label={t.nav.label}>
         <Brand href={`/${lang}/home`} onClick={close}>
-          <span>W</span>eb <span>W</span>itch
+          <Image src='/images/logo-light.png' alt='Web Witch' width={720} height={410} priority />
         </Brand>
         <MenuButton
           ref={buttonRef}
