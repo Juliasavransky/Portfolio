@@ -41,6 +41,7 @@ const en: Dictionary = {
   common: {
     whatsapp: 'Message me on WhatsApp',
     newTab: '(opens in a new tab)',
+    ogImageAlt: 'Web Witch card: the wordmark above the line "Custom websites for small and creative businesses in Israel"',
   },
   home: {
     h1: 'Custom websites for small and creative businesses in Israel',
